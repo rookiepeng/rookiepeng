@@ -1,4 +1,11 @@
-### Hi there 👋
+### Hi there 👋, I am Zhengyu Peng
+
+<p align="center">
+  <a href="https://zpeng.me">Website</a>
+</p>
+
+- 🔭 I’m currently working on automotive radar systems
+- 😄 Pronouns: he/him
 
 <!--
 **rookiepeng/rookiepeng** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
