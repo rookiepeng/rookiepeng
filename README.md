@@ -26,7 +26,7 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [APTIV](https://www.apt
 #### @ Texas Tech
 - [3D MIMO radar](https://zpeng.me/index.php/portable-24-ghz-3d-mimo-radar/) - A portable 24-GHz 3D MIMO radar system
 - [Phased array radar](https://zpeng.me/index.php/k-band-2d-rf-beamforming-fmcw-radar/) - A short-range localization radar with beamforming capability in K-band
-- [Multi-Mode Radar](https://zpeng.me/index.php/k-band-portable-multi-mode-radar/) - A portable K-band multi-mode radar for short-range localization and vital sign detection
+- [Multi-mode radar](https://zpeng.me/index.php/k-band-portable-multi-mode-radar/) - A portable K-band multi-mode radar for short-range localization and vital sign detection
 - [Antenna models](https://zpeng.me/index.php/antenna-models/) - Antenna simulation models in my researches and projects
 - [Microwave structures](https://zpeng.me/index.php/microwave-structures/) - Design files of microwave structures in my researches and projects
 
