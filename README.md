@@ -15,15 +15,15 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [APTIV](https://www.apt
 
 ### 🏆 What I have been working on
 
+#### @ Aptiv
+- High resolution long range radar
+- [Interior sensing radar](https://www.aptiv.com/newsroom/article/safety-and-convenience-innovations-powered-by-interior-sensing) for in-cabin living targets detection
+
 #### @ Self
 - [Guest editor](https://www.mdpi.com/journal/remotesensing/special_issues/radar_lifeactivities) - MDPI Remote Sensing Journal Special Issue "Radar Remote Sensing on Life Activities"
 - [Antenna array analysis](https://zpeng.me/index.php/antenna-array-analysis/) - A simple GUI tool for antenna array analysis
 - [Socket test](https://zpeng.me/index.php/socket-test/) - A simple TCP/UDP socket test interface built with Python and PyQt5
 - [Tx-line calculator](https://zpeng.me/index.php/tx-line-calculator/) - A transmission line calculator for RF/microwave engineers.
-
-#### @ Aptiv
-- High resolution long range radar
-- [Interior sensing radar](https://www.aptiv.com/newsroom/article/safety-and-convenience-innovations-powered-by-interior-sensing) for in-cabin living targets detection
 
 #### @ Texas Tech
 - [3D MIMO radar](https://zpeng.me/index.php/portable-24-ghz-3d-mimo-radar/) - A portable 24-GHz 3D MIMO radar system
