@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-<img src="./img/zp_teal.png" alt="logo" width="128" />
+<img src="https://raw.githubusercontent.com/rookiepeng/rookiepeng/master/img/zp_teal.png" alt="logo" width="128" />
 
 I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [Aptiv](https://www.aptiv.com/).
 
