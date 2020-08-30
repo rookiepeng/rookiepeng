@@ -18,6 +18,8 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [APTIV](https://www.apt
 #### @ Self
 - [Guest editor](https://www.mdpi.com/journal/remotesensing/special_issues/radar_lifeactivities) - MDPI Remote Sensing Journal Special Issue "Radar Remote Sensing on Life Activities"
 - [Antenna array analysis](https://zpeng.me/index.php/antenna-array-analysis/) - A simple GUI tool for antenna array analysis
+- [Socket test](https://zpeng.me/index.php/socket-test/) - A simple TCP/UDP socket test interface built with Python and PyQt5
+- [Tx-line calculator](https://zpeng.me/index.php/tx-line-calculator/) - A transmission line calculator for RF/microwave engineers.
 
 #### @ Aptiv
 - High resolution long range radar
