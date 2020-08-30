@@ -21,7 +21,7 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [APTIV](https://www.apt
 
 #### @ Aptiv
 - High resolution long range radar
-- Interior sensing radar for in-cabin living targets detection
+- [Interior sensing radar](https://www.aptiv.com/newsroom/article/safety-and-convenience-innovations-powered-by-interior-sensing) for in-cabin living targets detection
 
 #### @ Texas Tech
 - [3D MIMO radar](https://zpeng.me/index.php/portable-24-ghz-3d-mimo-radar/) - A portable 24-GHz 3D MIMO radar system
