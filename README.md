@@ -1,10 +1,10 @@
-### Hi there 👋, I am Zhengyu Peng
+## Hi there 👋
+
+I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [APTIV](https://www.aptiv.com/).
+
+**[Website](https://zpeng.me) • [LinkedIn](https://www.linkedin.com/in/zhengyup/)**
 
 ---
-
-<p align="center">
-  <a href="https://zpeng.me">Website</a>
-</p>
 
 - 🔭 I’m currently working on automotive radar systems
 - 😄 Pronouns: he/him
