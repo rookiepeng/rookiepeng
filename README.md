@@ -1,5 +1,9 @@
 ## Hi there 👋
 
+<img src="./img/zp_teal.png" alt="logo" style="zoom:25%;" />
+
+
+
 I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [Aptiv](https://www.aptiv.com/).
 
 ---
