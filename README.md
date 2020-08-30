@@ -9,8 +9,8 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [APTIV](https://www.apt
 ### 🔭 What I am currently working on
 
 - Next generation forward looking radar @ APTIV
-- RadarSimPy
-- Edenbridge
+- [RadarSimPy](https://zpeng.me/index.php/radarsimpy/) - A radar simulator built with Python and C++
+- [Edenbridge](https://github.com/rookiepeng/edenbridge) - A DIY smart camera based on Raspberry Pi, Telegram bot and Google Drive
 - A new book
 
 ### 🏆 What I have been working on
