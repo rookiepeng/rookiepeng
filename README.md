@@ -2,8 +2,6 @@
 
 I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [Aptiv](https://www.aptiv.com/).
 
-**[Website](https://zpeng.me) • [LinkedIn](https://www.linkedin.com/in/zhengyup/)**
-
 ---
 
 ### 🔭 What I am currently working on
@@ -31,6 +29,10 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [Aptiv](https://www.apt
 - [Multi-mode radar](https://zpeng.me/index.php/k-band-portable-multi-mode-radar/) - A portable K-band multi-mode radar for short-range localization and vital sign detection
 - [Antenna models](https://zpeng.me/index.php/antenna-models/) - Antenna simulation models in my researches and projects
 - [Microwave structures](https://zpeng.me/index.php/microwave-structures/) - Design files of microwave structures in my researches and projects
+
+### 📫 How to reach me
+- [Website](https://zpeng.me)
+- [LinkedIn](https://www.linkedin.com/in/zhengyup/)
 
 <!--
 **rookiepeng/rookiepeng** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
