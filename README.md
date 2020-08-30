@@ -15,15 +15,20 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [APTIV](https://www.apt
 
 ### 🏆 What I have been working on
 
-- High resolution long range radar @ APTIV
-- Interior sensing radar for in-cabin living targets detection @ APTIV
-- Guest editor for MDPI Remote Sensing Journal
-- Antenna array analysis - A simple GUI tool for antenna array analysis
-- 3D MIMO radar - A portable 24-GHz 3D MIMO radar system @ TTU
-- Phased array radar - A short-range localization radar with beamforming capability in K-band @ TTU
-- Multi-Mode Radar - A portable K-band multi-mode radar for short-range localization and vital sign detection @ TTU
-- Antenna models - Antenna simulation models in my researches and projects @ TTU
-- Microwave structures - Design files of microwave structures in my researches and projects @ TTU
+#### @ Self
+- [Guest editor](https://www.mdpi.com/journal/remotesensing/special_issues/radar_lifeactivities) - MDPI Remote Sensing Journal Special Issue "Radar Remote Sensing on Life Activities"
+- [Antenna array analysis](https://zpeng.me/index.php/antenna-array-analysis/) - A simple GUI tool for antenna array analysis
+
+#### @ Aptiv
+- High resolution long range radar
+- Interior sensing radar for in-cabin living targets detection
+
+#### @ Texas Tech
+- [3D MIMO radar](https://zpeng.me/index.php/portable-24-ghz-3d-mimo-radar/) - A portable 24-GHz 3D MIMO radar system
+- [Phased array radar](https://zpeng.me/index.php/k-band-2d-rf-beamforming-fmcw-radar/) - A short-range localization radar with beamforming capability in K-band
+- [Multi-Mode Radar](https://zpeng.me/index.php/k-band-portable-multi-mode-radar/) - A portable K-band multi-mode radar for short-range localization and vital sign detection
+- [Antenna models](https://zpeng.me/index.php/antenna-models/) - Antenna simulation models in my researches and projects
+- [Microwave structures](https://zpeng.me/index.php/microwave-structures/) - Design files of microwave structures in my researches and projects
 
 <!--
 **rookiepeng/rookiepeng** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
