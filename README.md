@@ -8,7 +8,7 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [Aptiv](https://www.apt
 
 ### 🔭 What I am currently working on
 
-- Next generation forward looking radar @ Aptiv
+- Next generation imaging radar @ Aptiv
 - [RadarSimPy](https://zpeng.me/index.php/2019/04/07/radarsimpy/) - A radar simulator built with Python and C++
 - [Edenbridge](https://github.com/rookiepeng/edenbridge) - A DIY smart camera based on Raspberry Pi, Telegram bot and Google Drive
 - A new book
@@ -16,10 +16,11 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [Aptiv](https://www.apt
 ### 🏆 What I have been working on
 
 #### @ Aptiv
-- High resolution long range radar
+- [FLR4+](https://www.aptiv.com/en/solutions/advanced-safety/adas/radars): Aptiv’s first 4D imaging radar
 - [Interior sensing radar](https://www.aptiv.com/newsroom/article/safety-and-convenience-innovations-powered-by-interior-sensing) for in-cabin living targets detection
 
 #### @ Self
+- [Associate Editor](https://ieee-ims.org/contact/zhengyu-peng) - IEEE Transactions on Instrumentation and Measurement
 - [Guest editor](https://www.mdpi.com/journal/remotesensing/special_issues/radar_lifeactivities) - MDPI Remote Sensing Journal Special Issue "Radar Remote Sensing on Life Activities"
 - [Antenna array analysis](https://zpeng.me/index.php/2019/02/11/antenna-array-analysis/) - A simple GUI tool for antenna array analysis
 - [Socket test](https://zpeng.me/index.php/2017/07/04/socket-test/) - A simple TCP/UDP socket test interface built with Python and PyQt5
