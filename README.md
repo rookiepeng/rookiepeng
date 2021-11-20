@@ -51,4 +51,4 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-<img align="left" src="https://github-readme-stats.vercel.app/api?username=rookiepeng&show_icons=true&count_private=true&theme=material-palenight&hide_title=false" />
+<img align="left" src="https://github-readme-stats.vercel.app/api?username=rookiepeng&show_icons=true&count_private=true&hide_title=false" />
