@@ -16,7 +16,7 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [Aptiv](https://www.apt
 ### 🏆 What I have been working on
 
 #### @ Aptiv
-- [FLR4+](https://www.aptiv.com/en/solutions/advanced-safety/adas/radars): Aptiv’s first 4D imaging radar
+- [FLR4+](https://www.aptiv.com/en/solutions/advanced-safety/adas/radars): Aptiv’s first 4D imaging radar can meet the most demanding customer applications at an attractive price/performance ratio. Its range detection is an industry-leading 300 meters, and it supports true elevation target discrimination with machine learning.
 - [Interior sensing radar](https://www.aptiv.com/newsroom/article/safety-and-convenience-innovations-powered-by-interior-sensing) for in-cabin living targets detection
 
 #### @ Self
