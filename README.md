@@ -12,7 +12,7 @@ I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [Aptiv](https://www.apt
 - [RadarSimPy](https://zpeng.me/index.php/2019/04/07/radarsimpy/) - A radar simulator built with Python and C++
 - [Hexapod](https://github.com/rookiepeng/hexapod) - A 3D printed hexapod robot using Raspberry Pi Zero W
 - [Edenbridge](https://github.com/rookiepeng/edenbridge) - A DIY smart camera based on Raspberry Pi, Telegram bot and Google Drive
-- A new book
+- A new book "Modern Radar for Automotive Applications", to be published by the IET in September, 2022
 
 ### 🏆 What I have been working on
 
