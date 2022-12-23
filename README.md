@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-I am **Zhengyu Peng**, a Senior Radar Systems Engineer @ [Aptiv](https://www.aptiv.com/).
+I am **Zhengyu Peng**, a senior radar systems engineer with a strong background in radar systems. I received my Ph.D. from Texas Tech University in 2018 and have been heavily involved in the development of high resolution imaging radar at Aptiv, a company focused on creating safer and more sustainable mobility solutions. My areas of expertise include automotive radar, radar signal processing, mm-wave and microwave systems, antenna arrays, and beamforming. I am also an associate editor for the IEEE Transactions on Instrumentation and Measurement and a member of the SPIE Defense+Commercial Sensing Radar Sensor Technology Committee.
 
 ---
 
