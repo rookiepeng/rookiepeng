@@ -6,11 +6,9 @@ I am **Zhengyu Peng**, a senior radar systems engineer with a strong background 
 
 ### 🔭 What I am currently working on
 
-- Next generation imaging radar @ Aptiv
+- Next-generation high-resolution imaging radar @ Aptiv
 - [RadarSimPy](https://zpeng.me/index.php/2019/04/07/radarsimpy/) - A radar simulator built with Python and C++
 - [Hexapod](https://github.com/rookiepeng/hexapod) - A 3D printed hexapod robot using Raspberry Pi Zero W
-- [Sentinel](https://github.com/rookiepeng/sentinel) - A DIY smart camera based on Raspberry Pi, Telegram bot and Google Drive
-- A new book "**Modern Radar for Automotive Applications**", to be published by the IET in 2022
 
 ### 🏆 What I have been working on
 
@@ -19,10 +17,12 @@ I am **Zhengyu Peng**, a senior radar systems engineer with a strong background 
 - [Interior sensing radar](https://www.aptiv.com/newsroom/article/safety-and-convenience-innovations-powered-by-interior-sensing) for in-cabin living targets detection
 
 #### @ Self
+- Lead Editor of book "***[Modern Radar for Automotive Applications](https://shop.theiet.org/modern-radar-for-automotive-applications)***" published by the IET in 2022
 - [Associate Editor](https://ieee-ims.org/contact/zhengyu-peng) - IEEE Transactions on Instrumentation and Measurement
 - [Guest editor](https://www.mdpi.com/journal/remotesensing/special_issues/radar_lifeactivities) - MDPI Remote Sensing Journal Special Issue "Radar Remote Sensing on Life Activities"
+- [Sentinel](https://github.com/rookiepeng/sentinel) - A DIY smart camera based on Raspberry Pi and Telegram bot
 - [Antenna array analysis](https://zpeng.me/index.php/2019/02/11/antenna-array-analysis/) - A simple GUI tool for antenna array analysis
-- [Socket test](https://zpeng.me/index.php/2017/07/04/socket-test/) - A simple TCP/UDP socket test interface built with Python and PyQt5
+- [Socket test](https://zpeng.me/index.php/2017/07/04/socket-test/) - A simple TCP/UDP socket test interface built with Python and PySide
 - [Tx-line calculator](https://zpeng.me/index.php/2018/05/01/tx-line-calculator/) - A transmission line calculator for RF/microwave engineers.
 
 #### @ Texas Tech
