@@ -8,7 +8,7 @@ I am Dr. **Zhengyu Peng**, a senior radar systems engineer with a strong backgro
 
 - Next-generation high-resolution imaging radar @ Aptiv
 - [RadarSimX](https://radarsimx.com/) - The tool chain for radar simulation
-- [Hexapod](https://github.com/rookiepeng/hexapod) - A 3D printed hexapod robot using Raspberry Pi Zero W
+- [Hexapod](https://github.com/rookidroid/hexapod) - A 3D printed hexapod robot
 
 ### 🏆 What I have been working on
 
