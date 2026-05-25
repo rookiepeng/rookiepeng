@@ -1,0 +1,378 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+.zpeng-page *,.zpeng-page *::before,.zpeng-page *::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#f4f4ff;
+--bg2:#eeeeff;
+--bg3:#e8e8ff;
+--border:#d8d8f0;
+--border2:#c0c0e8;
+--text:#0f172a;
+--muted:#64748b;
+--accent:#2196f3;
+--accent2:#1565c0;
+--warm:#f0a96b;
+--teal:#5dcdb5;
+}
+.zpeng-page{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* PAGE HERO */
+#hero{min-height:42vh;position:relative;display:flex;align-items:center;background:linear-gradient(135deg,#12102e 0%,#1a183a 45%,#1e1d45 75%,#16213a 100%);--bg:#1a183a;--bg2:#201e45;--bg3:#28264e;--border:#ffffff12;--border2:#ffffff22;--text:#e2e8f4;--muted:#8896ad;color:#e2e8f4}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;padding:6rem 2rem 4rem;position:relative;z-index:1;animation:fadeUp .8s ease both}
+.hero-tag{font-family:var(--mono);font-size:0.75rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem}
+.hero-tag::before{content:'';width:2rem;height:1px;background:var(--accent)}
+.zpeng-page h1{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,4rem);line-height:1.05;font-weight:400;margin-bottom:1rem}
+.zpeng-page h1 em{font-style:italic;color:var(--accent)}
+.hero-bio{color:var(--muted);font-size:1rem;max-width:52ch;line-height:1.75}
+
+/* SECTION COMMON */
+.zpeng-page section{padding:6rem 2rem}
+.zpeng-page section > *{max-width:1200px;margin-left:auto;margin-right:auto}
+.section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3rem}
+.section-num{font-family:var(--mono);font-size:.75rem;color:var(--accent);letter-spacing:.1em}
+.section-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400}
+.section-line{flex:1;height:1px;background:var(--border)}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:3rem}
+.filter-btn{padding:.3rem .85rem;border:1px solid var(--border2);border-radius:1.5rem;font-size:.75rem;font-family:var(--mono);letter-spacing:.06em;color:var(--muted);background:transparent;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.filter-btn:hover{border-color:var(--accent);color:var(--accent)}
+.filter-btn.active{border-color:var(--accent);color:var(--accent);background:#2196f312}
+
+/* PROJECT GRID */
+#projects{background:var(--bg)}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+
+.proj-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column;position:relative}
+.proj-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,#2196f30a,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:1}
+.proj-card:hover{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 16px 40px #00000040}
+.proj-card:hover::before{opacity:1}
+
+.proj-card-img-wrap{position:relative;overflow:hidden;height:190px;background:#0f1030}
+.proj-card-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease,opacity .3s}
+.proj-card:hover .proj-card-img{transform:scale(1.04);opacity:.9}
+.proj-card-year{position:absolute;top:.7rem;right:.8rem;font-family:var(--mono);font-size:.62rem;color:#e2e8f4;background:#1a183acc;border:1px solid #ffffff22;border-radius:.4rem;padding:.18rem .45rem;letter-spacing:.06em;z-index:2}
+
+.proj-card-body{padding:1.4rem;flex:1;display:flex;flex-direction:column}
+.proj-card-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.75rem}
+.proj-tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;padding:.18rem .5rem;border-radius:.8rem;border:1px solid var(--border2);color:var(--muted)}
+.proj-tag.tag-radar{background:#2196f310;color:var(--accent);border-color:#2196f330}
+.proj-tag.tag-mimo{background:#5dcdb510;color:var(--teal);border-color:#5dcdb530}
+.proj-tag.tag-beamforming{background:#f0a96b10;color:var(--warm);border-color:#f0a96b30}
+.proj-tag.tag-vital{background:#a78bfa20;color:#a78bfa;border-color:#a78bfa30}
+.proj-tag.tag-ic{background:#34d39920;color:#34d399;border-color:#34d39930}
+.proj-tag.tag-software{background:#2196f310;color:var(--accent);border-color:#2196f330}
+
+.proj-card h3{font-size:.95rem;font-weight:500;color:var(--text);margin-bottom:.45rem;line-height:1.4;transition:color .2s}
+.proj-card:hover h3{color:var(--accent)}
+.proj-card p{font-size:.8rem;color:var(--muted);line-height:1.65;flex:1}
+.proj-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1.1rem;padding-top:.9rem;border-top:1px solid var(--border)}
+.proj-pub-count{font-family:var(--mono);font-size:.65rem;color:var(--muted);display:flex;align-items:center;gap:.35rem}
+.proj-pub-count i{color:var(--accent);font-size:.7rem}
+.proj-read-more{font-family:var(--mono);font-size:.65rem;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;border:1px solid #2196f330;padding:.22rem .6rem;border-radius:.5rem;transition:border-color .2s,background .2s}
+.proj-read-more:hover{border-color:var(--accent);background:#2196f312;color:var(--accent)}
+
+/* HIGHLIGHT BANNER */
+#highlight{background:#1a183a;color:#e2e8f4;text-align:center}
+#highlight > *{--border:#ffffff12;--border2:#ffffff22}
+.hl-inner{max-width:1200px;margin:0 auto}
+.hl-grid{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
+.hl-stat .n{font-family:var(--serif);font-size:2.8rem;color:var(--accent);line-height:1}
+.hl-stat .l{font-size:.75rem;color:#8896ad;margin-top:.25rem;letter-spacing:.04em}
+.hl-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2.5rem;color:#8896ad;font-size:.85rem;text-decoration:none;border:1px solid #ffffff22;padding:.7rem 1.8rem;border-radius:2rem;transition:border-color .2s,color .2s}
+.hl-cta:hover{border-color:var(--accent);color:var(--accent)}
+
+/* FOOTER */
+.zpeng-page footer{border-top:1px solid var(--border)}
+.footer-inner{max-width:1200px;margin:0 auto;padding:3rem 2rem;display:flex;justify-content:space-between;align-items:center}
+.footer-left{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.footer-left a{color:var(--accent);text-decoration:none}
+.footer-right{font-size:.75rem;color:var(--muted)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+.reveal-delay-5{transition-delay:.5s}
+
+/* HIDDEN for filtering */
+.proj-card.hidden{display:none}
+
+@media(max-width:900px){
+#hero{min-height:50vh}
+.hero-inner{padding:5rem 1.5rem 3rem}
+.zpeng-page section{padding:4rem 1.5rem}
+.proj-grid{grid-template-columns:1fr}
+.nav-inner{padding:.8rem 1.5rem}
+.nav-links{gap:1.2rem}
+.footer-inner{flex-direction:column;gap:.5rem;text-align:center}
+.hl-grid{gap:2rem}
+}
+@media(min-width:901px) and (max-width:1100px){
+.proj-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+
+<div class="zpeng-page">
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="hero-tag">PhD Research &middot; Radar Systems &middot; TTU 2014&ndash;2018</div>
+    <h1>Research<br><em>Projects</em></h1>
+    <p class="hero-bio">Radar system design, signal processing, and sensing applications developed during doctoral studies at Texas Tech University &mdash; spanning hardware prototyping, MIMO, beamforming, and bio-radar.</p>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">All Projects</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="radar">Radar</button>
+    <button class="filter-btn" data-filter="mimo">MIMO</button>
+    <button class="filter-btn" data-filter="beamforming">Beamforming</button>
+    <button class="filter-btn" data-filter="vital">Vital Sign</button>
+    <button class="filter-btn" data-filter="ic">IC Design</button>
+  </div>
+
+  <div class="proj-grid">
+
+    <!-- 1: Portable 24-GHz 3D MIMO Radar -->
+    <a class="proj-card reveal" href="https://zpeng.me/2017/09/27/portable-24-ghz-3d-mimo-radar/" target="_blank" data-tags="radar mimo">
+      <div class="proj-card-img-wrap">
+        <img class="proj-card-img" src="https://zpeng.me/wp-content/uploads/2018/03/mimo-3d-view.jpg" alt="Portable 24-GHz 3D MIMO Radar" loading="lazy">
+        <span class="proj-card-year">2017</span>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-card-tags">
+          <span class="proj-tag tag-mimo">MIMO</span>
+          <span class="proj-tag tag-radar">RADAR</span>
+        </div>
+        <h3>Portable 24-GHz 3D MIMO Radar</h3>
+        <p>A K-band MIMO FMCW radar achieving 90&deg; field of view and &plusmn;1.5&deg; angular resolution in both azimuth and elevation. Non-uniformly spaced array with 16 Tx and 16 Rx channels enables 3D localization mapping.</p>
+        <div class="proj-card-footer">
+          <span class="proj-pub-count"><i class="fa-solid fa-file-lines"></i> 1 Journal Paper</span>
+          <span class="proj-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 2: K-Band 2D RF Beamforming FMCW Radar -->
+    <a class="proj-card reveal reveal-delay-1" href="https://zpeng.me/2017/01/28/k-band-2d-rf-beamforming-fmcw-radar/" target="_blank" data-tags="radar beamforming">
+      <div class="proj-card-img-wrap">
+        <img class="proj-card-img" src="https://zpeng.me/wp-content/uploads/2017/11/24g-phased-array-photo.jpg" alt="K-Band 2D RF Beamforming FMCW Radar" loading="lazy">
+        <span class="proj-card-year">2017</span>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-card-tags">
+          <span class="proj-tag tag-beamforming">Beamforming</span>
+          <span class="proj-tag tag-radar">FMCW</span>
+        </div>
+        <h3>K-Band 2D RF Beamforming FMCW Radar</h3>
+        <p>The first PCB realization of short-range localization radar with beamforming capability in K-band. Achieves &plusmn;45&deg; continuous beam steering using vector controllers with PIN diodes. Size: 11.5 &times; 3.9 cm, 69 g.</p>
+        <div class="proj-card-footer">
+          <span class="proj-pub-count"><i class="fa-solid fa-file-lines"></i> 1 Journal Paper</span>
+          <span class="proj-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 3: K-Band Portable Multi-Mode Radar -->
+    <a class="proj-card reveal reveal-delay-2" href="https://zpeng.me/2017/01/28/k-band-portable-multi-mode-radar/" target="_blank" data-tags="radar vital">
+      <div class="proj-card-img-wrap">
+        <img class="proj-card-img" src="https://zpeng.me/wp-content/uploads/2018/03/k-band-radar-photo.jpg" alt="K-Band Portable Multi-Mode Radar" loading="lazy">
+        <span class="proj-card-year">2015&ndash;2017</span>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-card-tags">
+          <span class="proj-tag tag-vital">Vital Sign</span>
+          <span class="proj-tag tag-radar">RADAR</span>
+        </div>
+        <h3>K-Band Portable Multi-Mode Radar</h3>
+        <p>A 24-GHz portable radar configurable in FMCW or interferometry mode. Enables localization, range-Doppler imaging, non-contact speech sensing, wind turbine health monitoring, and SAR imaging on UAV.</p>
+        <div class="proj-card-footer">
+          <span class="proj-pub-count"><i class="fa-solid fa-file-lines"></i> 5+ Papers</span>
+          <span class="proj-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 4: C-Band Portable Multi-Mode Radar -->
+    <a class="proj-card reveal reveal-delay-3" href="https://zpeng.me/2017/01/28/c-band-portable-multi-mode-radar/" target="_blank" data-tags="radar vital">
+      <div class="proj-card-img-wrap">
+        <img class="proj-card-img" src="https://zpeng.me/wp-content/uploads/2017/11/5g8-radar-photo.jpg" alt="C-Band Portable Multi-Mode Radar" loading="lazy">
+        <span class="proj-card-year">2015&ndash;2017</span>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-card-tags">
+          <span class="proj-tag tag-vital">Vital Sign</span>
+          <span class="proj-tag tag-radar">5.8 GHz</span>
+        </div>
+        <h3>C-Band Portable Multi-Mode Radar</h3>
+        <p>A 5.8-GHz FMCW-interferometry radar for multi-application sensing: single/multiple target tracking, vital sign detection, fall detection, range-Doppler imaging, and wind turbine structural health monitoring.</p>
+        <div class="proj-card-footer">
+          <span class="proj-pub-count"><i class="fa-solid fa-file-lines"></i> 5+ Papers</span>
+          <span class="proj-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 5: 24-GHz Radar-on-Chip -->
+    <a class="proj-card reveal reveal-delay-4" href="https://zpeng.me/2017/01/28/24-ghz-radar-on-chip/" target="_blank" data-tags="radar ic">
+      <div class="proj-card-img-wrap">
+        <img class="proj-card-img" src="https://zpeng.me/wp-content/uploads/2017/11/radar-on-chip-photo.jpg" alt="24-GHz Radar-on-Chip" loading="lazy">
+        <span class="proj-card-year">2013&ndash;2014</span>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-card-tags">
+          <span class="proj-tag tag-ic">IC Design</span>
+          <span class="proj-tag tag-radar">RADAR</span>
+        </div>
+        <h3>24-GHz Radar-on-Chip</h3>
+        <p>A 24-GHz radar transceiver chip realized with Global Foundry 0.13 &micro;m CMOS process. Includes LC-tank VCO, poly-phase filter, RF buffers, and a matching network for QFN package &mdash; targeting low-cost consumer and bio-medical applications.</p>
+        <div class="proj-card-footer">
+          <span class="proj-pub-count"><i class="fa-solid fa-microchip"></i> CMOS 0.13 &micro;m</span>
+          <span class="proj-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- HIGHLIGHT STATS -->
+<section id="highlight">
+  <div class="hl-inner">
+    <div class="section-header reveal" style="justify-content:center;text-align:center;--border:#ffffff12">
+      <span class="section-num" style="color:var(--accent)">02</span>
+      <h2 class="section-title" style="color:#e2e8f4">Research Impact</h2>
+      <div class="section-line" style="background:#ffffff18"></div>
+    </div>
+    <div class="hl-grid">
+      <div class="hl-stat reveal"><div class="n">16</div><div class="l">Journal Papers</div></div>
+      <div class="hl-stat reveal reveal-delay-1"><div class="n">31</div><div class="l">Conference Papers</div></div>
+      <div class="hl-stat reveal reveal-delay-2"><div class="n">10</div><div class="l">Patents</div></div>
+      <div class="hl-stat reveal reveal-delay-3"><div class="n">1</div><div class="l">Book</div></div>
+      <div class="hl-stat reveal reveal-delay-4"><div class="n">3</div><div class="l">Book Chapters</div></div>
+    </div>
+    <div class="reveal">
+      <a class="hl-cta" href="https://zpeng.me/publications/" target="_blank">
+        View Full Publication List <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.zpeng-page -->
+
+<script data-cfasync="false">
+/* <![CDATA[ */
+(function () {
+
+  /* ---------- Reveal on scroll ---------- */
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
+
+  /* ---------- Filter buttons ---------- */
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var projCards  = document.querySelectorAll('.proj-card');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.dataset.filter;
+      projCards.forEach(function (card) {
+        var tags = card.dataset.tags || '';
+        if (filter === 'all' || tags.indexOf(filter) !== -1) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  /* ---------- Hero radar canvas ---------- */
+  (function () {
+    var canvas = document.getElementById('hero-canvas');
+    var hero   = document.getElementById('hero');
+    if (!canvas || !hero) return;
+    var ctx = canvas.getContext('2d');
+    var W, H, t = 0;
+
+    function resize() {
+      W = canvas.width  = hero.offsetWidth;
+      H = canvas.height = hero.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var MAX_DOTS = 35, dots = [];
+    function spawnDot() {
+      dots.push({
+        x: Math.random() * W, y: Math.random() * H,
+        r: 0.8 + Math.random() * 1.6,
+        life: 0, maxLife: 60 + Math.random() * 80,
+        color: Math.random() < 0.5 ? '33,150,243' : '92,205,181'
+      });
+    }
+
+    function drawWave(yFrac, ampFrac, freq, phaseOff, alpha, lw) {
+      var cy = H * yFrac, A = H * ampFrac;
+      ctx.beginPath();
+      for (var x = 0; x <= W * 0.65; x += 1.5) {
+        var xn  = x / (W * 0.65);
+        var env = Math.exp(-Math.pow((xn - 0.5) * 2.4, 2));
+        var y   = cy + Math.sin(freq * xn * Math.PI * 2 + phaseOff + t * 0.012) * A * env;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = 'rgba(33,150,243,' + alpha + ')';
+      ctx.lineWidth = lw;
+      ctx.stroke();
+    }
+
+    function frame() {
+      ctx.clearRect(0, 0, W, H);
+
+      if (dots.length < MAX_DOTS) { if (Math.random() < 0.35) spawnDot(); }
+      for (var i = dots.length - 1; i >= 0; i--) {
+        var d = dots[i];
+        d.life++;
+        var prog = d.life / d.maxLife;
+        var a = prog < 0.3 ? (prog / 0.3) * 0.55 : (1 - prog) * 0.55;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + d.color + ',' + a + ')';
+        ctx.fill();
+        if (d.life >= d.maxLife) dots.splice(i, 1);
+      }
+
+      drawWave(0.46, 0.06, 3.5, 0,           0.18, 1.0);
+      drawWave(0.46, 0.025, 3.5, Math.PI/2,  0.08, 0.7);
+      t++;
+      requestAnimationFrame(frame);
+    }
+    frame();
+  })();
+
+})();
+/* ]]> */
+</script>

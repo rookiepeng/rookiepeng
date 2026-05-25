@@ -1,0 +1,844 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+.zpeng-page *,.zpeng-page *::before,.zpeng-page *::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#f4f4ff;
+--bg2:#eeeeff;
+--bg3:#e8e8ff;
+--border:#d8d8f0;
+--border2:#c0c0e8;
+--text:#0f172a;
+--muted:#64748b;
+--accent:#2196f3;
+--accent2:#1565c0;
+--warm:#f0a96b;
+--teal:#5dcdb5;
+}
+.zpeng-page{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* HERO */
+#hero{min-height:100vh;position:relative;display:flex;align-items:center;background:linear-gradient(135deg,#12102e 0%,#1a183a 45%,#1e1d45 75%,#16213a 100%);--bg:#1a183a;--bg2:#201e45;--bg3:#28264e;--border:#ffffff12;--border2:#ffffff22;--text:#e2e8f4;--muted:#8896ad;color:#e2e8f4}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;padding:6rem 2rem 4rem;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;position:relative;z-index:1}
+.hero-left{animation:fadeUp .8s ease both}
+.hero-tag{font-family:var(--mono);font-size:0.75rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.6rem}
+.hero-tag::before{content:'';width:2rem;height:1px;background:var(--accent)}
+.zpeng-page h1{font-family:var(--serif);font-size:clamp(3rem,5vw,5rem);line-height:1.05;font-weight:400;margin-bottom:1.2rem}
+.zpeng-page h1 em{font-style:italic;color:var(--accent)}
+.hero-bio{color:var(--muted);font-size:.9rem;max-width:42ch;line-height:1.75;margin-bottom:2.5rem;list-style:none;display:flex;flex-direction:column;gap:.3rem}
+.hero-bio li{position:relative;padding-left:1rem}
+.hero-bio li::before{content:'';position:absolute;left:0;top:.72em;width:4px;height:4px;border-radius:50%;background:var(--accent)}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{padding:.65rem 1.6rem;background:var(--accent);color:#fff;border-radius:2rem;font-size:0.85rem;font-weight:600;text-decoration:none;letter-spacing:0.04em;transition:transform .2s,box-shadow .2s}
+.btn-primary:visited{background:var(--accent);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);color:#fff;box-shadow:0 8px 24px #2196f333}
+.btn-ghost{padding:.65rem 1.6rem;border:1px solid var(--border2);border-radius:2rem;font-size:0.85rem;color:var(--muted);text-decoration:none;letter-spacing:0.04em;transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.hero-right{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;animation:fadeUp .8s .15s ease both;opacity:0;animation-fill-mode:forwards}
+.stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.6rem}
+.stat-card .num{font-family:var(--serif);font-size:2.6rem;color:var(--accent);line-height:1}
+.stat-card .label{font-size:0.75rem;color:var(--muted);margin-top:.35rem;letter-spacing:0.04em}
+.stat-card.wide{grid-column:span 2;display:flex;align-items:center;gap:1.5rem}
+.stat-card.wide .desc{font-size:0.85rem;color:var(--muted);line-height:1.6}
+.social-links{display:flex;gap:1rem;margin-top:3rem}
+.social-links a{width:36px;height:36px;border:1px solid var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:1rem;transition:border-color .2s,color .2s,transform .2s}
+.social-links a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:6rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--muted);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;animation:pulse 2s infinite;z-index:1}
+
+/* SECTION COMMON */
+.zpeng-page section{padding:6rem 2rem}
+.zpeng-page section > *:not(canvas){max-width:1200px;margin-left:auto;margin-right:auto}
+.section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:4rem}
+.section-num{font-family:var(--mono);font-size:.75rem;color:var(--accent);letter-spacing:.1em}
+.section-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400}
+.section-line{flex:1;height:1px;background:var(--border)}
+
+/* ABOUT */
+#about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:5rem;align-items:start}
+.about-text p{color:var(--muted);line-height:1.85;margin-bottom:1.4rem;font-size:1rem}
+.about-text p strong{color:var(--text);font-weight:500}
+.skills-block{display:flex;flex-direction:column;gap:1.2rem}
+.skill-group label{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.6rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{padding:.25rem .7rem;border:1px solid var(--border2);border-radius:1rem;font-size:.75rem;color:var(--muted);white-space:nowrap;transition:border-color .2s,color .2s}
+.tag:hover{border-color:var(--accent);color:var(--accent)}
+.tag.active{border-color:var(--accent2);color:var(--accent);background:#2196f312}
+
+/* TIMELINE */
+#timeline{background:var(--bg2);position:relative;overflow:hidden}
+#timeline::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,#00000014 1px,transparent 1px);background-size:30px 30px;pointer-events:none;z-index:0}
+#timeline::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 700px 500px at 8% 25%,#5dcdb518,transparent 70%),radial-gradient(ellipse 600px 700px at 92% 75%,#2196f318,transparent 70%);pointer-events:none;z-index:0}
+#timeline > *{position:relative;z-index:1}
+.tl-legend{display:flex;gap:2rem;margin-bottom:3rem;font-size:.75rem;color:var(--muted);font-family:var(--mono)}
+.tl-legend span{display:flex;align-items:center;gap:.5rem}
+.tl-legend span::before{content:'';width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.tl-legend .leg-career::before{background:var(--teal)}
+.tl-legend .leg-achieve::before{background:var(--accent)}
+
+.tl-grid{position:relative;display:grid;grid-template-columns:1fr 2px 1fr;gap:0}
+
+/* Center spine */
+.tl-spine{background:linear-gradient(to bottom,transparent,var(--border2) 5%,var(--border2) 95%,transparent);position:relative}
+
+/* Year markers sit on the spine */
+.tl-year-row{display:contents}
+.tl-year-spacer{height:2.8rem}
+.tl-year-marker{display:flex;align-items:center;justify-content:center;height:2.8rem;position:relative;z-index:2}
+.tl-year-pip{background:var(--bg);border:1px solid var(--border2);border-radius:.3rem;padding:.2rem .6rem;font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.06em;white-space:nowrap}
+
+/* Cards */
+.tl-row{display:contents}
+.tl-cell{padding:.5rem 0 1.8rem;position:relative}
+.tl-cell.left{padding-right:2.2rem;text-align:right}
+.tl-cell.right{padding-left:2.2rem;text-align:left}
+.tl-cell.empty{min-height:1rem}
+
+/* Dot on spine edge */
+.tl-cell.left:not(.empty)::after,.tl-cell.right:not(.empty)::before{content:'';position:absolute;top:1.0rem;width:12px;height:12px;border-radius:50%;border:2px solid var(--border2);background:var(--bg2);transition:box-shadow .25s,transform .25s;z-index:2}
+.tl-cell.left::after{right:-7px}
+.tl-cell.right::before{left:-7px}
+.tl-cell.left.career::after,.tl-cell.right.career::before,.tl-cell.left.career::before{border-color:var(--teal)!important;background:var(--teal)!important}
+.tl-cell.left.achieve::after,.tl-cell.right.achieve::before,.tl-cell.left.achieve::before{border-color:var(--accent)!important;background:var(--accent)!important}
+.tl-cell.left.career:hover::after,.tl-cell.right.career:hover::before,.tl-cell.left.career:hover::before{box-shadow:0 0 0 4px #5dcdb540;transform:scale(1.2)}
+.tl-cell.left.achieve:hover::after,.tl-cell.right.achieve:hover::before,.tl-cell.left.achieve:hover::before{box-shadow:0 0 0 4px #2196f340;transform:scale(1.2)}
+
+.tl-date{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.04em;margin-bottom:.3rem}
+.tl-badge{display:inline-block;padding:.12rem .5rem;border-radius:.7rem;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500;margin-bottom:.35rem}
+.badge-work{background:#5dcdb520;color:var(--teal);border:1px solid #5dcdb330}
+.badge-award{background:#f0a96b20;color:var(--warm);border:1px solid #f0a96b30}
+.badge-pub{background:#2196f320;color:var(--accent);border:1px solid #2196f330}
+.badge-edu{background:#ffffff10;color:var(--muted);border:1px solid var(--border2)}
+.tl-title{font-size:.9rem;font-weight:500;color:var(--text);text-decoration:none;display:block;line-height:1.4;transition:color .2s;margin-bottom:.2rem}
+.tl-title:hover{color:var(--accent)}
+.tl-title .fa-up-right-from-square{font-size:.65em;opacity:.5;vertical-align:.1em}
+.tl-org{font-size:.78rem;color:var(--muted);line-height:1.5}
+.tl-desc{font-size:.75rem;color:var(--muted);margin-top:.3rem;line-height:1.55;opacity:.8}
+.tl-img{display:block;height:80px;width:80px;object-fit:contain;padding:2px;background:#fff;border-radius:4px;opacity:.9;transition:opacity .2s,box-shadow .2s;align-self:start;flex-shrink:0}
+/* Right cells: image on left (spine side), text on right */
+.tl-cell.right:has(.tl-img){display:grid;grid-template-columns:80px 1fr;column-gap:1rem;align-items:start}
+.tl-cell.right:has(.tl-img) .tl-img{grid-column:1;grid-row:1 / span 6}
+.tl-cell.right:has(.tl-img) > :not(.tl-img){grid-column:2}
+/* Left cells: text on left, image on right (spine side) */
+.tl-cell.left:has(.tl-img){display:grid;grid-template-columns:1fr 80px;column-gap:1rem;align-items:start}
+.tl-cell.left:has(.tl-img) .tl-img{grid-column:2;grid-row:1 / span 6;margin-left:0}
+.tl-cell.left:has(.tl-img) > :not(.tl-img){grid-column:1}
+/* Prevent badges from stretching full column width inside grid */
+.tl-cell.right:has(.tl-img) .tl-badge{justify-self:start}
+.tl-cell.left:has(.tl-img) .tl-badge{justify-self:end}
+.tl-cell:hover .tl-img{opacity:1;box-shadow:0 4px 16px #ffffff22}
+
+/* TIMELINE TOGGLE */
+.tl-toggle-wrap{max-width:1200px;margin:2rem auto 0;text-align:center}
+.tl-toggle-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.8rem;border:1px solid var(--border2);border-radius:2rem;background:transparent;color:var(--muted);font-family:var(--sans);font-size:.85rem;cursor:pointer;transition:border-color .2s,color .2s,transform .2s;letter-spacing:.03em}
+.tl-toggle-btn:hover{border-color:var(--accent);color:var(--accent);background:transparent;}
+.tl-toggle-btn .tl-chevron{display:inline-block;transition:transform .3s ease}
+.tl-toggle-btn.is-expanded .tl-chevron{transform:rotate(180deg)}
+.tl-more-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.4,0,.2,1),opacity .45s ease}
+.tl-more-wrap.is-open{grid-template-rows:1fr}
+#tl-more{overflow:hidden;min-height:0;margin-top:0}
+
+/* WORKS */
+#works{background:var(--bg)}
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.work-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.6rem;position:relative;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column}
+.work-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,#2196f30a,transparent 60%);opacity:0;transition:opacity .3s}
+.work-card:hover{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 16px 40px #00000060}
+.work-card:hover::before{opacity:1}
+.work-card .wc-tag{font-family:var(--mono);font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.8rem}
+.work-card h3{font-size:.95rem;font-weight:500;color:var(--text);margin-bottom:.4rem}
+.work-card p{font-size:.8rem;color:var(--muted);line-height:1.6;flex:1}
+.work-card .wc-links{display:flex;gap:.5rem;margin-top:1.2rem}
+.wc-link{font-family:var(--mono);font-size:.65rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:.2rem .6rem;border-radius:.5rem;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:.3rem}
+.wc-link:hover{border-color:var(--accent);color:var(--accent)}
+
+/* PUBLICATIONS */
+#publications{background:#1a183a;text-align:center;color:#e2e8f4}
+.pub-stats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-bottom:3rem}
+.pub-stat .n{font-family:var(--serif);font-size:3rem;color:var(--accent)}
+.pub-stat .l{font-size:.8rem;color:#8896ad;margin-top:.2rem;letter-spacing:.04em}
+.pub-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:1rem;color:#8896ad;font-size:.85rem;text-decoration:none;border:1px solid #ffffff22;padding:.7rem 1.8rem;border-radius:2rem;transition:border-color .2s,color .2s}
+.pub-cta:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.9}}
+@keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.scroll-hint i{animation:arrowBounce 1.5s ease-in-out infinite}
+
+/* REVEAL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* SIGNAL CANVAS BACKGROUND */
+#radar-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+#hero>*:not(#radar-bg):not(.scroll-hint){position:relative;z-index:1}
+
+@media(max-width:900px){
+#hero{min-height:100vh}
+.hero-inner{grid-template-columns:1fr;padding:5rem 1.5rem 3rem;gap:3rem}
+.hero-right{display:none}
+.zpeng-page section{padding:4rem 1.5rem}
+.about-grid{grid-template-columns:1fr}
+.works-grid{grid-template-columns:1fr}
+.nav-inner{padding:.8rem 1.5rem}
+.nav-links{gap:1.2rem}
+.footer-inner{flex-direction:column;gap:.5rem;text-align:center}
+
+/* Timeline: collapse to single left-spine column */
+.tl-grid{display:block;border-left:2px solid var(--border2);padding-left:1.5rem}
+.tl-year-spacer,.tl-spine,.tl-cell.empty{display:none}
+.tl-year-marker{display:block;height:auto;padding:.8rem 0 .3rem;text-align:left}
+.tl-cell.left,.tl-cell.right{text-align:left!important;padding-left:0;padding-right:0;padding-bottom:1.5rem}
+.tl-cell.left::after{display:none}
+.tl-cell.right::before{left:calc(-1.5rem - 7px);top:.85rem}
+.tl-cell.left::before{content:'';position:absolute;left:calc(-1.5rem - 7px);top:.85rem;width:12px;height:12px;border-radius:50%;border:2px solid var(--border2);background:var(--bg2)}
+.tl-img{width:48px;height:48px}
+.tl-cell.left:has(.tl-img),.tl-cell.right:has(.tl-img){display:grid!important;grid-template-columns:48px 1fr;column-gap:.7rem;text-align:left!important}
+.tl-cell.left:has(.tl-img) .tl-img,.tl-cell.right:has(.tl-img) .tl-img{grid-column:1;grid-row:1/span 6}
+.tl-cell.left:has(.tl-img)>:not(.tl-img),.tl-cell.right:has(.tl-img)>:not(.tl-img){grid-column:2}
+.tl-cell.left:has(.tl-img) .tl-badge,.tl-cell.right:has(.tl-img) .tl-badge{justify-self:start}
+}
+</style>
+
+<div class="zpeng-page">
+<!-- HERO -->
+<section id="hero">
+  <canvas id="radar-bg"></canvas>
+  <div class="hero-inner">
+  <div class="hero-left">
+    <div class="hero-tag">Senior Radar Systems Engineer</div>
+    <h1>Zhengyu<br><em>Peng,</em> Ph.D.</h1>
+    <ul class="hero-bio">
+      <li>Sr. Radar Systems Engineer at <strong>Aptiv</strong> building next-gen imaging radar</li>
+      <li>Associate Editor, <strong>IEEE Trans. Radar Systems</strong></li>
+      <li>Former Associate Editor, <strong>IEEE Trans. Instrumentation &amp; Measurement</strong></li>
+      <li>Member, <strong>SPIE</strong> Defense+Commercial Sensing Radar Sensor Technology Committee</li>
+      <li>Author, Builder &amp; Father of two</li>
+    </ul>
+    <div class="hero-ctas">
+      <a href="https://rookiepeng.github.io/zpeng-resume-cv/zpeng_cv.pdf" target="_blank" class="btn-primary"><i class="fa-regular fa-file-lines"></i> Curriculum Vitae</a>
+      <a href="#timeline" class="btn-ghost">My Journey <i class="fa-solid fa-arrow-down"></i></a>
+    </div>
+    <div class="social-links">
+      <a href="https://github.com/rookiepeng" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://scholar.google.com/citations?user=0vQPboMAAAAJ" target="_blank" title="Google Scholar"><i class="fa-brands fa-google-scholar"></i></a>
+      <a href="https://www.linkedin.com/in/zhengyup" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card">
+      <div class="num" data-target="16">0</div>
+      <div class="label">Journal Papers</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" data-target="10">0</div>
+      <div class="label">Patents</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" data-target="31">0</div>
+      <div class="label">Conference Papers</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" data-target="7" data-suffix="+">0+</div>
+      <div class="label">Years at Aptiv</div>
+    </div>
+    <div class="stat-card wide">
+      <div class="num" style="font-size:2rem;white-space:nowrap"><i class="fa-solid fa-location-dot"></i> Carmel, IN</div>
+      <div class="desc">Working on automotive radar at Aptiv in Westfield, Indiana, USA</div>
+    </div>
+  </div>
+  </div>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>Dr. Zhengyu Peng is a <strong>radar systems engineer</strong> with deep expertise in automotive radar, signal processing, and antenna arrays. He earned his Ph.D. in Electrical Engineering from <strong>Texas Tech University</strong> in 2018, following graduate work at <strong>Zhejiang University</strong> in China.</p>
+      <p>At <strong>Aptiv</strong>, he leads work on next-generation high-resolution imaging radar and automotive interference mitigation. He currently serves as Associate Editor for <strong>IEEE Transactions on Radar Systems</strong> and previously held the same role for IEEE TIM. He sits on the <strong>SPIE Defense+Commercial Sensing Radar Sensor Technology Committee</strong>.</p>
+      <p>Beyond engineering, Zhengyu is an avid maker — 3D printing robots, building hexapods, and releasing open-source tools for the radar and RF engineering community.</p>
+    </div>
+    <div class="skills-block reveal reveal-delay-1">
+      <div class="skill-group">
+        <label>Currently Working On</label>
+        <div class="skill-tags">
+          <span class="tag active">Next-gen imaging radar</span>
+          <span class="tag active">Interference mitigation</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <label>Actively Using</label>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">C++</span><span class="tag">CUDA</span><span class="tag">ROS2</span><span class="tag">Git</span><span class="tag">CANape</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <label>Also Experienced With</label>
+        <div class="skill-tags">
+          <span class="tag">Java</span><span class="tag">Verilog</span><span class="tag">CST Microwave Studio</span><span class="tag">Keysight ADS</span><span class="tag">Cadence Virtuoso</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">My Journey</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="tl-grid reveal">
+
+    <!-- SPINE column (col 2) carries the year markers -->
+
+    <!-- Present -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">Present</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <!-- Sr. Radar Systems Engineer | Associate Editor TRS -->
+    <div class="tl-cell left career">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2018/05/aptiv_logo.svg" alt="aptiv_logo">
+      <div class="tl-date">Jun. 2018 – Present</div>
+      <span class="tl-badge badge-work">Work</span>
+      <a class="tl-title" href="https://www.aptiv.com" target="_blank">Sr. Radar Systems Engineer — Aptiv <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">Carmel, IN</div>
+      <div class="tl-desc">Next-gen imaging radar · Interference mitigation · Interior sensing · Radar signal processing </div>
+    </div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right empty"></div>
+
+    <div class="tl-cell left career">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/elementor/thumbs/The-Road-to-a-Dedicated-IEEE-Radar-Journal-e1751164650702-r802k5on944ev8xlj1tydxa5wlxsr4b3uvo7n70ta8.webp" alt="The-Road-to-a-Dedicated-IEEE-Radar-Journal">
+      <div class="tl-date">Jun. 2025 – Present</div>
+      <span class="tl-badge badge-work">Role</span>
+      <a class="tl-title" href="https://ieee-aess.org/publication/ieee-transactions-radar-systems" target="_blank">Associate Editor — IEEE Trans. Radar Systems <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">IEEE AESS</div>
+    </div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right empty"></div>
+
+    <!-- 2026 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2026</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left career">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/elementor/thumbs/tim_logo-r575nwfvcgc1n2d2qc3xudjhuuw65uvhowr69k56bk.png" alt="tim_logo">
+      <div class="tl-date">Dec. 2020 – Jan. 2026</div>
+      <span class="tl-badge badge-work">Role</span>
+      <a class="tl-title" href="https://ieee-ims.org/" target="_blank">Associate Editor — IEEE Trans. Instrumentation &amp; Measurement <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">IEEE IMS</div>
+    </div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right empty"></div>
+
+    <!-- 2024 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2024</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2018/05/aptiv_logo.svg" alt="aptiv_logo">
+      <div class="tl-date">2024</div>
+      <span class="tl-badge badge-pub">Patent</span>
+      <a class="tl-title" href="https://patents.google.com/patent/US20220260699A1/en" target="_blank">Slow-time modulation for multiple radar channels <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">Z. Peng, Z. Li, C. Gianelli</div>
+    </div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2024/12/hexapod-logo-b66e0a.svg" alt="hexapod-logo-b66e0a">
+      <div class="tl-date">Nov. 2024</div>
+      <span class="tl-badge badge-award">Award</span>
+      <a class="tl-title" href="https://www.thingiverse.com/thing:6760071" target="_blank">2nd Place — Robotics &amp; Mechanical Design Challenge <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">UltiMakers Thingiverse</div>
+    </div>
+
+    <!-- 2023 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2023</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2017/11/ttu_logo_wb.svg" alt="ttu_logo_wb">
+      <div class="tl-date">2023</div>
+      <span class="tl-badge badge-pub">Patent</span>
+      <a class="tl-title" href="https://patents.google.com/patent/US11735828B2/en" target="_blank">24-GHz low-cost continuous beam steering phased array for indoor smart radar and methods relating thereto<i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">C. LI, Z. Peng</div>
+    </div>
+
+  </div><!-- /.tl-grid -->
+
+  <div class="tl-toggle-wrap">
+    <button class="tl-toggle-btn" id="tl-toggle-btn" onclick="toggleTimeline()">
+      <span class="tl-chevron"><i class="fa-solid fa-chevron-down"></i></span>&nbsp;Show full journey
+    </button>
+  </div>
+
+  <div class="tl-more-wrap" id="tl-more-wrap">
+  <div class="tl-grid" id="tl-more" style="margin-top:0">
+
+    <!-- 2022 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2022</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2018/05/aptiv_logo.svg" alt="aptiv_logo">
+      <div class="tl-date">2022</div>
+      <span class="tl-badge badge-pub">Patent</span>
+      <a class="tl-title" href="https://patents.google.com/patent/US20210293948A1/en" target="_blank">FMCW radar-based detection of living objects <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">Z. Peng, J. F. Searcy, A. Rahman</div>
+    </div>
+
+    <!-- 2021 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2021</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/elementor/thumbs/book_800x800-r57vttjlwrr1vw67kzi7y6p3q2aiit8a6z8hyljt4w.jpg" alt="Engineering and Technology">
+      <div class="tl-date">2021</div>
+      <span class="tl-badge badge-pub">Book</span>
+      <a class="tl-title" href="https://shop.theiet.org/modern-radar-for-automotive-applications" target="_blank">Modern Radar for Automotive Applications <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">IET · Ed. Peng, Li, Uysal</div>
+    </div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2018/05/aptiv_logo.svg" alt="aptiv_logo">
+      <div class="tl-date">2021</div>
+      <span class="tl-badge badge-pub">Patent</span>
+      <a class="tl-title" href="https://patents.google.com/patent/US20200309902A1/en" target="_blank">Object detection sensor with radome cover configuration <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">Z. Peng, J. F. Searcy</div>
+    </div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2017/11/ttu_logo_wb.svg" alt="ttu_logo_wb">
+      <div class="tl-date">2021</div>
+      <span class="tl-badge badge-pub">Patent</span>
+      <a class="tl-title" href="https://app.dimensions.ai/details/patent/WO-2018057631-A1" target="_blank">Complex domain beamforming system and methods relating thereto<i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">Z. Peng, C. Li, and L. Ran</div>
+    </div>
+
+    <!-- 2020 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2020</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left career">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2019/03/mdpi_logo.svg" alt="mdpi_logo">
+      <div class="tl-date">Mar. 2019 – Jun. 2020</div>
+      <span class="tl-badge badge-work">Role</span>
+      <a class="tl-title" href="https://www.mdpi.com/journal/remotesensing/special_issues/radar_lifeactivities" target="_blank">Guest Editor — MDPI Remote Sensing <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">Special Issue: Radar &amp; Life Activities</div>
+    </div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right empty"></div>
+
+    <!-- 2019 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2019</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2017/11/MERL_logo.svg" alt="MERL_logo">
+      <div class="tl-date">2019</div>
+      <span class="tl-badge badge-pub">Patent</span>
+      <a class="tl-title" href="http://www.freepatentsonline.com/10270510.html" target="_blank">Digital beamforming transmitter array system <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">MERL · Wang, Peng, Kim et al.</div>
+    </div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2017/11/MERL_logo.svg" alt="MERL_logo">
+      <div class="tl-date">2019</div>
+      <span class="tl-badge badge-pub">Patent</span>
+      <a class="tl-title" href="http://www.freepatentsonline.com/10218550.html" target="_blank">Beamforming transmission with analog hardware resource sharing <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">MERL · Kim, Peng, Wang, Teo</div>
+    </div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/elementor/thumbs/tim_logo-r575nwfvcgc1n2d2qc3xudjhuuw65uvhowr69k56bk.png" alt="tim_logo">
+      <div class="tl-date">Jan. 2019</div>
+      <span class="tl-badge badge-award">Award</span>
+      <div class="tl-title">Outstanding Reviewer</div>
+      <div class="tl-org">IEEE Trans. Instrumentation and Measurement</div>
+    </div>
+
+    <!-- 2018 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2018</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left career">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2017/11/ttu_logo_wb.svg" alt="ttu_logo_wb">
+      <div class="tl-date">Aug. 2014 – May 2018</div>
+      <span class="tl-badge badge-edu">Education</span>
+      <a class="tl-title" href="https://www.ttu.edu" target="_blank">Ph.D. — Electrical Engineering <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">Texas Tech University · Lubbock, TX</div>
+    </div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right empty"></div>
+
+    <!-- 2017 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2017</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left career">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2017/11/MERL_logo.svg" alt="MERL_logo">
+      <div class="tl-date">May – Aug. 2017</div>
+      <span class="tl-badge badge-work">Internship</span>
+      <a class="tl-title" href="https://www.merl.com" target="_blank">Research Intern — Mitsubishi Electric Research Labs <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">MERL · Cambridge, MA</div>
+    </div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right empty"></div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2017/11/ttu_logo_wb.svg" alt="ttu_logo_wb">
+      <div class="tl-date">Feb. 2017</div>
+      <span class="tl-badge badge-award">Award</span>
+      <div class="tl-title">Horn Professors Graduate Achievement Award</div>
+      <div class="tl-org">Texas Tech University</div>
+    </div>
+
+    <!-- 2016 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2016</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2017/11/MTTS.svg" alt="MTTS">
+      <div class="tl-date">May 2016</div>
+      <span class="tl-badge badge-award">Award</span>
+      <div class="tl-title">Graduate Fellowship</div>
+      <div class="tl-org">IEEE Microwave Theory and Techniques Society</div>
+    </div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2017/11/RWW_logo.svg" alt="RWW_logo">
+      <div class="tl-date">Jan. 2016</div>
+      <span class="tl-badge badge-award">Award</span>
+      <div class="tl-title">Excellent Demo Track Presentation</div>
+      <div class="tl-org">IEEE Radio Wireless Week · Austin, TX</div>
+    </div>
+
+    <!-- 2015 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2015</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left empty"></div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right achieve">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2017/11/IMS2015.svg" alt="IMS2015">
+      <div class="tl-date">May 2015</div>
+      <span class="tl-badge badge-award">Award</span>
+      <div class="tl-title">3rd Place — High Sensitivity Radar Competition</div>
+      <div class="tl-org">IEEE IMS · Phoenix, AZ</div>
+    </div>
+
+    <!-- 2014 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2014</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left career">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2018/05/zju_logo_wb.svg" alt="zju_logo_wb">
+      <div class="tl-date">Aug. 2011 – Mar. 2014</div>
+      <span class="tl-badge badge-edu">Education</span>
+      <a class="tl-title" href="http://www.zju.edu.cn/english" target="_blank">M.S. — Information Science &amp; Electronic Engineering <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">Zhejiang University · Hangzhou, China</div>
+    </div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right empty"></div>
+
+    <!-- 2011 -->
+    <div class="tl-year-spacer"></div>
+    <div class="tl-year-marker"><span class="tl-year-pip">2011</span></div>
+    <div class="tl-year-spacer"></div>
+
+    <div class="tl-cell left career">
+      <img class="tl-img" src="https://zpeng.me/wp-content/uploads/2018/05/zju_logo_wb.svg" alt="zju_logo_wb">
+      <div class="tl-date">Aug. 2007 – Jun. 2011</div>
+      <span class="tl-badge badge-edu">Education</span>
+      <a class="tl-title" href="http://www.zju.edu.cn/english" target="_blank">B.S. — Information Science &amp; Electronic Engineering <i class="fa-solid fa-up-right-from-square"></i></a>
+      <div class="tl-org">Zhejiang University · Hangzhou, China</div>
+    </div>
+    <div class="tl-spine"></div>
+    <div class="tl-cell right empty"></div>
+
+  </div><!-- /#tl-more -->
+  </div><!-- /.tl-more-wrap -->
+</section>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Featured Works</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="works-grid">
+    <a class="work-card reveal" href="https://zpeng.me/2024/09/12/hexapod/" target="_blank">
+      <div class="wc-tag">Robotics · 3D Printing</div>
+      <h3>Hexapod</h3>
+      <p>A 3D-printed hexapod robot powered by ESP32 and Arduino with WiFi-enabled remote control and OTA firmware updates.</p>
+      <div class="wc-links">
+        <span class="wc-link"><i class="fa-brands fa-github"></i> GitHub</span>
+        <span class="wc-link"><i class="fa-brands fa-youtube"></i> YouTube</span>
+      </div>
+    </a>
+    <a class="work-card reveal reveal-delay-1" href="https://zpeng.me/2020/11/11/sensorview/" target="_blank">
+      <div class="wc-tag">Software · Visualization</div>
+      <h3>SensorView</h3>
+      <p>A sensor data visualization and analysis tool built for radar and RF engineers. Powerful yet approachable.</p>
+      <div class="wc-links">
+        <span class="wc-link"><i class="fa-brands fa-github"></i> GitHub</span>
+      </div>
+    </a>
+    <a class="work-card reveal reveal-delay-2" href="https://zpeng.me/2023/01/18/smarty/" target="_blank">
+      <div class="wc-tag">Robotics</div>
+      <h3>Smarty</h3>
+      <p>A smart mini robot exploring autonomous navigation and embedded system design.</p>
+      <div class="wc-links">
+        <span class="wc-link"><i class="fa-brands fa-github"></i> GitHub</span>
+        <span class="wc-link"><i class="fa-brands fa-youtube"></i> YouTube</span>
+      </div>
+    </a>
+    <a class="work-card reveal" href="https://zpeng.me/2019/02/11/antenna-array-analysis/" target="_blank">
+      <div class="wc-tag">Software · RF Engineering</div>
+      <h3>Antenna Array Analysis</h3>
+      <p>A GUI tool for antenna array analysis supporting linear arrays, with pattern visualization and simulation.</p>
+      <div class="wc-links">
+        <span class="wc-link"><i class="fa-brands fa-github"></i> GitHub</span>
+        <span class="wc-link"><i class="fa-solid fa-download"></i> Releases</span>
+      </div>
+    </a>
+    <a class="work-card reveal reveal-delay-1" href="https://zpeng.me/2018/05/01/tx-line-calculator/" target="_blank">
+      <div class="wc-tag">Android · RF Engineering</div>
+      <h3>Tx-Line Calculator</h3>
+      <p>Android app calculating transmission line parameters: microstrip, stripline, coplanar waveguide, coaxial, and more.</p>
+      <div class="wc-links">
+        <span class="wc-link"><i class="fa-brands fa-google-play"></i> Play Store</span>
+        <span class="wc-link"><i class="fa-brands fa-github"></i> GitHub</span>
+      </div>
+    </a>
+    <a class="work-card reveal reveal-delay-2" href="https://zpeng.me/2017/07/04/socket-test/" target="_blank">
+      <div class="wc-tag">Software · Networking</div>
+      <h3>Socket Test</h3>
+      <p>A simple TCP/UDP socket test interface built with Python and PySide for network debugging and testing.</p>
+      <div class="wc-links">
+        <span class="wc-link"><i class="fa-brands fa-github"></i> GitHub</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-header reveal" style="justify-content:center;text-align:center">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Publications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="pub-stats">
+    <div class="pub-stat reveal"><div class="n">1</div><div class="l">Book</div></div>
+    <div class="pub-stat reveal reveal-delay-1"><div class="n">3</div><div class="l">Book Chapters</div></div>
+    <div class="pub-stat reveal reveal-delay-2"><div class="n">16</div><div class="l">Journal Papers</div></div>
+    <div class="pub-stat reveal reveal-delay-3"><div class="n">31</div><div class="l">Conference Papers</div></div>
+    <div class="pub-stat reveal"><div class="n">10</div><div class="l">Patents</div></div>
+  </div>
+  <div class="reveal">
+    <a class="pub-cta" href="https://zpeng.me/publications/" target="_blank">View Full Publication List <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<script data-cfasync="false">
+(function(){
+  var observer;
+
+  window.toggleTimeline = function() {
+    var wrap = document.getElementById('tl-more-wrap');
+    var more = document.getElementById('tl-more');
+    var btn  = document.getElementById('tl-toggle-btn');
+    var open = btn.classList.contains('is-expanded');
+    if (open) {
+      wrap.classList.remove('is-open');
+      btn.classList.remove('is-expanded');
+      btn.querySelector('.tl-chevron i').className = 'fa-solid fa-chevron-down';
+      btn.childNodes[btn.childNodes.length - 1].textContent = '\u00a0Show full journey';
+    } else {
+      wrap.classList.add('is-open');
+      btn.classList.add('is-expanded');
+      btn.querySelector('.tl-chevron i').className = 'fa-solid fa-chevron-up';
+      btn.childNodes[btn.childNodes.length - 1].textContent = '\u00a0Show less';
+      if (observer) more.querySelectorAll('.reveal:not(.visible)').forEach(function(el){ observer.observe(el); });
+    }
+  };
+
+  function init() {
+    observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, {threshold: 0.08, rootMargin: '0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+    (function(){
+      var DURATION = 1800;
+      document.querySelectorAll('.num[data-target]').forEach(function(el) {
+        var target = parseInt(el.dataset.target, 10);
+        var suffix = el.dataset.suffix || '';
+        var start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / DURATION, 1);
+          var ease = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(ease * target) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = target + suffix;
+        }
+        requestAnimationFrame(step);
+      });
+    })();
+
+    (function(){
+      var canvas = document.getElementById('radar-bg');
+      var hero   = document.getElementById('hero');
+      if (!canvas || !hero) return;
+      var ctx = canvas.getContext('2d');
+      var W, H, t = 0;
+
+      function resize() {
+        W = canvas.width  = hero.offsetWidth;
+        H = canvas.height = hero.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      var ORIGIN_X = 0.72;
+      var ORIGIN_Y = 0.50;
+      var NUM_RINGS = 6;
+      var rings = [];
+      for (var i = 0; i < NUM_RINGS; i++) { rings.push({ phase: i / NUM_RINGS }); }
+
+      var MAX_DOTS = 40;
+      var dots = [];
+      function spawnDot() {
+        dots.push({
+          x:       Math.random() * W,
+          y:       Math.random() * H,
+          r:       0.8 + Math.random() * 1.6,
+          life:    0,
+          maxLife: 60 + Math.random() * 80,
+          color:   Math.random() < 0.5 ? '33,150,243' : '92,205,181'
+        });
+      }
+
+      function drawWave(yFrac, ampFrac, freq, phaseOffset, alpha, lineW) {
+        var cy = H * yFrac;
+        var A  = H * ampFrac;
+        ctx.beginPath();
+        for (var x = 0; x <= W * 0.55; x += 1.5) {
+          var xn  = x / (W * 0.55);
+          var env = Math.exp(-Math.pow((xn - 0.5) * 2.4, 2));
+          var y   = cy + Math.sin(freq * xn * Math.PI * 2 + phaseOffset + t * 0.012) * A * env;
+          if (x === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
+        }
+        ctx.strokeStyle = 'rgba(33,150,243,' + alpha + ')';
+        ctx.lineWidth = lineW;
+        ctx.stroke();
+      }
+
+      function frame() {
+        ctx.clearRect(0, 0, W, H);
+
+        var ox   = W * ORIGIN_X;
+        var oy   = H * ORIGIN_Y;
+        var maxR = Math.sqrt(ox * ox + Math.max(oy, H - oy) * Math.max(oy, H - oy)) * 1.05;
+
+        rings.forEach(function(ring) {
+          var p     = ((ring.phase + t * 0.0028) % 1);
+          var r     = p * maxR;
+          var alpha = p < 0.08 ? (p / 0.08) * 0.13 : (1 - p) * 0.13;
+          ctx.beginPath();
+          ctx.arc(ox, oy, r, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(92,205,181,' + alpha + ')';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        });
+
+        if (dots.length < MAX_DOTS) { if (Math.random() < 0.4) spawnDot(); }
+
+        for (var i = dots.length - 1; i >= 0; i--) {
+          var d        = dots[i];
+          d.life++;
+          var progress = d.life / d.maxLife;
+          var alpha    = progress < 0.3 ? (progress / 0.3) * 0.55 : (1 - progress) * 0.55;
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + d.color + ',' + alpha + ')';
+          ctx.fill();
+          if (d.life >= d.maxLife) dots.splice(i, 1);
+        }
+
+        drawWave(0.44, 0.062, 3.5, 0,              0.18, 1.0);
+        drawWave(0.44, 0.028, 3.5, Math.PI / 2,    0.08, 0.7);
+
+        t++;
+        requestAnimationFrame(frame);
+      }
+      frame();
+    })();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+function toggleTimeline() { window.toggleTimeline(); }
+</script>
+
