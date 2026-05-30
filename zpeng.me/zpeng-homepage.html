@@ -139,9 +139,9 @@
 /* WORKS */
 #works{background:var(--bg)}
 .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.work-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.6rem;position:relative;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column}
+.work-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.6rem;position:relative;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column}
 .work-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,#2196f30a,transparent 60%);opacity:0;transition:opacity .3s}
-.work-card:hover{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 16px 40px #00000060}
+.work-card:hover{transform:translateY(-6px) scale(1.015);border-color:var(--accent);box-shadow:0 12px 28px #2196f325}
 .work-card:hover::before{opacity:1}
 .work-card .wc-tag{font-family:var(--mono);font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.8rem}
 .work-card h3{font-size:.95rem;font-weight:500;color:var(--text);margin-bottom:.4rem}

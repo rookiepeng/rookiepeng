@@ -43,9 +43,9 @@
 #projects{background:var(--bg)}
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
 
-.proj-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column;position:relative}
+.proj-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column;position:relative}
 .proj-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,#2196f30a,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:1}
-.proj-card:hover{transform:translateY(-4px);border-color:var(--border2);box-shadow:0 16px 40px #00000040}
+.proj-card:hover{transform:translateY(-6px) scale(1.015);border-color:var(--accent);box-shadow:0 12px 28px #2196f325}
 .proj-card:hover::before{opacity:1}
 
 .proj-card-img-wrap{position:relative;overflow:hidden;height:190px;background:#0f1030}
