@@ -143,6 +143,7 @@
 .work-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,#2196f30a,transparent 60%);opacity:0;transition:opacity .3s}
 .work-card:hover{transform:translateY(-6px) scale(1.015);border-color:var(--accent);box-shadow:0 12px 28px #2196f325}
 .work-card:hover::before{opacity:1}
+.wc-icon{width:128px;height:128px;object-fit:contain;border-radius:8px;margin-bottom:1rem;padding:4px;display:block}
 .work-card .wc-tag{font-family:var(--mono);font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.8rem}
 .work-card h3{font-size:.95rem;font-weight:500;color:var(--text);margin-bottom:.4rem}
 .work-card p{font-size:.8rem;color:var(--muted);line-height:1.6;flex:1}
@@ -618,6 +619,7 @@
   </div>
   <div class="works-grid">
     <a class="work-card reveal" href="https://zpeng.me/2024/09/12/hexapod/" target="_blank">
+      <img class="wc-icon" src="https://zpeng.me/wp-content/uploads/2024/12/hexapod-logo-b66e0a.svg" alt="hexapod-icon">
       <div class="wc-tag">Robotics · 3D Printing</div>
       <h3>Hexapod</h3>
       <p>A 3D-printed hexapod robot powered by ESP32 and Arduino with WiFi-enabled remote control and OTA firmware updates.</p>
@@ -627,6 +629,7 @@
       </div>
     </a>
     <a class="work-card reveal reveal-delay-1" href="https://zpeng.me/2020/11/11/sensorview/" target="_blank">
+      <img class="wc-icon" src="https://github.com/rookiepeng/sensorview/raw/master/assets/sensorview_logo.svg" alt="sensorview-icon">
       <div class="wc-tag">Software · Visualization</div>
       <h3>SensorView</h3>
       <p>A sensor data visualization and analysis tool built for radar and RF engineers. Powerful yet approachable.</p>
@@ -635,6 +638,7 @@
       </div>
     </a>
     <a class="work-card reveal reveal-delay-2" href="https://zpeng.me/2023/01/18/smarty/" target="_blank">
+      <img class="wc-icon" src="https://github.com/rookidroid/smarty/raw/main/imgs/smarty.svg" alt="smarty-icon">
       <div class="wc-tag">Robotics</div>
       <h3>Smarty</h3>
       <p>A smart mini robot exploring autonomous navigation and embedded system design.</p>
@@ -644,6 +648,7 @@
       </div>
     </a>
     <a class="work-card reveal" href="https://zpeng.me/2019/02/11/antenna-array-analysis/" target="_blank">
+      <img class="wc-icon" src="https://zpeng.me/wp-content/uploads/2019/02/aaa_icon.svg" alt="antenna-array-icon">
       <div class="wc-tag">Software · RF Engineering</div>
       <h3>Antenna Array Analysis</h3>
       <p>A GUI tool for antenna array analysis supporting linear arrays, with pattern visualization and simulation.</p>
@@ -653,6 +658,7 @@
       </div>
     </a>
     <a class="work-card reveal reveal-delay-1" href="https://zpeng.me/2018/05/01/tx-line-calculator/" target="_blank">
+      <img class="wc-icon" src="https://zpeng.me/wp-content/uploads/2018/05/tx-line-icon.png" alt="tx-line-icon">
       <div class="wc-tag">Android · RF Engineering</div>
       <h3>Tx-Line Calculator</h3>
       <p>Android app calculating transmission line parameters: microstrip, stripline, coplanar waveguide, coaxial, and more.</p>
@@ -662,6 +668,7 @@
       </div>
     </a>
     <a class="work-card reveal reveal-delay-2" href="https://zpeng.me/2017/07/04/commprobe/" target="_blank">
+      <img class="wc-icon" src="https://zpeng.me/wp-content/uploads/2017/07/commprobe.svg" alt="commprobe-icon">
       <div class="wc-tag">Software · Networking</div>
       <h3>CommProbe</h3>
       <p>A multi-protocol communication testing tool built with Python and PySide6. It supports TCP, UDP, Bluetooth, CAN, and GPIB.</p>
