@@ -138,6 +138,11 @@
 
 /* WORKS */
 #works{background:var(--bg)}
+.works-filter{display:flex;justify-content:center;flex-wrap:wrap;gap:.8rem;margin-bottom:2.5rem}
+.filter-btn{background:transparent;border:1px solid var(--border2);color:var(--muted);padding:.4rem 1.2rem;border-radius:2rem;font-size:.8rem;font-family:var(--sans);cursor:pointer;transition:all .2s;letter-spacing:.03em}
+.filter-btn:not(.active):hover{border-color:var(--accent);color:#fff !important}
+.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.work-card.hidden{display:none!important}
 .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 .work-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.6rem;position:relative;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column}
 .work-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,#2196f30a,transparent 60%);opacity:0;transition:opacity .3s}
@@ -617,6 +622,13 @@
     <h2 class="section-title">Featured Works</h2>
     <div class="section-line"></div>
   </div>
+  <div class="works-filter reveal reveal-delay-1">
+    <button class="filter-btn active" onclick="filterWorks('all', this)">All</button>
+    <button class="filter-btn" onclick="filterWorks('robotics', this)">Robotics</button>
+    <button class="filter-btn" onclick="filterWorks('software', this)">Software</button>
+    <button class="filter-btn" onclick="filterWorks('rf engineering', this)">RF Engineering</button>
+    <button class="filter-btn" onclick="filterWorks('research', this)">Research</button>
+  </div>
   <div class="works-grid">
     <a class="work-card reveal" href="https://zpeng.me/2024/09/12/hexapod/" target="_blank">
       <img class="wc-icon" src="https://zpeng.me/wp-content/uploads/2024/12/hexapod-logo-b66e0a.svg" alt="hexapod-icon">
@@ -674,6 +686,15 @@
       <p>A multi-protocol communication testing tool built with Python and PySide6. It supports TCP, UDP, Bluetooth, CAN, and GPIB.</p>
       <div class="wc-links">
         <span class="wc-link"><i class="fa-brands fa-github"></i> GitHub</span>
+      </div>
+    </a>
+    <a class="work-card reveal" href="https://zpeng.me/research-projects/" target="_blank">
+      <img class="wc-icon" src="https://zpeng.me/wp-content/uploads/2017/11/ttu_logo_wb.svg" alt="research-projects-icon">
+      <div class="wc-tag">Academic · Research</div>
+      <h3>Research Projects</h3>
+      <p>Radar system design, signal processing, and sensing applications developed during doctoral studies at TTU &mdash; spanning hardware prototyping, MIMO, beamforming, and bio-radar.</p>
+      <div class="wc-links">
+        <span class="wc-link"><i class="fa-solid fa-flask"></i> Research</span>
       </div>
     </a>
   </div>
@@ -843,5 +864,25 @@
 })();
 
 function toggleTimeline() { window.toggleTimeline(); }
+
+function filterWorks(category, btn) {
+  var btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+
+  var cards = document.querySelectorAll('.work-card');
+  cards.forEach(function(card) {
+    if (category === 'all') {
+      card.classList.remove('hidden');
+    } else {
+      var tag = card.querySelector('.wc-tag').textContent.toLowerCase();
+      if (tag.indexOf(category) !== -1) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    }
+  });
+}
 </script>
 
