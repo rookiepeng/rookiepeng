@@ -1,35 +1,53 @@
 <style>
+/* MOBILE SUIT THEME (RX-78-2): white armour plates framed in navy, Federation blue,
+   red and V-fin yellow trim. Light sections are the armour; the dark bands (hero,
+   research impact) are the cockpit: a neutral gunmetal hero with Federation blue as the accent. Ported from hexapod-link. */
 .zpeng-page *,.zpeng-page *::before,.zpeng-page *::after{box-sizing:border-box;margin:0;padding:0}
 :root{
---bg:#ffffff;
---bg2:#f5f7fa;
---bg3:#eef1f5;
---border:#e2e6ed;
---border2:#cbd2dc;
---text:#0f172a;
---text2:#334155;
---muted:#5b6678;
---accent:#2563eb;
---accent2:#1d4ed8;
---accent-rgb:37,99,235;
---warm:#b45309;
---teal:#0f766e;
---violet:#6d28d9;
---green:#047857;
---dark:#161434;
---dark-text:#eef2f8;
---dark-text2:#d3dae6;
---dark-muted:#aab4c8;
---dark-accent:#6aa8ff;
+--bg:#f3f5f9;
+--bg2:#dde3ec;
+--bg3:#e8eef8;
+--surface:#ffffff;
+--border:#a9b6cc;
+--border2:#7f8eab;
+--frame:#1b2a4a;
+--text:#0f1a30;
+--text2:#2b3956;
+--muted:#4a5875;
+--accent:#1d4fa3;
+--accent2:#163f84;
+--accent-strong:#1d4fa3;
+--accent-rgb:29,79,163;
+--red:#d62828;
+--yellow:#f2b705;
+--gold:#8a6500;
+--olive:#3f6e5e;
+--hud:76,201,240;
+--dark:#060c18;
+--dark-text:#e4eeff;
+--dark-text2:#c3d2ee;
+--dark-muted:#8aa2c8;
+--dark-accent:#5b8ff5;
+--dark-yellow:#ffd23f;
+--dark-red:#ff4d4d;
+--shadow-hard:4px 4px 0 rgba(15,26,48,.18);
+--shadow-hover:6px 6px 0 rgba(15,26,48,.24);
+/* Mecha corners: top-right and bottom-left cut off at 45 degrees */
+--chamfer-clip:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+--chamfer-clip-sm:polygon(0 0,calc(100% - 4px) 0,100% 4px,100% 100%,4px 100%,0 calc(100% - 4px));
 }
 .zpeng-page{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
 
-/* PAGE HERO */
-#hero{min-height:42vh;position:relative;display:flex;align-items:center;background:linear-gradient(135deg,#100e29 0%,#161434 45%,#1a1a42 75%,#14203a 100%);--bg:#161434;--bg2:#1d1b42;--bg3:#232150;--border:#ffffff17;--border2:#ffffff30;--text:var(--dark-text);--text2:var(--dark-text2);--muted:var(--dark-muted);--accent:var(--dark-accent);color:var(--dark-text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+/* PAGE HERO: the gunmetal cockpit. Chest trim along the bottom edge: a red block, then yellow vent slats on blue */
+#hero{min-height:42vh;position:relative;display:flex;align-items:center;background:linear-gradient(90deg,var(--dark-red) 0 160px,transparent 160px) bottom/100% 4px no-repeat,repeating-linear-gradient(90deg,var(--dark-yellow) 0 14px,transparent 14px 22px) bottom/100% 4px no-repeat,linear-gradient(var(--dark-accent),var(--dark-accent)) bottom/100% 4px no-repeat,linear-gradient(135deg,#0e1014 0%,#15181e 55%,#181b21 100%);--bg:#0e1014;--bg2:#15181e;--bg3:#1c2028;--border:#2a2f38;--border2:#4a515e;--text:#eef0f3;--text2:#c9ced6;--muted:#9299a5;--accent:var(--dark-accent);--hud:230,234,240;--accent-rgb:91,143,245;--red:var(--dark-red);--yellow:var(--dark-yellow);color:#eef0f3;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+/* Faint monitor scanlines */
+#hero::before{content:'';position:absolute;inset:0 0 4px;pointer-events:none;z-index:0;background:repeating-linear-gradient(0deg,rgba(var(--hud),.035) 0 1px,transparent 1px 3px)}
+/* HUD targeting brackets in the four corners */
+#hero::after{--hc:rgba(var(--hud),.4);--arm:22px;content:'';position:absolute;inset:16px 16px 20px;pointer-events:none;z-index:0;background:linear-gradient(var(--hc),var(--hc)) top left/var(--arm) 2px,linear-gradient(var(--hc),var(--hc)) top left/2px var(--arm),linear-gradient(var(--hc),var(--hc)) top right/var(--arm) 2px,linear-gradient(var(--hc),var(--hc)) top right/2px var(--arm),linear-gradient(var(--hc),var(--hc)) bottom left/var(--arm) 2px,linear-gradient(var(--hc),var(--hc)) bottom left/2px var(--arm),linear-gradient(var(--hc),var(--hc)) bottom right/var(--arm) 2px,linear-gradient(var(--hc),var(--hc)) bottom right/2px var(--arm);background-repeat:no-repeat}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .hero-inner{max-width:1200px;margin:0 auto;width:100%;padding:6rem 2rem 4rem;position:relative;z-index:1;animation:fadeUp .8s ease both}
 .hero-tag{font-family:var(--mono);font-size:0.78rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem}
-.hero-tag::before{content:'';width:2rem;height:1px;background:var(--accent)}
+.hero-tag::before{content:'';width:2rem;height:3px;background:linear-gradient(90deg,var(--red) 0 .5rem,var(--accent) .5rem)}
 .zpeng-page h1{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,4rem);line-height:1.05;font-weight:400;letter-spacing:-0.01em;margin-bottom:1rem}
 .zpeng-page h1 em{font-style:italic;color:var(--accent)}
 .hero-bio{color:var(--text2);font-size:1.05rem;max-width:52ch;line-height:1.75}
@@ -38,58 +56,66 @@
 .zpeng-page section{padding:6rem 2rem}
 .zpeng-page section > *{max-width:1200px;margin-left:auto;margin-right:auto}
 .section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3rem}
-.section-num{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.1em}
+.section-num{font-family:var(--mono);font-size:.8rem;font-weight:700;color:#fff;background:var(--accent-strong);padding:.15rem .55rem;letter-spacing:.1em;clip-path:var(--chamfer-clip-sm)}
 .section-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;color:var(--text)}
-.section-line{flex:1;height:1px;background:var(--border)}
+/* Tricolour rule: blue, then a red and a yellow chip at the end */
+.section-line{flex:1;height:4px;background:linear-gradient(90deg,var(--accent) 0 calc(100% - 56px),var(--red) calc(100% - 56px) calc(100% - 24px),var(--yellow) calc(100% - 24px))}
 
 /* FILTER BAR */
 .filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:3rem}
-.filter-btn{padding:.35rem .9rem;border:1px solid var(--border2);border-radius:1.5rem;font-size:.78rem;font-family:var(--mono);letter-spacing:.06em;color:var(--text2);background:var(--bg);cursor:pointer;transition:border-color .2s,color .2s,background .2s}
-.filter-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--bg)}
-.filter-btn.active{border-color:var(--accent);color:#fff;background:var(--accent)}
+.filter-btn{padding:.35rem .9rem;border:2px solid var(--border);border-radius:0;clip-path:var(--chamfer-clip-sm);font-size:.78rem;font-family:var(--mono);font-weight:700;letter-spacing:.06em;color:var(--text2);background:var(--surface);cursor:pointer;transition:border-color .1s,color .1s,background .1s,transform .1s}
+.filter-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--surface);transform:translate(-1px,-1px)}
+.filter-btn.active{border-color:var(--frame);color:#fff;background:var(--accent)}
 
 /* PROJECT GRID */
 #projects{background:var(--bg2)}
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
 
-.proj-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column;position:relative;box-shadow:0 1px 2px #0f172a0a}
-.proj-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,#2563eb0a,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:1}
-.proj-card:hover{transform:translateY(-6px) scale(1.015);border-color:var(--accent);box-shadow:0 12px 28px #2563eb1f}
-.proj-card:hover::before{opacity:1}
+.proj-card{background:var(--surface);border:2px solid var(--frame);border-radius:0;overflow:hidden;text-decoration:none;transition:transform .15s,border-color .15s,box-shadow .15s;display:flex;flex-direction:column;position:relative;box-shadow:var(--shadow-hard)}
+.proj-card:hover{transform:translate(-2px,-2px);border-color:var(--accent);box-shadow:var(--shadow-hover)}
 
-.proj-card-img-wrap{position:relative;overflow:hidden;height:190px;background:#0f1030}
+/* ARMOUR PLATE DETAILS: along the top edge a red chip, Federation blue and yellow
+   vent slats at the right-hand end; in the bottom-right corner a navy reinforcing
+   plate. */
+.zpeng-page .proj-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;pointer-events:none;z-index:3;background:repeating-linear-gradient(90deg,var(--yellow) 0 5px,transparent 5px 9px) right 6px top/32px 100% no-repeat,linear-gradient(90deg,var(--red) 0 28px,var(--accent) 28px calc(100% - 44px),transparent calc(100% - 44px))}
+.zpeng-page .proj-card::after{content:'';position:absolute;right:0;bottom:0;width:14px;height:14px;pointer-events:none;background:linear-gradient(135deg,transparent 50%,var(--frame) 50%)}
+
+.proj-card-img-wrap{position:relative;overflow:hidden;height:190px;background:#0a1428}
+/* HUD targeting brackets over the photo */
+.proj-card-img-wrap::after{--hc:rgba(var(--hud),.75);--arm:14px;content:'';position:absolute;inset:10px;pointer-events:none;z-index:1;background:linear-gradient(var(--hc),var(--hc)) top left/var(--arm) 2px,linear-gradient(var(--hc),var(--hc)) top left/2px var(--arm),linear-gradient(var(--hc),var(--hc)) top right/var(--arm) 2px,linear-gradient(var(--hc),var(--hc)) top right/2px var(--arm),linear-gradient(var(--hc),var(--hc)) bottom left/var(--arm) 2px,linear-gradient(var(--hc),var(--hc)) bottom left/2px var(--arm),linear-gradient(var(--hc),var(--hc)) bottom right/var(--arm) 2px,linear-gradient(var(--hc),var(--hc)) bottom right/2px var(--arm);background-repeat:no-repeat}
 .proj-card-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease,opacity .3s}
 .proj-card:hover .proj-card-img{transform:scale(1.04);opacity:.9}
-.proj-card-year{position:absolute;top:.7rem;right:.8rem;font-family:var(--mono);font-size:.68rem;color:#fff;background:#161434d9;border:1px solid #ffffff2e;border-radius:.4rem;padding:.18rem .45rem;letter-spacing:.04em;z-index:2}
+.proj-card-year{position:absolute;top:.9rem;right:.9rem;font-family:var(--mono);font-size:.68rem;font-weight:700;color:var(--frame);background:var(--yellow);border:1px solid var(--frame);border-radius:0;clip-path:var(--chamfer-clip-sm);padding:.18rem .5rem;letter-spacing:.04em;z-index:2}
 
 .proj-card-body{padding:1.4rem;flex:1;display:flex;flex-direction:column}
 .proj-card-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.75rem}
-.proj-tag{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .55rem;border-radius:.8rem;border:1px solid var(--border2);color:var(--text2)}
-.proj-tag.tag-radar{background:#2563eb10;color:var(--accent2);border-color:#2563eb33}
-.proj-tag.tag-mimo{background:#0f766e12;color:var(--teal);border-color:#0f766e33}
-.proj-tag.tag-beamforming{background:#b4530912;color:var(--warm);border-color:#b4530933}
-.proj-tag.tag-vital{background:#6d28d910;color:var(--violet);border-color:#6d28d933}
-.proj-tag.tag-ic{background:#04785712;color:var(--green);border-color:#04785733}
-.proj-tag.tag-software{background:#2563eb10;color:var(--accent2);border-color:#2563eb33}
+.proj-tag{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .55rem;border-radius:0;clip-path:var(--chamfer-clip-sm);border:1px solid var(--border);color:var(--text2)}
+.proj-tag.tag-radar{background:rgba(29,79,163,.08);color:var(--accent);border-color:rgba(29,79,163,.3)}
+.proj-tag.tag-mimo{background:rgba(27,42,74,.07);color:var(--frame);border-color:rgba(27,42,74,.35)}
+.proj-tag.tag-beamforming{background:rgba(214,40,40,.07);color:#b51f1f;border-color:rgba(214,40,40,.3)}
+.proj-tag.tag-vital{background:rgba(242,183,5,.18);color:var(--gold);border-color:rgba(242,183,5,.6)}
+.proj-tag.tag-ic{background:rgba(63,110,94,.08);color:var(--olive);border-color:rgba(63,110,94,.3)}
+.proj-tag.tag-software{background:rgba(29,79,163,.08);color:var(--accent);border-color:rgba(29,79,163,.3)}
 
 .proj-card h3{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.45rem;line-height:1.4;transition:color .2s}
 .proj-card:hover h3{color:var(--accent)}
 .proj-card p{font-size:.9rem;color:var(--text2);line-height:1.65;flex:1}
-.proj-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1.1rem;padding-top:.9rem;border-top:1px solid var(--border)}
+.proj-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1.1rem;padding-top:.9rem;border-top:2px solid var(--border)}
 .proj-pub-count{font-family:var(--mono);font-size:.74rem;color:var(--muted);display:flex;align-items:center;gap:.35rem}
 .proj-pub-count i{color:var(--accent);font-size:.75rem}
-.proj-read-more{font-family:var(--mono);font-size:.74rem;color:var(--accent2);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;border:1px solid #2563eb40;padding:.22rem .6rem;border-radius:.5rem;transition:border-color .2s,background .2s}
-.proj-read-more:hover{border-color:var(--accent);background:#2563eb10;color:var(--accent2)}
+.proj-read-more{font-family:var(--mono);font-size:.74rem;color:var(--accent2);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;border:1px solid rgba(29,79,163,.35);padding:.22rem .6rem;border-radius:0;clip-path:var(--chamfer-clip-sm);transition:border-color .1s,background .1s}
+.proj-read-more:hover{border-color:var(--accent);background:rgba(29,79,163,.08);color:var(--accent2)}
 
-/* HIGHLIGHT BANNER */
-#highlight{background:var(--dark);color:var(--dark-text);text-align:center;--accent:var(--dark-accent);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-#highlight > *{--border:#ffffff1a;--border2:#ffffff30}
+/* HIGHLIGHT BANNER: cockpit band, chest trim along the top edge */
+#highlight{position:relative;background:linear-gradient(90deg,var(--red) 0 160px,transparent 160px) top/100% 4px no-repeat,repeating-linear-gradient(90deg,var(--yellow) 0 14px,transparent 14px 22px) top/100% 4px no-repeat,linear-gradient(var(--accent),var(--accent)) top/100% 4px no-repeat,var(--dark);color:var(--dark-text);text-align:center;--accent:var(--dark-accent);--accent-strong:#2f68d6;--accent-rgb:91,143,245;--red:var(--dark-red);--yellow:var(--dark-yellow);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+#highlight::before{content:'';position:absolute;inset:4px 0 0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(var(--hud),.035) 0 1px,transparent 1px 3px)}
+#highlight > *{position:relative;z-index:1;--border:#1e3563;--border2:#2f5fb3}
 .hl-inner{max-width:1200px;margin:0 auto}
 .hl-grid{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
 .hl-stat .n{font-family:var(--serif);font-size:2.8rem;color:var(--accent);line-height:1}
 .hl-stat .l{font-size:.86rem;color:var(--dark-muted);margin-top:.3rem;letter-spacing:.02em}
-.hl-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2.5rem;color:var(--dark-text);font-size:.9rem;text-decoration:none;border:1px solid #ffffff33;padding:.7rem 1.8rem;border-radius:2rem;transition:border-color .2s,color .2s}
-.hl-cta:hover{border-color:var(--accent);color:var(--accent)}
+.hl-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2.5rem;color:var(--dark-text);font-size:.9rem;font-weight:600;text-decoration:none;border:2px solid var(--border2);border-radius:0;clip-path:var(--chamfer-clip);padding:.7rem 1.8rem;transition:border-color .1s,color .1s,background-color .1s,transform .1s}
+.hl-cta:hover{border-color:var(--accent);color:var(--accent);background:rgba(var(--accent-rgb),.1);transform:translate(-1px,-1px)}
 
 /* FOOTER */
 .zpeng-page footer{border-top:1px solid var(--border)}
@@ -267,10 +293,10 @@
 <!-- HIGHLIGHT STATS -->
 <section id="highlight">
   <div class="hl-inner">
-    <div class="section-header reveal" style="justify-content:center;text-align:center;--border:#ffffff12">
-      <span class="section-num" style="color:var(--accent)">02</span>
+    <div class="section-header reveal" style="justify-content:center;text-align:center">
+      <span class="section-num">02</span>
       <h2 class="section-title" style="color:var(--dark-text)">Research Impact</h2>
-      <div class="section-line" style="background:#ffffff18"></div>
+      <div class="section-line"></div>
     </div>
     <div class="hl-grid">
       <div class="hl-stat reveal"><div class="n">16</div><div class="l">Journal Papers</div></div>
@@ -327,8 +353,8 @@
     var hero   = document.getElementById('hero');
     if (!canvas || !hero) return;
     var ctx = canvas.getContext('2d');
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var BLUE = '106,168,255', TEAL = '92,205,181';
+    var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+    var WHITE = '236,232,220', BLUE = '91,143,245';
     var W = 0, H = 0;
 
     var MAX_DOTS = 30, SPAWN_RATE = 14, dots = [];   // spawn rate in dots per second
@@ -338,7 +364,7 @@
         x: W * (0.55 + Math.random() * 0.43), y: H * (0.08 + Math.random() * 0.8),
         r: 0.8 + Math.random() * 1.6,
         life: 0, maxLife: 1 + Math.random() * 1.3,
-        color: Math.random() < 0.5 ? BLUE : TEAL
+        color: Math.random() < 0.5 ? WHITE : BLUE
       });
     }
 
@@ -355,10 +381,10 @@
     function drawChirp(t, amp, phaseOff, alpha, lw) {
       var y0 = H - 34;
       var grad = ctx.createLinearGradient(0, 0, W, 0);
-      grad.addColorStop(0,   'rgba(' + BLUE + ',0)');
-      grad.addColorStop(0.2, 'rgba(' + BLUE + ',' + alpha + ')');
-      grad.addColorStop(0.8, 'rgba(' + BLUE + ',' + alpha + ')');
-      grad.addColorStop(1,   'rgba(' + BLUE + ',0)');
+      grad.addColorStop(0,   'rgba(' + WHITE + ',0)');
+      grad.addColorStop(0.2, 'rgba(' + WHITE + ',' + alpha + ')');
+      grad.addColorStop(0.8, 'rgba(' + WHITE + ',' + alpha + ')');
+      grad.addColorStop(1,   'rgba(' + WHITE + ',0)');
       ctx.beginPath();
       for (var x = 0; x <= W; x += 2) {
         var xn = x / W;
@@ -386,7 +412,7 @@
     }
 
     function step(dt) {
-      if (dots.length < MAX_DOTS && Math.random() < SPAWN_RATE * dt) spawnDot();
+      if (dots.length < MAX_DOTS) { if (Math.random() < SPAWN_RATE * dt) spawnDot(); }
       for (var i = dots.length - 1; i >= 0; i--) {
         dots[i].life += dt;
         if (dots[i].life >= dots[i].maxLife) dots.splice(i, 1);
@@ -404,7 +430,7 @@
     }
     function start() { if (running || reduce) return; running = true; last = 0; rafId = requestAnimationFrame(loop); }
     function stop()  { running = false; cancelAnimationFrame(rafId); }
-    function sync()  { if (inView && !document.hidden) { start(); } else { stop(); } }
+    function sync()  { if (!inView || document.hidden) { stop(); } else { start(); } }
 
     function redraw() {
       resize();
