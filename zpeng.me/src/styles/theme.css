@@ -151,7 +151,7 @@ linear-gradient(135deg,var(--mech-bg) 0%,var(--mech-bg2) 55%,var(--mech-bg3) 100
 .comments{max-width:860px;margin:0 auto;padding:0 2rem 4rem}
 .comments h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:1.5rem;color:var(--text);margin:0 0 1.2rem;display:flex;align-items:center;gap:.7rem}
 .comments h2::before{content:'';width:2rem;height:3px;background:linear-gradient(90deg,var(--red) 0 .5rem,var(--accent) .5rem)}
-.comment{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:.9rem 1.1rem;margin-bottom:.8rem;font-size:.95rem;color:var(--text2)}
+.comment{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:.9rem 1.1rem;margin-bottom:.8rem;font-size:.95rem;color:var(--text2);overflow-wrap:anywhere}
 .comment.reply{margin-left:2rem;border-left-color:var(--yellow)}
 .comment header{display:flex;gap:.8rem;align-items:baseline;margin-bottom:.4rem}
 .comment header strong{color:var(--text)}
