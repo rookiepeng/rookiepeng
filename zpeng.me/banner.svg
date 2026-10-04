@@ -1,12 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" width="1400" height="520">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="520" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0e1014"/><stop offset=".55" stop-color="#15181e"/><stop offset="1" stop-color="#181b21"/>
+      <stop offset="0" stop-color="#14171d"/><stop offset=".55" stop-color="#1b1f26"/><stop offset="1" stop-color="#20242c"/>
     </linearGradient>
-    <!-- Faint monitor scanlines -->
-    <pattern id="scan" width="4" height="3" patternUnits="userSpaceOnUse">
-      <rect width="4" height="1" fill="#e6eaf0" fill-opacity=".035"/>
+    <!-- Armour plating (same tile as the hero, drawn at 480x320): chamfered plates, engraved
+         panel lines, a hatch, vent slats, rivets and small caution decals -->
+    <pattern id="armour" width="480" height="320" patternUnits="userSpaceOnUse">
+      <g transform="scale(1.3333)"><g fill='#fff'><path fill-opacity='.022' d='M2 2H344L358 16V118H16L2 104Z'/><path fill-opacity='.01' d='M0 122H164L178 136V238H0Z'/><path fill-opacity='.03' d='M182 122H360V238H196L182 224Z'/></g><g fill='none' stroke-linejoin='miter'><path stroke='#fff' stroke-opacity='.04' transform='translate(1 1)' d='M2 2H344L358 16V118H16L2 104Z M0 122H164L178 136V238H0Z M182 122H360V238H196L182 224Z M2 70H118L148 40H250V2 M286 28H322L334 40V64H298L286 52Z M60 122V170L80 190H178 M182 182H258L280 204V238 M298 150H342M298 159H342M298 168H342M298 177H342M298 186H342'/><path stroke='#000' stroke-opacity='.5' stroke-width='1.4' d='M2 2H344L358 16V118H16L2 104Z M0 122H164L178 136V238H0Z M182 122H360V238H196L182 224Z M2 70H118L148 40H250V2 M286 28H322L334 40V64H298L286 52Z M60 122V170L80 190H178 M182 182H258L280 204V238'/><path stroke='#000' stroke-opacity='.4' stroke-width='2.5' d='M298 150H342M298 159H342M298 168H342M298 177H342M298 186H342'/></g><g fill='#000' fill-opacity='.4'><circle cx='26' cy='104' r='2'/><circle cx='40' cy='104' r='2'/><circle cx='54' cy='104' r='2'/><circle cx='292' cy='34' r='1.6'/><circle cx='328' cy='58' r='1.6'/><circle cx='196' cy='132' r='2'/><circle cx='196' cy='170' r='2'/></g><rect x='14' y='132' width='26' height='5' fill='#ffd23f' fill-opacity='.16'/><rect x='14' y='141' width='9' height='5' fill='#ff4d4d' fill-opacity='.18'/><path d='M160 52l8 -8h22l-8 8z' fill='#5b8ff5' fill-opacity='.14'/></g>
     </pattern>
+    <!-- The plating fades to 40% behind the text on the left, as in the hero -->
+    <linearGradient id="armourFade" x1="0" y1="0" x2="1400" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset=".15" stop-color="#fff" stop-opacity=".4"/><stop offset=".6" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="armourMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1400" height="516">
+      <rect width="1400" height="516" fill="url(#armourFade)"/>
+    </mask>
+    <!-- Soft Federation-blue glow on the right of the plate -->
+    <radialGradient id="plateGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1092 218) scale(770 364)">
+      <stop offset="0" stop-color="#5b8ff5" stop-opacity=".08"/><stop offset=".7" stop-color="#5b8ff5" stop-opacity="0"/>
+    </radialGradient>
     <radialGradient id="glow" cx="1008" cy="260" r="420" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#5b8ff5" stop-opacity=".07"/><stop offset="1" stop-color="#5b8ff5" stop-opacity="0"/>
     </radialGradient>
@@ -24,7 +36,8 @@
   </defs>
 
   <rect width="1400" height="520" fill="url(#bg)"/>
-  <rect width="1400" height="516" fill="url(#scan)"/>
+  <rect width="1400" height="520" fill="url(#plateGlow)"/>
+  <rect width="1400" height="516" fill="url(#armour)" mask="url(#armourMask)"/>
   <rect width="1400" height="520" fill="url(#glow)"/>
 
   <!-- Radar rings from the emitter -->
