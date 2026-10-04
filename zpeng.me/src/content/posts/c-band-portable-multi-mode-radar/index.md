@@ -1,91 +1,128 @@
 ---
 title: "C-Band Portable Multi-Mode Radar"
 date: 2017-01-28
-updated: 2026-05-28
-description: "Introduction In this project, a portable FMCW-interferometry radar is designed and built, whose operation frequency is at the 5.8-GHz. This radar system can be configured either in the FMCW or interferometry mode by means of an on-board micro-controller. This design features low-cost and portable. Experiments were carried out to reveal the capabilities of the radar…"
+updated: 2026-10-04
+description: "A palm-sized 5.8-GHz radar that switches between FMCW and interferometry modes on one RF chain, used for human localization, range-Doppler tracking, vital signs, fall detection, and wind-turbine monitoring."
 tags: ["Micro-Doppler", "Radar", "Vital sign"]
+cover: "./photo.jpg"
+rawHtml: true
 wpId: 3946
 ---
-# Introduction
-
-In this project, a portable FMCW-interferometry radar is designed and built, whose operation frequency is at the 5.8-GHz. This radar system can be configured either in the FMCW or interferometry mode by means of an on-board micro-controller. This design features low-cost and portable. Experiments were carried out to reveal the capabilities of the radar system in tracking single and multiple moving targets, non-contact vital sign detection, fall detection, wind turbines’ structural healthiness monitoring, etc.
-
-# Design
-
-![Fig. 1. Block diagram of the 5.8-GHz multi-mode radar prototype](./schematic.jpg)  
-**Fig. 1. Block diagram of the 5.8-GHz multi-mode radar prototype**
-
-Fig. 1 is the block diagram of the 5.8-GHz multi-mode radar prototype. To simplify the system complexity and minimize its cost, the two radar modes are realized to share the same RF components and signal paths. In addition, at signal acquisition block, the audio card of a laptop is used to sample the baseband signal. On the other hand, the interferometry mode operates at a single frequency of 5.8 GHz. It is known that vital signs, i.e., respiration and heartbeat are extreme low frequency signals, which can be easily blocked by the band-pass filter of an audio card. In this work, a low-intermediate-frequency (low-IF) modulation method is implemented to up-convert the baseband signal to an IF, so that the tiny low frequency vital signs will not be filtered out by the audio card. Note also that the low-IF scheme has advantages in relation to mitigation of flicker noise, which has a higher power level at the around-zero-frequency components of the baseband signal. After data acquisition, envelope detection is here proposed to recover the vital signs in the interferometry mode. The distortion effect of low-IF modulation and the way to optimize the sensitivity of envelope detection are analyzed. Regarding the FMCW mode, a free-running VCO controlled by a simple operational-amplifier-based circuit is used to generate the desired frequency-modulated RF signal. By acquiring the baseband output along with a reference pulse sequence (RPS), which is locked to the sawtooth signal, the coherence property of the radar can be achieved.
-
-![Fig. 2. Photo of the 5.8-GHz multi-mode radar prototype](./photo.jpg)  
-**Fig. 2. Photo of the 5.8-GHz multi-mode radar prototype**
-
-Fig. 2 details the photo of the implemented radar system. The prototype consists of two PCBs stacked together. The upper one is the board with a MSP430 micro-controller and the lower one is the radar board, which integrates the sawtooth and reference generator, radar front-end, and the baseband amplifiers. The total size of the radar system is 50 mm × 60 mm × 20 mm. As radiating sub-systems, 2 × 2 or 4 × 4 patch antennas are used in the different experiments. The gain of the 2 × 2 array is 11.3 dB and the half-power beam width is 46 degrees. The gain of the 4 × 4 array is 16.3 dB and the half-power beam width is 21.6 degrees.
-
-# Experiments
-
-In this section, experiment results of different applications with the customized 5.8-GHz radar are demonstrated.
-
-## Short-range localization
-
-![Fig. 3. Experimental setup for a two-dimensional scan](./scan-photo.jpg)  
-**Fig. 3. Experimental setup for a two-dimensional scan**
-
-![Fig. 4. 2-D mapping result for the scenario](./scan.jpg)  
-**Fig. 4. 2-D mapping result for the scenario**
-
-Short-range localization experiment was demonstrated with mechanical rotation of the radar. Fig. 3 shows the photo of the experiment setup. Fig. 4 represents the two-dimensional mapping of the measured range profiles. A large echo detected at the distance of about 8 m is observable, which corresponds to the location of the car and the stationary human. The reason that these two targets are overlapped in the 2-D mapping plot must be found in the limited antenna directivity, which corresponds to a 21.6 degrees beamwidth. In other words, the angular resolution is not high enough to differentiate the human subject from the car. Since the radar prototype is portable, it is almost impossible to achieve an extremely-narrow beamwidth with a highly-constrained antenna size. The other returns on the left of Fig. 4 correspond to the signatures of other stopped cars in the parking lot.
-
-![Fig. 5. Human target identification for the 2-D mapping experiment](./scan-extraction.jpg)  
-**Fig. 5. Human target identification for the 2-D mapping experiment**
-
-Even though the angular resolution of the proposed portable radar is not high enough to differentiate the adjacent human target and the car, it is still possible to pinpoint the human subject and eliminate the other stationary clutter returns based on the human “vital-Doppler” effect. After calculating the standard deviation of different measurements in each direction, the differentiate 2-D mapping in Fig. 5 has been obtained. Except for the human target, all the signatures of the stationary targets, including the parked car with running engine, are suppressed. This experiment reveals the ability of the proposed radar sensor to discriminate stationary human subjects in a complex environment.
-
-## Range-Doppler imaging
-
-![Fig. 6. Photo of the experimental environment for ISAR video production](./walk.jpg)  
-**Fig. 6. Photo of the experimental environment for ISAR video production**
-
-In this experiment, the portable prototype was used to illuminate two human subjects walking in opposite directions in front of the radar in a corridor. The experiment setup is shown in Fig. 6. The corridor is quite narrow with walls and many pillars, which cause a lot of clutter returns.
-
-![Fig. 7. Range-profile matrix for two human subjects walking in opposite directions in a narrow corridor](./range-profile.jpg)  
-**Fig. 7. Range-profile matrix for two human subjects walking in opposite directions in a narrow corridor**
-
-Fig. 7 shows the range-profile matrix for the experiment in a 73-s CPI. Many strong vertical strips, which correspond to the stationary objects, can be observed in Fig. 7. Also, the traces of the two moving human subjects are noticeable, but are much weaker than the stationary clutter returns.
-
-![Fig. 8. Frames of range-Doppler imaging](./range-doppler.jpg)  
-**Fig. 8. Frames of range-Doppler imaging**
-
-The range-Doppler images in Fig. 8 provide the proposed portable radar with 2-D isolation and tracking capabilities by combining together the Doppler information and the absolute ranging. This could be leveraged for radar-based short-range tracking for healthcare or driver-less vehicle applications.
-
-## Structural healthiness monitoring
-
-![Fig. 9. Photograph of the illuminated wind-turbine acquisition scenario in the American Wind Power Center, Lubbock, TX, USA](../k-band-portable-multi-mode-radar/wind-turbine.jpg)  
-**Fig. 9. Photograph of the illuminated wind-turbine acquisition scenario in the American Wind Power Center, Lubbock, TX, USA**
-
-![Fig. 10. Spectrogram for the Vestas V47 wind turbine illuminated by the radar prototype](./wind-turbine-data.jpg)  
-**Fig. 10. Spectrogram for the Vestas V47 wind turbine illuminated by the radar prototype**
-
-This radar prototype was employed in the American Wind Power Center, Lubbock, TX, USA, to monitor the structural healthiness the wind turbines. In the American Wind Power Center, many wind turbines with various sizes, number of blades, horizontal and vertical rotation axes, and so forth are available. A photograph of the in-field wind-turbine acquisition scenario is provided in Fig. 9. Fig. 10 illustrated the spectrogram for the Vestas V47 wind trubine and these results may be exploited for monitoring purposes.
-
-## Fall detection
-
-Falls are among the leading causes of fatal and non-fatal injuries for seniors. The 5.8-GHz prototype of portable radar was used in the experiments of fall detection.
-
-![Fig. 11. Illustration of the actions of a human subject and the corresponding range-Doppler image evolutions](./fall-schematic.jpg)  
-**Fig. 11. Illustration of the actions of a human subject and the corresponding range-Doppler image evolutions**
-
-![Fig. 12. Corresponding range-Doppler images of a fall incident](./fall-data.jpg)  
-**Fig. 12. Corresponding range-Doppler images of a fall incident**
-
-Fig. 11 illustrates the case when the human subject falls toward the radar. The falling event is divided into four phases depending on the changes of the velocity, RCS, and range of the human subject. The corresponding range-Doppler images are shown in Fig. 12. This work has demonstrated the ability of an FMCW radar to detect fall events based on real-time range-Doppler imaging.
-
----
-
-#### Related Publications:
-
-1.  **Z. Peng**, J.-M. Muñoz-Ferreras, Y. Tang, R. Gómez-García, L. Ran, and C. Li, “A portable FMCW-interferometry radar with programmable low-IF architecture for localization, ISAR imaging and vital-sign tracking,” *IEEE Transactions on Microwave Theory and Techniques*, vol. 65, no. 4, pp. 1334-1344, Apr. 2017.
-2.  J.-M. Muñoz-Ferreras, **Z. Peng**, Y. Tang, R. Gómez-García, D. Liang, and C. Li, “Short-range Doppler-radar signatures from industrial wind turbines: theory, simulations, and measurements,” *IEEE Transactions on Instrumentation and Measurement*, vol. 65, no. 9, pp. 2108–2119, Sep. 2016.
-3.  **Z. Peng**, J.-M. Muñoz-Ferreras, C. Li, and R. Gómez-García, “An FMCW Radar Sensor for Human Gesture Recognition in the Presence of Multiple Targets,” in *IEEE International Microwave Bio-Conference (IMBioC)*, Göteborg, Sweden, May 15-17, 2017.
-4.  J.-M. Muñoz-Ferreras, **Z. Peng**, Y. Tang, R. Gómez-García, and C. Li, “Doppler-Radar-Based Short-Range Acquisitions of Time-Frequency Signatures from an Industrial-Type Wind Turbine,” in *IEEE Wireless Sensors and Sensor Networks (WiSNet)*, Phoenix, AZ, Jan. 15-18, 2017.
-5.  **Z. Peng**, J.-M. Muñoz-Ferreras, R. Gómez-García, and C. Li, “FMCW radar fall detection based on ISAR processing utilizing the properties of RCS, range, and Doppler,” in *IEEE International Microwave Symposium (IMS)*, San Francisco, CA, May 22-27, 2016.
+<div class="rp">
+  <div class="rp-plate rp-intro">
+    <div class="rp-lede">
+      <p>A palm-sized 5.8-GHz radar that works in two modes. In <strong>FMCW</strong> mode it measures range, so it can map and track people. In <strong>interferometry</strong> mode it holds a single frequency and picks up tiny motions such as breathing and heartbeat. An on-board microcontroller switches between the two, and both modes share the same RF parts and signal paths, which keeps the radar small and cheap.</p>
+      <p>I used it to locate people among parked cars, track walkers in a cluttered corridor, detect falls, and record the Doppler signatures of wind turbines.</p>
+      <div class="rp-meta"><span class="rp-hl">Ph.D. research</span><span>Texas Tech University</span><span>2015–2017</span></div>
+    </div>
+    <dl class="rp-facts">
+      <div><dt>Frequency</dt><dd>5.8 GHz (C-band)</dd></div>
+      <div><dt>Modes</dt><dd>FMCW and interferometry, on one RF chain</dd></div>
+      <div><dt>Size</dt><dd>50 × 60 × 20 mm, two stacked boards</dd></div>
+      <div><dt>Controller</dt><dd>TI MSP430</dd></div>
+      <div><dt>Data capture</dt><dd>A laptop sound card</dd></div>
+    </dl>
+  </div>
+  <figure class="rp-monitor">
+    <img src="./photo.jpg" alt="The 5.8-GHz multi-mode radar prototype" />
+    <figcaption><b>Fig. 1</b>The 5.8-GHz multi-mode radar prototype</figcaption>
+  </figure>
+  <div class="rp-stats">
+    <div class="rp-plate rp-stat"><b>5.8 GHz</b><span>carrier frequency</span></div>
+    <div class="rp-plate rp-stat"><b>2</b><span>radar modes, one RF chain</span></div>
+    <div class="rp-plate rp-stat"><b>21.6°</b><span>beamwidth with the 4 × 4 array</span></div>
+    <div class="rp-plate rp-stat"><b>4</b><span>applications tested in the field</span></div>
+  </div>
+  <section>
+    <h2>Design</h2>
+    <p class="rp-kick">Low cost by sharing everything</p>
+    <figure class="rp-fig">
+      <img src="./schematic.jpg" alt="Block diagram of the 5.8-GHz multi-mode radar" loading="lazy" />
+      <figcaption><b>Fig. 2</b>Block diagram of the 5.8-GHz multi-mode radar prototype</figcaption>
+    </figure>
+    <div class="rp-prose">
+      <p>Fig. 2 shows the architecture. Both modes run through the same RF front end and baseband amplifiers, and the baseband signal is sampled by an ordinary laptop sound card instead of a dedicated data-acquisition board.</p>
+      <h3>Interferometry mode: a low-IF trick for vital signs</h3>
+      <p>Breathing and heartbeat produce baseband signals below a few hertz. A sound card's input filter blocks frequencies that low, so the radar shifts them up first: a programmable <strong>low-IF modulation</strong> moves the baseband signal to an intermediate frequency the sound card can pass. This also moves the signal away from the flicker noise that crowds the spectrum near DC. After sampling, envelope detection recovers the vital signs. In the paper I analyze the distortion that low-IF modulation introduces and how to get the best sensitivity from envelope detection.</p>
+      <h3>FMCW mode: coherence without a PLL</h3>
+      <p>A free-running VCO, driven by a sawtooth from a simple op-amp circuit, generates the frequency sweep. A free-running sweep is not locked to anything, so the radar also records a <strong>reference pulse sequence</strong> that is locked to the sawtooth. Sampling it alongside the beat signal marks the start of every chirp, which makes the FMCW measurements coherent.</p>
+    </div>
+  </section>
+  <section>
+    <h2>Hardware</h2>
+    <p class="rp-kick">Two boards, two antenna options</p>
+    <div class="rp-prose">
+      <p>The prototype in Fig. 1 is two PCBs stacked together. The top board carries the MSP430 microcontroller. The bottom board is the radar itself: the sawtooth and reference generator, the RF front end, and the baseband amplifiers. Depending on the experiment, it uses one of two patch-antenna arrays:</p>
+    </div>
+    <div class="rp-tablewrap">
+      <table class="rp-table">
+        <thead><tr><th>Antenna</th><th>Gain</th><th>Half-power beamwidth</th><th>Trade-off</th></tr></thead>
+        <tbody>
+          <tr><th>2 × 2 patch array</th><td>11.3 dB</td><td>46°</td><td>Wider coverage</td></tr>
+          <tr><th>4 × 4 patch array</th><td>16.3 dB</td><td>21.6°</td><td>Longer range, finer angular resolution</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <h2>Experiments</h2>
+    <p class="rp-kick">What the radar can do</p>
+    <div class="rp-exps">
+      <div class="rp-plate rp-exp">
+        <h3>Finding a person among parked cars</h3>
+        <p>To build a 2-D map, I rotated the radar mechanically and recorded a range profile in each direction (Fig. 3). In the resulting map (Fig. 4), the strong echo at about 8 m is a car and a person standing next to it. They show up as one target because the 21.6° beam is too wide to separate them, and a portable radar cannot carry an antenna large enough for a much narrower beam. The echoes on the left are other parked cars.</p>
+        <p>A person, however, is never perfectly still: breathing and small body movements make their echo fluctuate from scan to scan. Taking the standard deviation of repeated scans in each direction keeps the person and removes everything that does not move, including the parked car with its engine running (Fig. 5).</p>
+        <div class="rp-figs">
+          <figure class="rp-fig"><img src="./scan-photo.jpg" alt="Setup for the two-dimensional scan" loading="lazy" /><figcaption><b>Fig. 3</b>Setup for the two-dimensional scan</figcaption></figure>
+          <figure class="rp-fig"><img src="./scan.jpg" alt="2-D map built from the measured range profiles" loading="lazy" /><figcaption><b>Fig. 4</b>2-D map built from the measured range profiles</figcaption></figure>
+        </div>
+        <figure class="rp-fig rp-narrow"><img src="./scan-extraction.jpg" alt="The same map after suppressing stationary targets, leaving only the human" loading="lazy" /><figcaption><b>Fig. 5</b>After suppressing stationary returns, only the human remains</figcaption></figure>
+      </div>
+      <div class="rp-plate rp-exp">
+        <h3>Tracking two people in a cluttered corridor</h3>
+        <p>Two people walked in opposite directions in front of the radar, in a narrow corridor full of walls and pillars (Fig. 6). In the range profiles over the 73-second recording (Fig. 7), the strong vertical stripes are stationary clutter, and the two walkers appear as much fainter traces.</p>
+        <p>Adding Doppler to range separates them. In the range-Doppler frames (Fig. 8), each person appears as a distinct target that can be followed from frame to frame, which is the basis for short-range tracking in healthcare or driverless-vehicle applications.</p>
+        <div class="rp-figs">
+          <figure class="rp-fig"><img src="./walk.jpg" alt="Corridor where the walking experiment took place" loading="lazy" /><figcaption><b>Fig. 6</b>The corridor used for the experiment</figcaption></figure>
+          <figure class="rp-fig"><img src="./range-profile.jpg" alt="Range profiles of two people walking in opposite directions" loading="lazy" /><figcaption><b>Fig. 7</b>Range profiles over the 73-s recording</figcaption></figure>
+        </div>
+        <figure class="rp-fig"><img src="./range-doppler.jpg" alt="Frames of range-Doppler images" loading="lazy" /><figcaption><b>Fig. 8</b>Frames of the range-Doppler images</figcaption></figure>
+      </div>
+      <div class="rp-plate rp-exp">
+        <h3>Monitoring wind turbines</h3>
+        <div class="rp-split">
+          <div>
+            <p>The American Wind Power Center in Lubbock, Texas, has wind turbines in many sizes, with different numbers of blades and with horizontal or vertical rotation axes. I aimed the radar at them (Fig. 10) and recorded their micro-Doppler signatures. Fig. 9 shows the spectrogram of a Vestas V47. Signatures like this can be used to monitor the structural health of the turbine.</p>
+            <figure class="rp-fig"><img src="./wind-turbine-data.jpg" alt="Spectrogram of the Vestas V47 wind turbine" loading="lazy" /><figcaption><b>Fig. 9</b>Spectrogram of the Vestas V47 wind turbine</figcaption></figure>
+          </div>
+          <figure class="rp-fig rp-narrow"><img src="../k-band-portable-multi-mode-radar/wind-turbine.jpg" alt="Radar measurement at the American Wind Power Center" loading="lazy" /><figcaption><b>Fig. 10</b>Measuring at the American Wind Power Center, Lubbock, TX</figcaption></figure>
+        </div>
+      </div>
+      <div class="rp-plate rp-exp">
+        <h3>Detecting falls</h3>
+        <div class="rp-split">
+          <div>
+            <p>Falls are among the leading causes of fatal and non-fatal injuries in older adults. In this experiment a person fell toward the radar. The fall divides into four phases, each with its own pattern of speed, range, and radar cross section (Fig. 11). These phases appear clearly in the range-Doppler images (Fig. 12), which shows that an FMCW radar can detect falls from range-Doppler imaging in real time.</p>
+            <figure class="rp-fig"><img src="./fall-schematic.jpg" alt="Phases of a fall and how the range-Doppler image changes" loading="lazy" /><figcaption><b>Fig. 11</b>The four phases of a fall and how the range-Doppler image changes</figcaption></figure>
+          </div>
+          <figure class="rp-fig rp-narrow"><img src="./fall-data.jpg" alt="Measured range-Doppler images of a fall" loading="lazy" /><figcaption><b>Fig. 12</b>Measured range-Doppler images of a fall</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Publications</h2>
+    <p class="rp-kick">Where this work appeared</p>
+    <ol class="rp-pubs">
+      <li><span class="rp-ptitle"><a href="http://ieeexplore.ieee.org/document/7784794">A portable FMCW-interferometry radar with programmable low-IF architecture for localization, ISAR imaging and vital-sign tracking</a></span><span class="rp-pauth"><strong>Z. Peng</strong>, J.-M. Muñoz-Ferreras, Y. Tang, R. Gómez-García, L. Ran, and C. Li</span><span class="rp-pvenue"><span class="rp-ptype rp-journal">Journal</span><em>IEEE Transactions on Microwave Theory and Techniques</em>, vol. 65, no. 4, pp. 1334–1344, Apr. 2017</span></li>
+      <li><span class="rp-ptitle"><a href="http://ieeexplore.ieee.org/document/7487021">Short-range Doppler-radar signatures from industrial wind turbines: theory, simulations, and measurements</a></span><span class="rp-pauth">J.-M. Muñoz-Ferreras, <strong>Z. Peng</strong>, Y. Tang, R. Gómez-García, D. Liang, and C. Li</span><span class="rp-pvenue"><span class="rp-ptype rp-journal">Journal</span><em>IEEE Transactions on Instrumentation and Measurement</em>, vol. 65, no. 9, pp. 2108–2119, Sep. 2016</span></li>
+      <li><span class="rp-ptitle"><a href="http://ieeexplore.ieee.org/document/7965798">An FMCW radar sensor for human gesture recognition in the presence of multiple targets</a></span><span class="rp-pauth"><strong>Z. Peng</strong>, J.-M. Muñoz-Ferreras, C. Li, and R. Gómez-García</span><span class="rp-pvenue"><span class="rp-ptype">Conference</span><em>IEEE International Microwave Bio-Conference (IMBioC)</em>, Göteborg, Sweden, May 2017</span></li>
+      <li><span class="rp-ptitle"><a href="http://ieeexplore.ieee.org/document/7878741">Doppler-radar-based short-range acquisitions of time-frequency signatures from an industrial-type wind turbine</a></span><span class="rp-pauth">J.-M. Muñoz-Ferreras, <strong>Z. Peng</strong>, Y. Tang, R. Gómez-García, and C. Li</span><span class="rp-pvenue"><span class="rp-ptype">Conference</span><em>IEEE Wireless Sensors and Sensor Networks (WiSNet)</em>, Phoenix, AZ, Jan. 2017</span></li>
+      <li><span class="rp-ptitle"><a href="http://ieeexplore.ieee.org/document/7540121">FMCW radar fall detection based on ISAR processing utilizing the properties of RCS, range, and Doppler</a></span><span class="rp-pauth"><strong>Z. Peng</strong>, J.-M. Muñoz-Ferreras, R. Gómez-García, and C. Li</span><span class="rp-pvenue"><span class="rp-ptype">Conference</span><em>IEEE International Microwave Symposium (IMS)</em>, San Francisco, CA, May 2016</span></li>
+    </ol>
+  </section>
+  <div class="rp-foot">
+    <span>Part of my Ph.D. research at Texas Tech University</span>
+    <span><a href="/research-projects/">All research projects</a> · <a href="/publications/">Publications</a></span>
+  </div>
+</div>

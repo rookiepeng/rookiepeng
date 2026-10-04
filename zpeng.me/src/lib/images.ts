@@ -13,11 +13,12 @@ export async function optimized(image: ImageMetadata, width = 1200) {
 }
 
 // Markdown image syntax is handled by Astro, but <img src="./x.jpg"> inside raw HTML is not.
-// Resolve those relative paths against the post's folder.
+// Resolve those relative paths against the post's folder; "../other-post/x.jpg" reaches a sibling post.
 export async function resolveHtmlImages(html: string, postId: string) {
-  const matches = [...html.matchAll(/(<img\b[^>]*?\ssrc=")(\.\/[^"]+)(")/g)];
+  const matches = [...html.matchAll(/(<img\b[^>]*?\ssrc=")(\.\.?\/[^"]+)(")/g)];
   for (const [whole, before, path, after] of matches) {
-    const image = postImages[`/src/content/posts/${postId}/${path.slice(2)}`];
+    const file = path.startsWith('../') ? path.slice(3) : `${postId}/${path.slice(2)}`;
+    const image = postImages[`/src/content/posts/${file}`];
     if (!image) throw new Error(`${postId}: image ${path} not found in the post folder`);
     html = html.replace(whole, `${before}${await optimized(image)}${after}`);
   }

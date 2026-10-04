@@ -4,6 +4,9 @@ import kBand2dRfBeamformingFmcwRadarPhoto from '../../content/posts/k-band-2d-rf
 import kBandPortableMultiModeRadarPhoto from '../../content/posts/k-band-portable-multi-mode-radar/photo.jpg';
 import cBandPortableMultiModeRadarPhoto from '../../content/posts/c-band-portable-multi-mode-radar/photo.jpg';
 import _24GhzRadarOnChipPhoto from '../../content/posts/24-ghz-radar-on-chip/photo.jpg';
+import adaptiveBeamformingArraySystem from '../../content/posts/adaptive-beamforming-array/system.jpg';
+import kuBandHornArray from '../../content/posts/ku-band-high-gain-horn-antenna-array/array.jpg';
+import widebandRfSignalSynthesizerPhoto from '../../content/posts/wideband-rf-signal-synthesizer/photo.jpg';
 import { optimized } from '../../lib/images';
 import { publicationCounts } from '../../lib/publications';
 import Base from '../../layouts/Base.astro';
@@ -13,8 +16,11 @@ const kBand2dRfBeamformingFmcwRadarPhotoUrl = await optimized(kBand2dRfBeamformi
 const kBandPortableMultiModeRadarPhotoUrl = await optimized(kBandPortableMultiModeRadarPhoto, 800);
 const cBandPortableMultiModeRadarPhotoUrl = await optimized(cBandPortableMultiModeRadarPhoto, 800);
 const _24GhzRadarOnChipPhotoUrl = await optimized(_24GhzRadarOnChipPhoto, 800);
+const adaptiveBeamformingArraySystemUrl = await optimized(adaptiveBeamformingArraySystem, 800);
+const kuBandHornArrayUrl = await optimized(kuBandHornArray, 800);
+const widebandRfSignalSynthesizerPhotoUrl = await optimized(widebandRfSignalSynthesizerPhoto, 800);
 ---
-<Base title="Research Projects – Z. PENG" description="Radar system design, signal processing and sensing projects from doctoral research at Texas Tech University." overlayHeader>
+<Base title="Research Projects – Z. PENG" description="Radar, antenna array, and RF hardware projects from my studies at Zhejiang University and Texas Tech University." overlayHeader>
 <style is:global>
 /* MOBILE SUIT THEME (RX-78-2): white armour plates framed in navy, Federation blue,
    red and V-fin yellow trim. Light sections are the armour; the dark bands (hero,
@@ -113,6 +119,8 @@ const _24GhzRadarOnChipPhotoUrl = await optimized(_24GhzRadarOnChipPhoto, 800);
 .proj-tag.tag-beamforming{background:rgba(214,40,40,.07);color:#b51f1f;border-color:rgba(214,40,40,.3)}
 .proj-tag.tag-vital{background:rgba(242,183,5,.18);color:var(--gold);border-color:rgba(242,183,5,.6)}
 .proj-tag.tag-ic{background:rgba(63,110,94,.08);color:var(--olive);border-color:rgba(63,110,94,.3)}
+.proj-tag.tag-antenna{background:rgba(29,79,163,.05);color:var(--accent2);border-color:rgba(22,63,132,.4)}
+.proj-tag.tag-rf{background:rgba(138,101,0,.08);color:var(--gold);border-color:rgba(138,101,0,.35)}
 .proj-tag.tag-software{background:rgba(29,79,163,.08);color:var(--accent);border-color:rgba(29,79,163,.3)}
 
 .proj-card h3{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.45rem;line-height:1.4;transition:color .2s}
@@ -123,6 +131,13 @@ const _24GhzRadarOnChipPhotoUrl = await optimized(_24GhzRadarOnChipPhoto, 800);
 .proj-pub-count i{color:var(--accent);font-size:.75rem}
 .proj-read-more{font-family:var(--mono);font-size:.74rem;color:var(--accent2);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;border:1px solid rgba(29,79,163,.35);padding:.22rem .6rem;border-radius:0;clip-path:var(--chamfer-clip-sm);transition:border-color .1s,background .1s}
 .proj-read-more:hover{border-color:var(--accent);background:rgba(29,79,163,.08);color:var(--accent2)}
+
+/* SCHOOL GROUPS: one heading and grid per university */
+.school-group + .school-group{margin-top:3.5rem}
+.school-group.hidden{display:none}
+.school-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:.4rem 1.2rem;margin-bottom:1.5rem;padding-bottom:.7rem;border-bottom:2px solid var(--frame)}
+.school-name{font-family:var(--serif);font-size:1.55rem;color:var(--text)}
+.school-meta{font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 
 /* HIGHLIGHT BANNER: cockpit band, chest trim along the top edge */
 #highlight{position:relative;background:linear-gradient(90deg,var(--red) 0 160px,transparent 160px) top/100% 4px no-repeat,repeating-linear-gradient(90deg,var(--yellow) 0 14px,transparent 14px 22px) top/100% 4px no-repeat,linear-gradient(var(--accent),var(--accent)) top/100% 4px no-repeat,var(--dark);color:var(--dark-text);text-align:center;--accent:var(--dark-accent);--accent-strong:#2f68d6;--accent-rgb:91,143,245;--red:var(--dark-red);--yellow:var(--dark-yellow);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
@@ -180,9 +195,9 @@ const _24GhzRadarOnChipPhotoUrl = await optimized(_24GhzRadarOnChipPhoto, 800);
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-inner">
-    <div class="hero-tag">PhD Research &middot; Radar Systems &middot; TTU 2014&ndash;2018</div>
+    <div class="hero-tag">Research &middot; ZJU &amp; TTU &middot; 2007&ndash;2018</div>
     <h1>Research<br><em>Projects</em></h1>
-    <p class="hero-bio">Radar system design, signal processing, and sensing applications developed during doctoral studies at Texas Tech University &mdash; spanning hardware prototyping, MIMO, beamforming, and bio-radar.</p>
+    <p class="hero-bio">Radar systems, antenna arrays, and RF hardware I built at Zhejiang University and Texas Tech University &mdash; from beamforming front ends and satellite antennas to portable radars for localization, vital signs, and 3D imaging.</p>
   </div>
 </section>
 
@@ -201,8 +216,15 @@ const _24GhzRadarOnChipPhotoUrl = await optimized(_24GhzRadarOnChipPhoto, 800);
     <button class="filter-btn" data-filter="beamforming">Beamforming</button>
     <button class="filter-btn" data-filter="vital">Vital Sign</button>
     <button class="filter-btn" data-filter="ic">IC Design</button>
+    <button class="filter-btn" data-filter="antenna">Antenna Array</button>
+    <button class="filter-btn" data-filter="rf">RF Circuits</button>
   </div>
 
+  <div class="school-group">
+  <div class="school-head reveal">
+    <span class="school-name">Texas Tech University</span>
+    <span class="school-meta">Ph.D., Electrical Engineering &middot; 2014&ndash;2018</span>
+  </div>
   <div class="proj-grid">
 
     <!-- 1: Portable 24-GHz 3D MIMO Radar -->
@@ -217,7 +239,7 @@ const _24GhzRadarOnChipPhotoUrl = await optimized(_24GhzRadarOnChipPhoto, 800);
           <span class="proj-tag tag-radar">RADAR</span>
         </div>
         <h3>Portable 24-GHz 3D MIMO Radar</h3>
-        <p>A K-band MIMO FMCW radar achieving 90&deg; field of view and &plusmn;1.5&deg; angular resolution in both azimuth and elevation. Non-uniformly spaced array with 16 Tx and 16 Rx channels enables 3D localization mapping.</p>
+        <p>A K-band MIMO FMCW radar with a 90&deg; field of view and 3&deg; designed angular resolution in both azimuth and elevation. A non-uniformly spaced array of 16 Tx and 16 Rx antennas enables 3D localization.</p>
         <div class="proj-card-footer">
           <span class="proj-pub-count"><i class="fa-solid fa-file-lines"></i> 1 Journal Paper</span>
           <span class="proj-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
@@ -297,7 +319,7 @@ const _24GhzRadarOnChipPhotoUrl = await optimized(_24GhzRadarOnChipPhoto, 800);
           <span class="proj-tag tag-radar">RADAR</span>
         </div>
         <h3>24-GHz Radar-on-Chip</h3>
-        <p>A 24-GHz radar transceiver chip realized with Global Foundry 0.13 &micro;m CMOS process. Includes LC-tank VCO, poly-phase filter, RF buffers, and a matching network for QFN package &mdash; targeting low-cost consumer and bio-medical applications.</p>
+        <p>A 24-GHz radar transceiver chip in GlobalFoundries 0.13-&micro;m CMOS. Includes LC-tank VCO, poly-phase filter, RF buffers, and a matching network for QFN package &mdash; targeting low-cost consumer and bio-medical applications.</p>
         <div class="proj-card-footer">
           <span class="proj-pub-count"><i class="fa-solid fa-microchip"></i> CMOS 0.13 &micro;m</span>
           <span class="proj-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
@@ -305,6 +327,75 @@ const _24GhzRadarOnChipPhotoUrl = await optimized(_24GhzRadarOnChipPhoto, 800);
       </div>
     </a>
 
+  </div>
+  </div>
+
+  <div class="school-group">
+  <div class="school-head reveal">
+    <span class="school-name">Zhejiang University</span>
+    <span class="school-meta">B.S. &amp; M.S., Information Science &amp; Electronic Engineering &middot; 2007&ndash;2014</span>
+  </div>
+  <div class="proj-grid">
+
+    <!-- 6: Adaptive Beamforming Array -->
+    <a class="proj-card reveal" href="/2017/01/21/adaptive-beamforming-array/" target="_blank" data-tags="beamforming antenna">
+      <div class="proj-card-img-wrap">
+        <img class="proj-card-img" src={adaptiveBeamformingArraySystemUrl} alt="Adaptive Beamforming Array" loading="lazy">
+        <span class="proj-card-year">M.S. Thesis</span>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-card-tags">
+          <span class="proj-tag tag-beamforming">Beamforming</span>
+          <span class="proj-tag tag-antenna">Antenna Array</span>
+        </div>
+        <h3>Adaptive Beamforming Array</h3>
+        <p>A &ldquo;complex domain&rdquo; RF front end that forms beams directly on wideband RF signals with vector multipliers, removing the need for T/R modules and high-speed baseband hardware.</p>
+        <div class="proj-card-footer">
+          <span class="proj-pub-count"><i class="fa-solid fa-file-lines"></i> 2 Journal Papers</span>
+          <span class="proj-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 7: Ku-Band High-Gain Horn Antenna Array -->
+    <a class="proj-card reveal reveal-delay-1" href="/2017/01/27/ku-band-high-gain-horn-antenna-array/" target="_blank" data-tags="antenna">
+      <div class="proj-card-img-wrap">
+        <img class="proj-card-img" src={kuBandHornArrayUrl} alt="Ku-Band High-Gain Horn Antenna Array" loading="lazy">
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-card-tags">
+          <span class="proj-tag tag-antenna">Antenna Array</span>
+          <span class="proj-tag tag-radar">Ku-band</span>
+        </div>
+        <h3>Ku-Band High-Gain Horn Antenna Array</h3>
+        <p>A 16 &times; 4 quadrature-polarized horn array for satellite communication, covering 500-MHz bands at 12.5 and 14.25 GHz. Horns and feed network designed in CST Microwave Studio.</p>
+        <div class="proj-card-footer">
+          <span class="proj-pub-count"><i class="fa-solid fa-satellite-dish"></i> 64 Horns</span>
+          <span class="proj-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 8: Wideband RF Signal Synthesizer -->
+    <a class="proj-card reveal reveal-delay-2" href="/2017/01/18/wideband-rf-signal-synthesizer/" target="_blank" data-tags="rf">
+      <div class="proj-card-img-wrap">
+        <img class="proj-card-img" src={widebandRfSignalSynthesizerPhotoUrl} alt="Wideband RF Signal Synthesizer" loading="lazy">
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-card-tags">
+          <span class="proj-tag tag-rf">RF Circuits</span>
+          <span class="proj-tag">Team Project</span>
+        </div>
+        <h3>Wideband RF Signal Synthesizer</h3>
+        <p>A signal generator built from off-the-shelf parts: 150 kHz to 3 GHz in 0.1-Hz steps and &minus;130 to +20 dBm output, with its own microcontroller, CPLD, and PC control software.</p>
+        <div class="proj-card-footer">
+          <span class="proj-pub-count"><i class="fa-solid fa-wave-square"></i> 150 kHz &ndash; 3 GHz</span>
+          <span class="proj-read-more">Read More <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </a>
+
+  </div>
   </div>
 </section>
 
@@ -361,6 +452,9 @@ const _24GhzRadarOnChipPhotoUrl = await optimized(_24GhzRadarOnChipPhoto, 800);
         } else {
           card.classList.add('hidden');
         }
+      });
+      document.querySelectorAll('.school-group').forEach(function (group) {
+        group.classList.toggle('hidden', !group.querySelector('.proj-card:not(.hidden)'));
       });
     });
   });

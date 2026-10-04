@@ -1,58 +1,117 @@
 ---
 title: "Portable 24-GHz 3D MIMO Radar"
 date: 2017-09-27
-updated: 2026-05-27
-description: "Introduction A K-band MIMO FMCW radar is designed. By combining the concept of MIMO and non-uniformly spaced array, higher angular resolution and three-dimensional beam scanning capabilities can be achieved with a relatively smaller number of Tx and Rx channels in the designed K-band MIMO FMCW radar. The issue of grating lobes for the conventional sparse…"
+updated: 2026-10-04
+description: "A K-band MIMO FMCW radar with 16 transmit and 16 receive antennas in a non-uniformly spaced array, designed for 3° resolution and 3D localization over a 90° field of view, streaming its data over Wi-Fi."
 tags: ["MIMO", "Radar"]
+cover: "./3d-view.jpg"
+rawHtml: true
 wpId: 3969
 ---
-# Introduction
-
-A K-band MIMO FMCW radar is designed. By combining the concept of MIMO and non-uniformly spaced array, higher angular resolution and three-dimensional beam scanning capabilities can be achieved with a relatively smaller number of Tx and Rx channels in the designed K-band MIMO FMCW radar. The issue of grating lobes for the conventional sparse array is solved by the specifically designed non-uniformly spaced array. The distribution of the non-uniformly spaced array and its corresponding weighting values are optimized. MIMO radar calibration procedure is introduced to align the phases and amplitudes of the synthesized virtual elements of the MIMO radar. MIMO radar signal processing is also detailed in this dissertation. For the hardware realization of the prototype, two K-band PLLs and four K-band radar receiver chips are cascaded. Each of the radar receiver chip includes four receiver channels. Customized K-band single-pole-double-throw (SPDT) switches are designed to extend the number of Tx channels. This MIMO radar has 16 Tx channels and Rx channels in total. Experiments of the MIMO FMCW radar prototype reveal its capability in three-dimensional beam scanning.
-
-# MIMO Radar System Design
-
-![Fig. 1. Block diagram of the RF board of the MIMO radar system](./rf-schematic.jpg)  
-**Fig. 1. Block diagram of the RF board of the MIMO radar system**
-
-![Fig. 2. Block diagram of the baseband part of the MIMO radar system](./baseband-schematic.jpg)  
-**Fig. 2. Block diagram of the baseband part of the MIMO radar system**
-
-The blocks diagrams of the MIMO radar system are shown in Fig. 1 and Fig. 2. This MIMO radar system includes an RF board and a baseband part. The transmitter of the RF board includes two PLLs, which share the same reference. Each PLL has an LO output and two Tx outputs, and these three outputs can be turned ON or OFF separately. Each of the Tx output is connected to a single-pole-four-throw (SP4T) RF switches. The outputs of the switches are connected with Tx antenna elements. On the receiver side, four receiver chips are cascaded. Each receiver chip has four independent receiver channels. Two of the receiver chips use the LO from PLL 1 and the other two receiver chips use the LO from PLL 2. The 16-channel baseband outputs are fed into the baseband part for further process. On the RF board, the 16 transmitter antennas and 16 receiver antennas are placed along the edges of a square shape, as shown in Fig. 1. These antennas are unequally spaced to obtain a narrower beam width, as well as removing grating lobes. MIMO technique is used for the radar system to synthesize a larger array. The designed angular resolution of the MIMO radar system is 3°, and the field of view is 90° on both horizontal and vertical planes.
-
-Regarding the baseband part, shown in Fig. 2, 16-channel baseband amplifiers are used to process the 16-channel signals from the RF board. After the baseband amplifiers, an analog switch is used to select one of the channels, and one ADC on a WiFi board is used to sample the selected channel. The WiFi board includes a micro-controller and a WiFi subsystem. The sampled the data is transmitted to a computer for post-processing through WiFi. All the components on the RF board and the baseband part are controlled by the micro-controller on the WiFi board.
-
-# MIMO Radar Prototype
-
-![Fig. 3. Photo of the RF board of the MIMO radar prototype](./rf-board.jpg)  
-**Fig. 3. Photo of the RF board of the MIMO radar prototype**
-
-![Fig. 4. Photo of the baseband board](./baseband.jpg)  
-**Fig. 4. Photo of the baseband board**
-
-![Fig. 5. Photo of the back of the baseband board with stacked WiFi board](./wifi.jpg)  
-**Fig. 5. Photo of the back of the baseband board with stacked WiFi board**
-
-The prototype of the MIMO radar has been built. The photo of the RF board is shown in Fig. 3. The layout of the RF board corresponds to the schematic shown in Fig. 1. The substrate of the RF board is Rogers RO3003 with 0.254 mm thickness. The total size of the RF board is 120 mm × 120 mm. A 3D printed structure is used to support the RF board.
-
-The photos of the baseband are illustrated in Fig. 4 and Fig. 5. Fig. 4 is the front view of the baseband board, which includes the power supply, 16-channel baseband amplifiers, K-band SPDT switch bias circuits, and the -10 V voltage converter. Fig. 5 is the back view of the baseband board, including a stacked WiFi board. The main chip on the WiFi board is TI’s CC3200, which includes an ARM microcontroller and a WiFi sub-system. This chip also has an ADC with maximum 250 ksps sampling rate. The main components of the MIMO radar prototype are listed in Table I.
-
-**Table I. Main Components of the MIMO Radar Prototype**
-
-<figure class="wp-block-table"><table><thead><tr><th><strong>Radar Part</strong></th><th><strong>Device</strong></th><th><strong>Manufacturer</strong></th><th><strong>Function</strong></th></tr></thead><tbody><tr><td>RF board</td><td>520L15IA40M0000</td><td>CTS</td><td>Clock</td></tr><tr><td></td><td>ADF4159</td><td>Analog Devices</td><td>PLL</td></tr><tr><td></td><td>ADF5901</td><td>Analog Devices</td><td>VCO</td></tr><tr><td></td><td>ADF5904</td><td>Analog Devices</td><td>Receiver</td></tr><tr><td></td><td>MADP-000907-14020W</td><td>MACOM</td><td>PIN diode</td></tr><tr><td>Baseband board</td><td>TPS7A4501DCQR</td><td>Texas Instruments</td><td>Regulator</td></tr><tr><td></td><td>TPS63700</td><td>Texas Instruments</td><td>DC-DC converter</td></tr><tr><td></td><td>CD74AC138</td><td>Texas Instruments</td><td>Decoder</td></tr><tr><td></td><td>CD4514B</td><td>Texas Instruments</td><td>Decoder</td></tr><tr><td></td><td>ADA4851</td><td>Analog Devices</td><td>OpAmp</td></tr><tr><td></td><td>ADG706</td><td>Analog Devices</td><td>Analog switch</td></tr><tr><td>WiFi board</td><td>CC3200</td><td>Texas Instruments</td><td>WiFi and ARM</td></tr><tr><td></td><td>DEA162450BT</td><td>TDK</td><td>Filter</td></tr><tr><td></td><td>AH104F</td><td>Yuden</td><td>Antenna</td></tr><tr><td></td><td>ADP5135</td><td>Analog Devices</td><td>DC-DC</td></tr><tr><td></td><td>AT25SF161</td><td>Adesto</td><td>Flash</td></tr></tbody></table></figure>
-
-# MIMO Radar Experiment
-
-![Fig. 6. Setup for the experiment](./experiment-setup.jpg)  
-**Fig. 6. Setup for the experiment**
-
-![Fig. 7. Images of the three targets with the MIMO radar prototype](./3d-view.jpg)  
-**Fig. 7. Images of the three targets with the MIMO radar prototype**
-
-A field experiment has been carried to verify the performance of the MIMO radar prototype. The experiment was performed in an open space to avoid the multi-path issue. The setup of the experiment is shown in Fig. 6. The MIMO radar prototype was placed on a car, and three corner reflectors were in front of the MIMO radar prototype with different ranges and heights. The MIMO radar prototype was powered by the cigarette lighter in the car. During the experiment, a laptop was used to record the data in the car through WiFi. As has mentioned above, half of the designed antenna elements, e.g., 8 Tx antennas and 8 Rx antennas, can work in this MIMO radar prototype. Thus, 64-channel beat signals were recorded in the experiment. With all the 64-channel data obtained by 8 Tx and 8 Rx, three-dimensional localization mapping can be obtained. Fig. 7 shows the measured images of the three corner reflectors with calibration matrix 2. It can be clearly seen that the three corner reflectors are located at 1.6 m, 2.3 m, and 3.14 m with different azimuth and zenith angles.
-
----
-
-#### Related Publications:
-
-1.  **Z. Peng** and C. Li, “[A portable K-band 3-D MIMO radar with nonuniformly spaced array for short-range localization](https://ieeexplore.ieee.org/document/8474363),” *IEEE Transactions on Microwave Theory and Techniques*, vol. 66, no. 11, pp. 5075-5086, Nov. 2018.
+<div class="rp">
+  <div class="rp-plate rp-intro">
+    <div class="rp-lede">
+      <p>A portable K-band FMCW radar that locates targets in three dimensions: range, azimuth, and elevation. It uses <strong>MIMO</strong>, where every transmitter–receiver pair acts as one element of a much larger virtual array, so a modest number of channels gives the angular resolution of a far bigger antenna.</p>
+      <p>Spreading antennas far apart usually creates grating lobes, false beams pointing in the wrong direction. This radar avoids them with a <strong>non-uniformly spaced array</strong> whose element positions and weights I optimized. A calibration procedure aligns the phase and amplitude of every virtual element. The full design and signal processing are described in my Ph.D. dissertation.</p>
+      <div class="rp-meta"><span class="rp-hl">Ph.D. dissertation</span><span>Texas Tech University</span><span>2017</span></div>
+    </div>
+    <dl class="rp-facts">
+      <div><dt>Frequency</dt><dd>24 GHz (K-band) FMCW</dd></div>
+      <div><dt>Antennas</dt><dd>16 Tx and 16 Rx, non-uniformly spaced around a square</dd></div>
+      <div><dt>Design resolution</dt><dd>3° in azimuth and elevation</dd></div>
+      <div><dt>Field of view</dt><dd>90° horizontal and vertical</dd></div>
+      <div><dt>Data link</dt><dd>Wi-Fi to a laptop</dd></div>
+    </dl>
+  </div>
+  <figure class="rp-monitor">
+    <img src="./3d-view.jpg" alt="3D image of three corner reflectors measured by the MIMO radar" />
+    <figcaption><b>Fig. 1</b>Three corner reflectors located in 3D by the radar prototype</figcaption>
+  </figure>
+  <div class="rp-stats">
+    <div class="rp-plate rp-stat"><b>16 + 16</b><span>Tx and Rx antennas</span></div>
+    <div class="rp-plate rp-stat"><b>3°</b><span>designed angular resolution</span></div>
+    <div class="rp-plate rp-stat"><b>90°</b><span>field of view, both planes</span></div>
+    <div class="rp-plate rp-stat"><b>120 mm</b><span>square RF board</span></div>
+  </div>
+  <section>
+    <h2>System Design</h2>
+    <p class="rp-kick">RF board · baseband board · Wi-Fi board</p>
+    <div class="rp-split">
+      <div class="rp-prose">
+        <h3>RF board</h3>
+        <p>On the transmit side, two PLLs share one reference clock. Each PLL has an LO output and two Tx outputs, all switched on and off independently. Every Tx output drives a custom single-pole-four-throw (SP4T) switch that selects one of four transmit antennas, so 4 Tx outputs reach all 16 transmit antennas.</p>
+        <p>On the receive side, four radar receiver chips with four channels each provide 16 receive channels. Two of the chips take their LO from PLL 1 and the other two from PLL 2.</p>
+        <p>The 16 transmit and 16 receive antennas sit along the edges of a square (Fig. 2). Their unequal spacing narrows the beam while keeping grating lobes away, giving a designed resolution of 3° over a 90° field of view in both planes.</p>
+      </div>
+      <figure class="rp-fig"><img src="./rf-schematic.jpg" alt="Block diagram of the RF board" loading="lazy" /><figcaption><b>Fig. 2</b>Block diagram of the RF board</figcaption></figure>
+    </div>
+    <figure class="rp-fig"><img src="./baseband-schematic.jpg" alt="Block diagram of the baseband part" loading="lazy" /><figcaption><b>Fig. 3</b>Block diagram of the baseband part</figcaption></figure>
+    <div class="rp-prose">
+      <h3>Baseband and Wi-Fi</h3>
+      <p>Sixteen baseband amplifiers condition the 16 receive channels (Fig. 3). An analog switch then picks one channel at a time for the ADC on a Wi-Fi board, which sends the samples to a computer for processing. The microcontroller on that Wi-Fi board also controls everything else on the RF and baseband boards.</p>
+    </div>
+  </section>
+  <section>
+    <h2>Prototype</h2>
+    <p class="rp-kick">RF, baseband, and Wi-Fi boards</p>
+    <div class="rp-split">
+      <div class="rp-prose">
+        <p>The RF board (Fig. 4) follows the layout in Fig. 2. It is built on 0.254-mm Rogers RO3003, measures 120 × 120 mm, and sits on a 3D-printed frame.</p>
+        <p>The front of the baseband board (Fig. 5) holds the power supply, the 16 baseband amplifiers, bias circuits for the K-band switches, and a −10 V converter. The Wi-Fi board is stacked on the back (Fig. 6). Its main chip, a TI CC3200, combines an ARM microcontroller, a Wi-Fi subsystem, and an ADC that samples at up to 250 ksps.</p>
+      </div>
+      <figure class="rp-fig rp-narrow"><img src="./rf-board.jpg" alt="The RF board of the MIMO radar" loading="lazy" /><figcaption><b>Fig. 4</b>The RF board</figcaption></figure>
+    </div>
+    <div class="rp-figs">
+      <figure class="rp-fig"><img src="./baseband.jpg" alt="Front of the baseband board" loading="lazy" /><figcaption><b>Fig. 5</b>The baseband board, front</figcaption></figure>
+      <figure class="rp-fig"><img src="./wifi.jpg" alt="Back of the baseband board with the stacked Wi-Fi board" loading="lazy" /><figcaption><b>Fig. 6</b>The back of the baseband board, with the Wi-Fi board stacked on it</figcaption></figure>
+    </div>
+    <div class="rp-tablewrap">
+      <table class="rp-table">
+        <thead><tr><th>Board</th><th>Function</th><th>Part</th><th>Manufacturer</th></tr></thead>
+        <tbody>
+          <tr><th rowspan="5">RF board</th><td>Clock</td><td><code>520L15IA40M0000</code></td><td>CTS</td></tr>
+          <tr><td>PLL</td><td><code>ADF4159</code></td><td>Analog Devices</td></tr>
+          <tr><td>VCO</td><td><code>ADF5901</code></td><td>Analog Devices</td></tr>
+          <tr><td>Receiver</td><td><code>ADF5904</code></td><td>Analog Devices</td></tr>
+          <tr><td>PIN diode</td><td><code>MADP-000907-14020W</code></td><td>MACOM</td></tr>
+          <tr><th rowspan="6">Baseband board</th><td>Regulator</td><td><code>TPS7A4501DCQR</code></td><td>Texas Instruments</td></tr>
+          <tr><td>DC-DC converter</td><td><code>TPS63700</code></td><td>Texas Instruments</td></tr>
+          <tr><td>Decoder</td><td><code>CD74AC138</code></td><td>Texas Instruments</td></tr>
+          <tr><td>Decoder</td><td><code>CD4514B</code></td><td>Texas Instruments</td></tr>
+          <tr><td>Op amp</td><td><code>ADA4851</code></td><td>Analog Devices</td></tr>
+          <tr><td>Analog switch</td><td><code>ADG706</code></td><td>Analog Devices</td></tr>
+          <tr><th rowspan="5">Wi-Fi board</th><td>Wi-Fi and ARM MCU</td><td><code>CC3200</code></td><td>Texas Instruments</td></tr>
+          <tr><td>Filter</td><td><code>DEA162450BT</code></td><td>TDK</td></tr>
+          <tr><td>Antenna</td><td><code>AH104F</code></td><td>Taiyo Yuden</td></tr>
+          <tr><td>DC-DC converter</td><td><code>ADP5135</code></td><td>Analog Devices</td></tr>
+          <tr><td>Flash</td><td><code>AT25SF161</code></td><td>Adesto</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <h2>Experiment</h2>
+    <p class="rp-kick">Three corner reflectors in 3D</p>
+    <div class="rp-plate rp-exp">
+      <h3>Locating targets in range, azimuth, and elevation</h3>
+      <div class="rp-split">
+        <div>
+          <p>I tested the radar in an open area to avoid multipath. The radar sat on a car, powered from the cigarette lighter, and a laptop inside the car recorded its data over Wi-Fi. Three corner reflectors stood in front of it at different ranges and heights (Fig. 7).</p>
+          <p>In this prototype, 8 of the 16 transmit antennas and 8 of the 16 receive antennas were working, which gives 64 transmit–receive channels. That was enough for 3D imaging. After calibration, the radar placed the three reflectors at <strong>1.6 m, 2.3 m, and 3.14 m</strong>, each at its own azimuth and elevation (Fig. 1).</p>
+        </div>
+        <figure class="rp-fig"><img src="./experiment-setup.jpg" alt="Experiment setup with three corner reflectors" loading="lazy" /><figcaption><b>Fig. 7</b>The experiment setup</figcaption></figure>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Publication</h2>
+    <p class="rp-kick">Where this work appeared</p>
+    <ol class="rp-pubs">
+      <li><span class="rp-ptitle"><a href="https://ieeexplore.ieee.org/document/8474363">A portable K-band 3-D MIMO radar with nonuniformly spaced array for short-range localization</a></span><span class="rp-pauth"><strong>Z. Peng</strong> and C. Li</span><span class="rp-pvenue"><span class="rp-ptype rp-journal">Journal</span><em>IEEE Transactions on Microwave Theory and Techniques</em>, vol. 66, no. 11, pp. 5075–5086, Nov. 2018</span></li>
+    </ol>
+  </section>
+  <div class="rp-foot">
+    <span>Part of my Ph.D. research at Texas Tech University</span>
+    <span><a href="/research-projects/">All research projects</a> · <a href="/publications/">Publications</a></span>
+  </div>
+</div>
