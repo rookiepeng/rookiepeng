@@ -1,0 +1,49 @@
+---
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import '../styles/theme.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import banner from '../assets/brand/banner.svg';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: ImageMetadata;
+  // The page opens with a full-height hero that the fixed header sits on top of
+  overlayHeader?: boolean;
+  type?: 'website' | 'article';
+}
+
+const { title, description = 'Zhengyu Peng, Ph.D. — radar systems engineer.', image, overlayHeader = false, type = 'website' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL((image ?? banner).src, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" />
+    <link rel="icon" href="/favicon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Z. PENG" href="/feed.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="theme-color" content="#14171d" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <Header />
+    <main id="content" class:list={['site-main', { 'below-header': !overlayHeader }]}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

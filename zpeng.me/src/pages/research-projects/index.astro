@@ -1,4 +1,21 @@
-<style>
+---
+import portable24Ghz3dMimoRadar3dView from '../../content/posts/portable-24-ghz-3d-mimo-radar/3d-view.jpg';
+import kBand2dRfBeamformingFmcwRadarPhoto from '../../content/posts/k-band-2d-rf-beamforming-fmcw-radar/photo.jpg';
+import kBandPortableMultiModeRadarPhoto from '../../content/posts/k-band-portable-multi-mode-radar/photo.jpg';
+import cBandPortableMultiModeRadarPhoto from '../../content/posts/c-band-portable-multi-mode-radar/photo.jpg';
+import _24GhzRadarOnChipPhoto from '../../content/posts/24-ghz-radar-on-chip/photo.jpg';
+import { optimized } from '../../lib/images';
+import { publicationCounts } from '../../lib/publications';
+import Base from '../../layouts/Base.astro';
+const count = await publicationCounts();
+const portable24Ghz3dMimoRadar3dViewUrl = await optimized(portable24Ghz3dMimoRadar3dView, 800);
+const kBand2dRfBeamformingFmcwRadarPhotoUrl = await optimized(kBand2dRfBeamformingFmcwRadarPhoto, 800);
+const kBandPortableMultiModeRadarPhotoUrl = await optimized(kBandPortableMultiModeRadarPhoto, 800);
+const cBandPortableMultiModeRadarPhotoUrl = await optimized(cBandPortableMultiModeRadarPhoto, 800);
+const _24GhzRadarOnChipPhotoUrl = await optimized(_24GhzRadarOnChipPhoto, 800);
+---
+<Base title="Research Projects – Z. PENG" description="Radar system design, signal processing and sensing projects from doctoral research at Texas Tech University." overlayHeader>
+<style is:global>
 /* MOBILE SUIT THEME (RX-78-2): white armour plates framed in navy, Federation blue,
    red and V-fin yellow trim. Light sections are the armour; the dark bands (hero,
    research impact) are the cockpit: a neutral gunmetal hero with Federation blue as the accent. Ported from hexapod-link. */
@@ -189,9 +206,9 @@
   <div class="proj-grid">
 
     <!-- 1: Portable 24-GHz 3D MIMO Radar -->
-    <a class="proj-card reveal" href="https://zpeng.me/2017/09/27/portable-24-ghz-3d-mimo-radar/" target="_blank" data-tags="radar mimo">
+    <a class="proj-card reveal" href="/2017/09/27/portable-24-ghz-3d-mimo-radar/" target="_blank" data-tags="radar mimo">
       <div class="proj-card-img-wrap">
-        <img class="proj-card-img" src="https://zpeng.me/wp-content/uploads/2018/03/mimo-3d-view.jpg" alt="Portable 24-GHz 3D MIMO Radar" loading="lazy">
+        <img class="proj-card-img" src={portable24Ghz3dMimoRadar3dViewUrl} alt="Portable 24-GHz 3D MIMO Radar" loading="lazy">
         <span class="proj-card-year">2017</span>
       </div>
       <div class="proj-card-body">
@@ -209,9 +226,9 @@
     </a>
 
     <!-- 2: K-Band 2D RF Beamforming FMCW Radar -->
-    <a class="proj-card reveal reveal-delay-1" href="https://zpeng.me/2017/01/28/k-band-2d-rf-beamforming-fmcw-radar/" target="_blank" data-tags="radar beamforming">
+    <a class="proj-card reveal reveal-delay-1" href="/2017/01/28/k-band-2d-rf-beamforming-fmcw-radar/" target="_blank" data-tags="radar beamforming">
       <div class="proj-card-img-wrap">
-        <img class="proj-card-img" src="https://zpeng.me/wp-content/uploads/2017/11/24g-phased-array-photo.jpg" alt="K-Band 2D RF Beamforming FMCW Radar" loading="lazy">
+        <img class="proj-card-img" src={kBand2dRfBeamformingFmcwRadarPhotoUrl} alt="K-Band 2D RF Beamforming FMCW Radar" loading="lazy">
         <span class="proj-card-year">2017</span>
       </div>
       <div class="proj-card-body">
@@ -229,9 +246,9 @@
     </a>
 
     <!-- 3: K-Band Portable Multi-Mode Radar -->
-    <a class="proj-card reveal reveal-delay-2" href="https://zpeng.me/2017/01/28/k-band-portable-multi-mode-radar/" target="_blank" data-tags="radar vital">
+    <a class="proj-card reveal reveal-delay-2" href="/2017/01/28/k-band-portable-multi-mode-radar/" target="_blank" data-tags="radar vital">
       <div class="proj-card-img-wrap">
-        <img class="proj-card-img" src="https://zpeng.me/wp-content/uploads/2018/03/k-band-radar-photo.jpg" alt="K-Band Portable Multi-Mode Radar" loading="lazy">
+        <img class="proj-card-img" src={kBandPortableMultiModeRadarPhotoUrl} alt="K-Band Portable Multi-Mode Radar" loading="lazy">
         <span class="proj-card-year">2015&ndash;2017</span>
       </div>
       <div class="proj-card-body">
@@ -249,9 +266,9 @@
     </a>
 
     <!-- 4: C-Band Portable Multi-Mode Radar -->
-    <a class="proj-card reveal reveal-delay-3" href="https://zpeng.me/2017/01/28/c-band-portable-multi-mode-radar/" target="_blank" data-tags="radar vital">
+    <a class="proj-card reveal reveal-delay-3" href="/2017/01/28/c-band-portable-multi-mode-radar/" target="_blank" data-tags="radar vital">
       <div class="proj-card-img-wrap">
-        <img class="proj-card-img" src="https://zpeng.me/wp-content/uploads/2017/11/5g8-radar-photo.jpg" alt="C-Band Portable Multi-Mode Radar" loading="lazy">
+        <img class="proj-card-img" src={cBandPortableMultiModeRadarPhotoUrl} alt="C-Band Portable Multi-Mode Radar" loading="lazy">
         <span class="proj-card-year">2015&ndash;2017</span>
       </div>
       <div class="proj-card-body">
@@ -269,9 +286,9 @@
     </a>
 
     <!-- 5: 24-GHz Radar-on-Chip -->
-    <a class="proj-card reveal reveal-delay-4" href="https://zpeng.me/2017/01/28/24-ghz-radar-on-chip/" target="_blank" data-tags="radar ic">
+    <a class="proj-card reveal reveal-delay-4" href="/2017/01/28/24-ghz-radar-on-chip/" target="_blank" data-tags="radar ic">
       <div class="proj-card-img-wrap">
-        <img class="proj-card-img" src="https://zpeng.me/wp-content/uploads/2017/11/radar-on-chip-photo.jpg" alt="24-GHz Radar-on-Chip" loading="lazy">
+        <img class="proj-card-img" src={_24GhzRadarOnChipPhotoUrl} alt="24-GHz Radar-on-Chip" loading="lazy">
         <span class="proj-card-year">2013&ndash;2014</span>
       </div>
       <div class="proj-card-body">
@@ -300,14 +317,14 @@
       <div class="section-line"></div>
     </div>
     <div class="hl-grid">
-      <div class="hl-stat reveal"><div class="n">16</div><div class="l">Journal Papers</div></div>
-      <div class="hl-stat reveal reveal-delay-1"><div class="n">31</div><div class="l">Conference Papers</div></div>
-      <div class="hl-stat reveal reveal-delay-2"><div class="n">10</div><div class="l">Patents</div></div>
-      <div class="hl-stat reveal reveal-delay-3"><div class="n">1</div><div class="l">Book</div></div>
-      <div class="hl-stat reveal reveal-delay-4"><div class="n">3</div><div class="l">Book Chapters</div></div>
+      <div class="hl-stat reveal"><div class="n">{count.journals}</div><div class="l">Journal Papers</div></div>
+      <div class="hl-stat reveal reveal-delay-1"><div class="n">{count.conferences}</div><div class="l">Conference Papers</div></div>
+      <div class="hl-stat reveal reveal-delay-2"><div class="n">{count.patents}</div><div class="l">Patents</div></div>
+      <div class="hl-stat reveal reveal-delay-3"><div class="n">{count.book}</div><div class="l">Book</div></div>
+      <div class="hl-stat reveal reveal-delay-4"><div class="n">{count["book-chapters"]}</div><div class="l">Book Chapters</div></div>
     </div>
     <div class="reveal">
-      <a class="hl-cta" href="https://zpeng.me/publications/" target="_blank">
+      <a class="hl-cta" href="/publications/" target="_blank">
         View Full Publication List <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
@@ -316,7 +333,7 @@
 
 </div><!-- /.zpeng-page -->
 
-<script data-cfasync="false">
+<script is:inline data-cfasync="false">
 /* <![CDATA[ */
 (function () {
 
@@ -454,3 +471,4 @@
 })();
 /* ]]> */
 </script>
+</Base>

@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { formatDate } from '../lib/posts';
+
+// Plain Markdown pages from src/content/pages, served at /<file name>/.
+// The privacy notices are linked from the Play Store listings, so their URLs must not change.
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((page) => ({ params: { page: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+<Base title={`${page.data.title} – Z. PENG`} description={page.data.title}>
+  <header class="page-head">
+    <div class="inner">
+      <h1>{page.data.title}</h1>
+      {page.data.updated && <div class="meta">Last updated {formatDate(page.data.updated)}</div>}
+    </div>
+  </header>
+  <article class="prose">
+    <Content />
+  </article>
+</Base>

@@ -1,0 +1,11 @@
+[Unit]
+Description=Build and publish zpeng.me from git
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=zpeng-deploy
+Environment=REPO_DIR=/srv/zpeng.me/repo SITE_DIR=/var/www/zpeng.me
+ExecStart=/srv/zpeng.me/repo/zpeng.me/deploy/deploy.sh
+Nice=10

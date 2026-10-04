@@ -1,0 +1,35 @@
+---
+import { marked } from 'marked';
+import Base from '../../layouts/Base.astro';
+import { publicationSections } from '../../lib/publications';
+
+const sections = await publicationSections();
+// Entries are single Markdown lines; external links open in a new tab like they did on WordPress
+const render = (md: string) => (marked.parseInline(md) as string).replace(/<a href="http/g, '<a target="_blank" rel="noopener" href="http');
+---
+<Base title="Publications – Z. PENG" description="Books, book chapters, journal and conference papers, and patents by Zhengyu Peng.">
+  <header class="page-head">
+    <div class="inner">
+      <div class="kicker">Publications</div>
+      <h1>Publication List</h1>
+      <div class="chips">
+        {sections.map((s) => <a class="chip" href={`#${s.id}`}>{s.data.title} · {s.data.items.length}</a>)}
+      </div>
+    </div>
+  </header>
+  <div class="prose publications">
+    {sections.map((s) => (
+      <section id={s.id}>
+        <h2>{s.data.title}</h2>
+        <ol>
+          {s.data.items.map((item) => <li set:html={render(item)} />)}
+        </ol>
+      </section>
+    ))}
+  </div>
+</Base>
+<style>
+  .publications section + section { margin-top: 3rem; }
+  .publications li { margin: 0.7rem 0; padding-left: 0.3rem; }
+  .publications li::marker { font-family: var(--mech-mono); font-size: 0.8em; color: var(--muted); }
+</style>

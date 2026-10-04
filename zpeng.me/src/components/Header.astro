@@ -1,0 +1,65 @@
+---
+import logo from '../assets/brand/logo-white.svg';
+
+const path = Astro.url.pathname;
+
+const works = [
+  { label: 'Hexapod', href: '/2024/09/12/hexapod/' },
+  { label: 'SensorView', href: '/2020/11/11/sensorview/' },
+  { label: 'Antenna Array Analysis', href: '/2019/02/11/antenna-array-analysis/' },
+  { label: 'CommProbe', href: '/2017/07/04/commprobe/' },
+  { label: 'Tx-Line Calculator', href: '/2018/05/01/tx-line-calculator/' },
+  { label: 'Research Projects', href: '/research-projects/' },
+];
+const publications = [
+  { label: 'Book', href: '/publications/#book' },
+  { label: 'Book Chapters', href: '/publications/#book-chapters' },
+  { label: 'Journals', href: '/publications/#journals' },
+  { label: 'Conferences', href: '/publications/#conferences' },
+  { label: 'Patents', href: '/publications/#patents' },
+];
+const worksActive = works.some((w) => w.href === path);
+---
+<header class="site-header" id="site-header">
+  <div class="bar">
+    <a class="brand" href="/" aria-label="Z. PENG Personal Site" rel="home">
+      <img src={logo.src} width={logo.width} height={logo.height} alt="" />
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <ul class="nav-menu">
+        <li class:list={{ active: path === '/' }}>
+          <a href="/"><i class="fa-solid fa-house"></i>Home</a>
+        </li>
+        <li class:list={{ active: worksActive }}>
+          <span tabindex="0"><i class="fa-solid fa-rocket"></i>My Works <i class="fa-solid fa-chevron-down caret"></i></span>
+          <ul class="sub-menu">
+            {works.map((w) => <li><a href={w.href}>{w.label}</a></li>)}
+          </ul>
+        </li>
+        <li class:list={{ active: path.startsWith('/publications/') }}>
+          <a href="/publications/"><i class="fa-solid fa-book"></i>Publications <i class="fa-solid fa-chevron-down caret"></i></a>
+          <ul class="sub-menu">
+            {publications.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<script>
+  const header = document.getElementById('site-header')!;
+  const toggle = header.querySelector<HTMLButtonElement>('.nav-toggle')!;
+  toggle.addEventListener('click', () => {
+    const open = header.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  header.querySelectorAll('.site-nav a').forEach((a) =>
+    a.addEventListener('click', () => {
+      header.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    })
+  );
+</script>

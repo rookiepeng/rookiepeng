@@ -1,0 +1,120 @@
+{
+  "sensorview": [
+    {
+      "id": 667,
+      "parent": 0,
+      "author": "Nkorni Katte",
+      "date": "2021-02-24T14:03:33",
+      "content": "<p>Dear Dr. Peng,<br />\nI will like to test this software.<br />\nKind regards,</p>\n<p>N. Katte</p>"
+    },
+    {
+      "id": 668,
+      "parent": 667,
+      "author": "Zhengyu Peng",
+      "date": "2021-02-24T19:55:12",
+      "content": "<p>Hi, Nkorni,</p>\n<p>I haven&#8217;t had time put a detail documentation on this, but this is an open source project and you can find the source code here: <a href=\"https://github.com/rookiepeng/sensorview\" rel=\"nofollow ugc\">https://github.com/rookiepeng/sensorview</a><br />\nYou can also find the docker build here: <a href=\"https://hub.docker.com/repository/docker/rookiepeng/sensorview\" rel=\"nofollow ugc\">https://hub.docker.com/repository/docker/rookiepeng/sensorview</a></p>"
+    }
+  ],
+  "portable-24-ghz-3d-mimo-radar": [
+    {
+      "id": 2647,
+      "parent": 0,
+      "author": "Peter Fox",
+      "date": "2022-03-20T13:20:02",
+      "content": "<p>Hi. I like your work! And the way you have documented it! I found this through your radar simulation.  Thanks!</p>"
+    },
+    {
+      "id": 5129,
+      "parent": 0,
+      "author": "Viska Clanella Nugroho",
+      "date": "2026-08-15T08:31:59",
+      "content": "<p>The combination of 24 GHz sensing and 3D MIMO makes radar much more than a simple distance-measuring system. A portable design is particularly interesting because spatial information can be captured in a compact platform, opening possibilities for more flexible real-world sensing applications.</p>"
+    }
+  ],
+  "hexapod": [
+    {
+      "id": 3660,
+      "parent": 0,
+      "author": "Tenzin Kuenkhyab",
+      "date": "2024-03-25T14:20:35",
+      "content": "<p>Hello, i have read about your hexapod project and i found it quite interesting and want to build one to help myself learn. But while procuring materials i have failed to understand what type of servo motor you used. I have read it was TowerPro MG92B, but is it a continuous servo motor or standard servo motor?<br />\nWould be really grateful if you could reply</p>"
+    },
+    {
+      "id": 3671,
+      "parent": 3660,
+      "author": "Zhengyu Peng",
+      "date": "2024-04-10T17:43:13",
+      "content": "<p>It is a standard servo motor </p>"
+    },
+    {
+      "id": 3838,
+      "parent": 0,
+      "author": "ili",
+      "date": "2024-09-08T19:16:53",
+      "content": "<p>Hi, I was working on building something like this and I&#8217;ve noticed the github repo has been deleted. Would you be able to provide access to the instructions perchance?</p>"
+    },
+    {
+      "id": 3843,
+      "parent": 3838,
+      "author": "Zhengyu Peng",
+      "date": "2024-09-11T22:19:59",
+      "content": "<p>Here is the new link: <a href=\"https://github.com/rookidroid/hexapod\" rel=\"nofollow ugc\">https://github.com/rookidroid/hexapod</a></p>"
+    },
+    {
+      "id": 3853,
+      "parent": 0,
+      "author": "Simone",
+      "date": "2024-09-20T10:16:16",
+      "content": "<p>Hi Zhengyu, this is a really interesting project, and I think I got all I need to complete this hexapod! It&#8217;s a sort of puzzle to understand some part of the hardware, but this is also part of the fun! I think i&#8217;ll figure out while I build, but if you can guide me where to put the bearings, the pins, and the 6mm 2m screw it will be great!  thanks again!</p>"
+    },
+    {
+      "id": 3855,
+      "parent": 3853,
+      "author": "Zhengyu Peng",
+      "date": "2024-09-20T21:29:03",
+      "content": "<p>The bearings will be in the holes of &#8220;body_base&#8221; and &#8220;leg_bottom&#8221;. The pins go with &#8220;joint_bottom&#8221; and &#8220;foot_bottom&#8221;. 6mm M2 screws are used to attach servo horns to &#8220;joint_top&#8221; and &#8220;foot_top&#8221;.</p>"
+    },
+    {
+      "id": 3859,
+      "parent": 3855,
+      "author": "Simone",
+      "date": "2024-09-23T08:50:16",
+      "content": "<p>Thanks a lot Zhenghy! Everything fit like a glove! I&#8217;m still waiting for the battery to arrive but in those days I&#8217;ll do the electronics!<br />\nI tried to figure out the correct calibration for the leg (part 2servos). I think at 0 it should be all retracted and at maximum all extended., is it right? (i&#8217;m using a &#8220;CCPM servo costintency master&#8221; that it&#8217;s a very cheap useful tool for servo testing)<br />\nfor the body_base servos should they stay at center in neutral position? I&#8217;ll send you picture of the make on thingiverse!</p>"
+    },
+    {
+      "id": 3861,
+      "parent": 3859,
+      "author": "Zhengyu Peng",
+      "date": "2024-09-24T12:34:08",
+      "content": "<p>So for the calibration position, all the servos should be at 90 deg position, and the legs should be horizontal and the feet are perpendicular to the ground. I will make a photo of this later.</p>"
+    },
+    {
+      "id": 3941,
+      "parent": 0,
+      "author": "James",
+      "date": "2025-01-15T02:14:20",
+      "content": "<p>Hi Zhengyu. I was building your hexapod project and almost done with a liitle modification. I follow your instruction but i didn&#8217;t see any diagram showing the position of each servo connecting to the PCA9685. Can u share ? Also is there a coding for the joystick controller, i can&#8217;t find it on your github location you mention. Thank you.</p>"
+    },
+    {
+      "id": 3944,
+      "parent": 0,
+      "author": "James",
+      "date": "2025-01-16T04:29:25",
+      "content": "<p>Hi . I&#8217;m building your hexapod and following your instruction. But do you include the coding for the joystick remote control ? I can&#8217;t find it on the github. Can you share it. Also there isn&#8217;t any diagram for connecting the servo&#8217;s to the PCA9685. Can anyone help ? Thank you.</p>"
+    },
+    {
+      "id": 3950,
+      "parent": 3944,
+      "author": "Zhengyu Peng",
+      "date": "2025-01-23T09:31:59",
+      "content": "<p>Please check the GitHub repo: <a href=\"https://github.com/rookidroid/hexapod\" rel=\"nofollow ugc\">https://github.com/rookidroid/hexapod</a></p>\n<p>The remote controller repo is here: <a href=\"https://github.com/rookidroid/remote-arcade\" rel=\"nofollow ugc\">https://github.com/rookidroid/remote-arcade</a></p>\n<p>I am also working on a new version of the Hexapod with several improvements. I will update the repo soon.</p>"
+    },
+    {
+      "id": 3951,
+      "parent": 3941,
+      "author": "Zhengyu Peng",
+      "date": "2025-01-23T09:35:02",
+      "content": "<p>The connection is actually in the Arduino code: <a href=\"https://github.com/rookidroid/hexapod/blob/v1/software/hexapod_arduino/config.h\" rel=\"nofollow ugc\">https://github.com/rookidroid/hexapod/blob/v1/software/hexapod_arduino/config.h</a><br />\nAt line 67-72, you can adjust it based on your own connections.</p>\n<p>The remote controller repo is here: <a href=\"https://github.com/rookidroid/remote-arcade\" rel=\"nofollow ugc\">https://github.com/rookidroid/remote-arcade</a></p>"
+    }
+  ]
+}

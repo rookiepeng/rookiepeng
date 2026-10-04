@@ -1,0 +1,32 @@
+---
+import Base from './Base.astro';
+import Comments from '../components/Comments.astro';
+import { formatDate, tagSlug, type Post } from '../lib/posts';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { title, description, date, updated, tags, cover, rawHtml } = post.data;
+const showUpdated = updated && updated.valueOf() - date.valueOf() > 30 * 864e5;
+---
+<Base title={`${title} – Z. PENG`} description={description || title} image={cover} type="article">
+  <header class="page-head">
+    <div class="inner">
+      <div class="kicker">Project log</div>
+      <h1>{title}</h1>
+      <div class="meta">
+        <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+        {showUpdated && <span>Updated {formatDate(updated)}</span>}
+        <div class="chips">
+          {tags.map((t) => <a class="chip" href={`/tag/${tagSlug(t)}/`}>{t}</a>)}
+        </div>
+      </div>
+    </div>
+  </header>
+  <article class={rawHtml ? 'raw-html' : 'prose'}>
+    <slot />
+  </article>
+  <Comments slug={post.id} />
+</Base>

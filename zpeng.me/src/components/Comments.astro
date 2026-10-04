@@ -1,0 +1,72 @@
+---
+import archive from '../data/wp-comments.json';
+import { GISCUS } from '../config';
+import { formatDate } from '../lib/posts';
+
+interface Props {
+  slug: string;
+}
+
+interface WpComment {
+  id: number;
+  parent: number;
+  author: string;
+  date: string;
+  content: string;
+}
+
+const { slug } = Astro.props;
+const comments: WpComment[] = (archive as Record<string, WpComment[]>)[slug] ?? [];
+
+// Flatten the WordPress thread into display order: each comment followed by its replies
+const thread: (WpComment & { depth: number })[] = [];
+const walk = (parent: number, depth: number) => {
+  for (const c of comments.filter((c) => c.parent === parent)) {
+    thread.push({ ...c, depth });
+    walk(c.id, depth + 1);
+  }
+};
+walk(0, 0);
+---
+{(thread.length > 0 || GISCUS.repoId) && (
+  <section class="comments" id="comments">
+    {thread.length > 0 && (
+      <>
+        <h2>Archived comments</h2>
+        <p class="archived-note">Comments left on the previous version of this site.</p>
+        {thread.map((c) => (
+          <article class:list={['comment', { reply: c.depth > 0 }]} style={c.depth > 1 ? `margin-left:${2 * c.depth}rem` : undefined}>
+            <header>
+              <strong>{c.author}</strong>
+              <time datetime={c.date}>{formatDate(new Date(c.date + 'Z'))}</time>
+            </header>
+            <Fragment set:html={c.content} />
+          </article>
+        ))}
+      </>
+    )}
+    {GISCUS.repoId && (
+      <>
+        <h2>Comments</h2>
+        <script
+          is:inline
+          src="https://giscus.app/client.js"
+          data-repo={GISCUS.repo}
+          data-repo-id={GISCUS.repoId}
+          data-category={GISCUS.category}
+          data-category-id={GISCUS.categoryId}
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="light"
+          data-lang="en"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async
+        ></script>
+      </>
+    )}
+  </section>
+)}
