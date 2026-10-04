@@ -7,7 +7,7 @@ const opt = (name, def) => (args.includes(name) ? args[args.indexOf(name) + 1] :
 const WP = opt('--wp', 'https://zpeng.me').replace(/\/$/, '');
 const LOCAL = opt('--local', 'http://localhost:4321').replace(/\/$/, '');
 
-// Pages deliberately not carried over. /feed/ is redirected to /feed.xml by Caddy (deploy/Caddyfile), not by astro preview.
+// Pages deliberately not carried over. /feed/ is redirected to /feed.xml by nginx (deploy/nginx-zpeng.me.conf), not by astro preview.
 // Media moved out of /wp-content/uploads/ into post folders and src/assets, so old image URLs are retired.
 const IGNORE = [/^\/wp-content\//, /^\/test\/$/, /^\/author\//, /^\/category\//, /^\/wp-sitemap/, /^\/hestia\/$/];
 

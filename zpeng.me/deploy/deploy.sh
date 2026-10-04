@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Builds zpeng.me from the latest master and publishes it to /var/www/zpeng.me.
+# Builds zpeng.me from the latest master and publishes it to /srv/zpeng-static/public.
 # Run by zpeng-deploy.timer every few minutes; does nothing when master hasn't moved.
 #   deploy.sh          build only if there are new commits
 #   deploy.sh --force  rebuild regardless
 set -euo pipefail
 
-REPO_DIR="${REPO_DIR:-/srv/zpeng.me/repo}"
-SITE_DIR="${SITE_DIR:-/var/www/zpeng.me}"
+REPO_DIR="${REPO_DIR:-/srv/zpeng-static/repo}"
+SITE_DIR="${SITE_DIR:-/srv/zpeng-static/public}"
 BRANCH="${BRANCH:-master}"
 STAMP="$REPO_DIR/.deployed-rev"
 
