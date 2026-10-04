@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 188.86177 188.86177"
+   width="188.86177"
+   height="188.86177"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="favicon_circle.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   inkscape:export-filename="favicon_circle.png"
+   inkscape:export-xdpi="406.64661"
+   inkscape:export-ydpi="406.64661"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="5.0878543"
+     inkscape:cx="163.33015"
+     inkscape:cy="126.18286"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3" />
+  <path
+     fill="#1b1f26"
+     stroke="#3a414d"
+     stroke-width="3"
+     d="M 31.930885,31.930885 H 136.43089 l 20.5,20.5 V 156.93089 H 52.430885 l -20.5,-20.5 z"
+     id="path1" />
+  <g
+     transform="matrix(1.16254,0,0,1.16254,30.430885,30.430885)"
+     id="g3">
+    <path
+       fill="#5b8ff5"
+       d="m 7.74,52.24 19.32,19.31 0.02,-11.3 H 47.06 L 31.41,75.9 37.07,81.56 H 69.95 L 61.94,73.55 H 45.08 L 53.51,65.12 40.63,52.24 Z"
+       id="path2" />
+    <path
+       fill="#e8edf5"
+       fill-rule="evenodd"
+       d="M 49.4,10.57 78.73,39.9 v 36.01 l 23.63,23.63 H 91.04 L 43.74,52.24 H 49.4 Z M 57.41,29.9 V 54.59 L 70.72,67.9 V 43.21 Z"
+       id="path3" />
+  </g>
+</svg>
