@@ -39,7 +39,7 @@ visitor ──► Cloudflare ──► cloudflared ──► nginx 127.0.0.1:808
    sudo useradd --system --home-dir /srv/zpeng-static --shell /usr/bin/nologin zpeng-deploy
    sudo install -d -m 755 -o zpeng-deploy -g zpeng-deploy /srv/zpeng-static /srv/zpeng-static/public
    sudo -u zpeng-deploy git clone https://github.com/rookiepeng/rookiepeng.git /srv/zpeng-static/repo
-   sudo -u zpeng-deploy /srv/zpeng-static/repo/zpeng.me/deploy/deploy.sh --force
+   sudo -u zpeng-deploy bash /srv/zpeng-static/repo/zpeng.me/deploy/deploy.sh --force
    ```
    The directories are world-readable so nginx's `http` user can read the built files.
 4. **nginx.** Arch's package has no `sites-enabled` directory by default. If your `/etc/nginx/nginx.conf`

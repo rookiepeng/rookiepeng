@@ -7,5 +7,5 @@ Wants=network-online.target
 Type=oneshot
 User=zpeng-deploy
 Environment=REPO_DIR=/srv/zpeng-static/repo SITE_DIR=/srv/zpeng-static/public
-ExecStart=/srv/zpeng-static/repo/zpeng.me/deploy/deploy.sh
+ExecStart=/usr/bin/bash /srv/zpeng-static/repo/zpeng.me/deploy/deploy.sh
 Nice=10
