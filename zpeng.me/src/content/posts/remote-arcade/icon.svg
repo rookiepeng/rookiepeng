@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Arcade Remote, top-down: red cabinet, black panel, ball-top joystick in its hexagon,
+       the four-button cluster with its scalloped outline, and the lone special button -->
+  <rect width="512" height="512" rx="96" fill="#d62828"/>
+  <rect x="32" y="100" width="448" height="320" rx="34" fill="#17181c"/>
+  <rect x="32" y="100" width="448" height="320" rx="34" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="4"/>
+  <!-- Robot logo -->
+  <g fill="#e53935">
+    <rect x="236" y="138" width="4" height="12"/>
+    <circle cx="238" cy="136" r="5"/>
+    <rect x="218" y="150" width="40" height="24" rx="4"/>
+    <rect x="224" y="178" width="28" height="4"/>
+  </g>
+  <circle cx="230" cy="162" r="4" fill="#17181c"/>
+  <circle cx="246" cy="162" r="4" fill="#17181c"/>
+  <!-- Joystick: hexagon gate outline, shaft, ball top -->
+  <polygon points="130,224 178,252 178,308 130,336 82,308 82,252" fill="none" stroke="#e53935" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="122" y="214" width="16" height="70" rx="6" fill="#2a2c33"/>
+  <circle cx="130" cy="284" r="14" fill="#2a2c33"/>
+  <circle cx="130" cy="200" r="64" fill="#2f7fd8"/>
+  <circle cx="130" cy="200" r="64" fill="none" stroke="#1d5fae" stroke-width="5"/>
+  <ellipse cx="108" cy="176" rx="22" ry="15" fill="#fff" fill-opacity=".45" transform="rotate(-30 108 176)"/>
+  <!-- Button cluster outline: red discs under black discs leave a scalloped rim -->
+  <g fill="#e53935">
+    <circle cx="370" cy="196" r="45"/><circle cx="310" cy="256" r="45"/>
+    <circle cx="430" cy="256" r="45"/><circle cx="370" cy="316" r="45"/>
+  </g>
+  <g fill="#17181c">
+    <circle cx="370" cy="196" r="40"/><circle cx="310" cy="256" r="40"/>
+    <circle cx="430" cy="256" r="40"/><circle cx="370" cy="316" r="40"/>
+    <circle cx="370" cy="256" r="30"/>
+  </g>
+  <!-- Buttons: bezel ring, then the plunger cap -->
+  <circle cx="370" cy="196" r="30" fill="#b71c1c"/><circle cx="370" cy="192" r="22" fill="#e53935"/>
+  <circle cx="310" cy="256" r="30" fill="#c99700"/><circle cx="310" cy="252" r="22" fill="#fbc02d"/>
+  <circle cx="430" cy="256" r="30" fill="#9ea3ad"/><circle cx="430" cy="252" r="22" fill="#e6e8ec"/>
+  <circle cx="370" cy="316" r="30" fill="#1d5fae"/><circle cx="370" cy="312" r="22" fill="#2f7fd8"/>
+  <circle cx="232" cy="340" r="30" fill="#000"/><circle cx="232" cy="336" r="22" fill="#33353c"/>
+  <circle cx="232" cy="340" r="30" fill="none" stroke="#4a4d56" stroke-width="2"/>
+  <!-- Panel screws -->
+  <g fill="#3a3d45">
+    <circle cx="58" cy="126" r="6"/><circle cx="454" cy="126" r="6"/>
+    <circle cx="58" cy="394" r="6"/><circle cx="454" cy="394" r="6"/>
+  </g>
+</svg>
