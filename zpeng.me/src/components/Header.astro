@@ -1,23 +1,8 @@
 ---
 import logo from '../assets/brand/logo-white.svg';
+import { works, publications } from '../lib/nav';
 
 const path = Astro.url.pathname;
-
-const works = [
-  { label: 'Hexapod', href: '/2024/09/12/hexapod/' },
-  { label: 'SensorView', href: '/2020/11/11/sensorview/' },
-  { label: 'BeamScope', href: '/2019/02/11/beamscope/' },
-  { label: 'CommProbe', href: '/2017/07/04/commprobe/' },
-  { label: 'Tx-Line Calculator', href: '/2018/05/01/tx-line-calculator/' },
-  { label: 'Research Projects', href: '/research-projects/' },
-];
-const publications = [
-  { label: 'Book', href: '/publications/#book' },
-  { label: 'Book Chapters', href: '/publications/#book-chapters' },
-  { label: 'Journals', href: '/publications/#journals' },
-  { label: 'Conferences', href: '/publications/#conferences' },
-  { label: 'Patents', href: '/publications/#patents' },
-];
 const worksActive = works.some((w) => w.href === path);
 ---
 <header class="site-header" id="site-header">

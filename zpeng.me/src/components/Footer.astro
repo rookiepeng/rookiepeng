@@ -1,33 +1,49 @@
 ---
 import logo from '../assets/brand/logo-white.svg';
-import { getTags } from '../lib/posts';
+import { works, publications, elsewhere } from '../lib/nav';
 
-const tags = await getTags();
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
-  <div class="cols">
-    <section>
-      <h2>Tags</h2>
-      <nav class="tagcloud" aria-label="Tags">
-        {[...tags].map(([slug, t]) => <a href={`/tag/${slug}/`}>{t.name}<sup>{t.posts.length}</sup></a>)}
-      </nav>
-    </section>
+  <div class="footer-main">
     <section class="footer-brand">
       <a href="/"><img src={logo.src} width={logo.width} height={logo.height} alt="Z. Peng" loading="lazy" /></a>
-      <p><i class="fa-solid fa-location-dot"></i> Westfield, Indiana, USA</p>
-      <p><i class="fa-solid fa-envelope"></i> zpeng.me<i class="fa-solid fa-at" style="width:auto"></i>gmail.com</p>
-      <p><i class="fa-solid fa-copyright"></i> 2018 - {year} zpeng.me</p>
-    </section>
-    <section class="footer-links">
-      <h2>Elsewhere</h2>
-      <ul>
-        <li><a href="https://github.com/rookiepeng" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a></li>
-        <li><a href="https://scholar.google.com/citations?user=0vQPboMAAAAJ" target="_blank" rel="noopener"><i class="fa-brands fa-google-scholar"></i> Google Scholar</a></li>
-        <li><a href="https://www.linkedin.com/in/zhengyup" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a></li>
-        <li><a href="/feed.xml"><i class="fa-solid fa-rss"></i> RSS feed</a></li>
-        <li><a href="/privacy-policy/">Privacy policy</a></li>
+      <p class="footer-tagline">Radar systems engineer working on automotive radar, signal processing, and antenna arrays. I also build open-source tools and small robots.</p>
+      <ul class="footer-contact">
+        <li><i class="fa-solid fa-location-dot"></i> Westfield, Indiana, USA</li>
+        <li><i class="fa-solid fa-envelope"></i> zpeng.me<i class="fa-solid fa-at at"></i>gmail.com</li>
       </ul>
     </section>
+    <nav class="footer-col" aria-label="Projects">
+      <h2>Projects</h2>
+      <ul>
+        {works.map((w) => <li><a href={w.href}>{w.label}</a></li>)}
+      </ul>
+    </nav>
+    <nav class="footer-col" aria-label="Publications">
+      <h2>Publications</h2>
+      <ul>
+        {publications.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
+      </ul>
+    </nav>
+    <nav class="footer-col" aria-label="Elsewhere">
+      <h2>Elsewhere</h2>
+      <ul>
+        {elsewhere.map((e) => (
+          <li>
+            <a href={e.href} {...(e.href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})}>
+              <i class={e.icon}></i>{e.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-bar">
+    <span>&copy; 2018&ndash;{year} Zhengyu Peng &middot; zpeng.me</span>
+    <span class="footer-bar-links">
+      <a href="/privacy-policy/">Privacy policy</a>
+      <a href="#" aria-label="Back to top">Back to top <i class="fa-solid fa-arrow-up"></i></a>
+    </span>
   </div>
 </footer>
