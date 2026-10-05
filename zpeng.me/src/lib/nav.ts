@@ -1,8 +1,8 @@
 // Site navigation shared by the header menus and the footer site map
 export const works = [
+  { label: 'Hexapod Link', href: '/2025/10/22/hexapod-link/' },
   { label: 'Hexapod', href: '/2024/09/12/hexapod/' },
   { label: 'Arcade Remote', href: '/2023/03/18/remote-arcade/' },
-  { label: 'Hexapod Link', href: '/2025/10/22/hexapod-link/' },
   { label: 'SensorView', href: '/2020/11/11/sensorview/' },
   { label: 'BeamScope', href: '/2019/02/11/beamscope/' },
   { label: 'CommProbe', href: '/2017/07/04/commprobe/' },
