@@ -3,7 +3,7 @@ import logo from '../assets/brand/logo-white.svg';
 import { works, publications } from '../lib/nav';
 
 const path = Astro.url.pathname;
-const worksActive = works.some((w) => w.href === path);
+const worksActive = works.some((g) => g.overview?.href === path || g.items.some((w) => w.href === path));
 ---
 <header class="site-header" id="site-header">
   <div class="bar">
@@ -20,8 +20,18 @@ const worksActive = works.some((w) => w.href === path);
         </li>
         <li class:list={{ active: worksActive }}>
           <span tabindex="0"><i class="fa-solid fa-rocket"></i>My Works <i class="fa-solid fa-chevron-down caret"></i></span>
-          <ul class="sub-menu">
-            {works.map((w) => <li><a href={w.href}>{w.label}</a></li>)}
+          <ul class="sub-menu works-menu">
+            {works.map((g) => (
+              <li class="menu-group">
+                <span class="menu-group-title">{g.title}</span>
+                <ul>
+                  {g.items.map((w) => <li><a href={w.href}>{w.label}</a></li>)}
+                  {g.overview && (
+                    <li><a class="menu-overview" href={g.overview.href}>All {g.overview.label.toLowerCase()} <i class="fa-solid fa-arrow-right"></i></a></li>
+                  )}
+                </ul>
+              </li>
+            ))}
           </ul>
         </li>
         <li class:list={{ active: path.startsWith('/publications/') }}>

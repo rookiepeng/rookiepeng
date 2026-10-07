@@ -75,6 +75,14 @@ linear-gradient(135deg,var(--mech-bg) 0%,var(--mech-bg2) 55%,var(--mech-bg3) 100
 .nav-menu > li:hover > .sub-menu,.nav-menu > li:focus-within > .sub-menu{opacity:1;visibility:visible;transform:none}
 .sub-menu a{display:block;padding:.45rem 1rem .45rem .75rem;font-size:.88rem;color:var(--mech-text);text-decoration:none;border-left:3px solid transparent;transition:color .1s,border-color .1s,background-color .1s}
 .sub-menu a:hover,.sub-menu a:focus-visible{color:#fff;border-left-color:var(--dark-red);background:rgba(91,143,245,.12);outline:none}
+/* My Works: one column per topic, each under a small engraved heading */
+.works-menu{display:grid;grid-template-columns:repeat(3,max-content);gap:0 .4rem;padding:4px .3rem .5rem}
+.menu-group{min-width:170px}
+.menu-group ul{list-style:none;margin:0;padding:0}
+.menu-group-title{display:block;margin:.6rem .4rem .3rem .75rem;padding-bottom:.35rem;border-bottom:1px solid var(--mech-border);font-family:var(--mech-mono);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dark-accent)}
+.sub-menu a.menu-overview{color:var(--dark-muted);font-size:.8rem}
+.sub-menu a.menu-overview:hover,.sub-menu a.menu-overview:focus-visible{color:#fff}
+.sub-menu a.menu-overview i{font-size:.7rem;margin-left:.3em}
 .nav-toggle{display:none;width:42px;height:38px;padding:0;border:2px solid var(--mech-border);border-radius:0;clip-path:var(--chamfer-clip-sm);background:transparent;color:var(--mech-text);font-size:1.1rem;cursor:pointer}
 .nav-toggle:hover{border-color:var(--dark-accent);color:var(--dark-accent)}
 @media(max-width:960px){
@@ -88,6 +96,8 @@ linear-gradient(135deg,var(--mech-bg) 0%,var(--mech-bg2) 55%,var(--mech-bg3) 100
 .nav-menu .caret{display:none}
 .sub-menu{position:static;opacity:1;visibility:visible;transform:none;background:transparent;border:0;clip-path:none;box-shadow:none;padding:0 0 .4rem 1.4rem;min-width:0}
 .sub-menu::before{display:none}
+.works-menu{display:block;padding:0 0 .4rem 1.4rem}
+.menu-group-title{margin:.5rem 0 .2rem .75rem;border-bottom:0;padding-bottom:0}
 }
 
 /* FOOTER: the dark cockpit band */

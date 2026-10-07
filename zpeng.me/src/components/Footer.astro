@@ -17,7 +17,7 @@ const year = new Date().getFullYear();
     <nav class="footer-col" aria-label="Projects">
       <h2>Projects</h2>
       <ul>
-        {works.map((w) => <li><a href={w.href}>{w.label}</a></li>)}
+        {works.flatMap((g) => (g.overview ? [g.overview] : g.items)).map((w) => <li><a href={w.href}>{w.label}</a></li>)}
       </ul>
     </nav>
     <nav class="footer-col" aria-label="Publications">
