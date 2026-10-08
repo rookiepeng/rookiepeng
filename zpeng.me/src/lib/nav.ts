@@ -25,12 +25,8 @@ export const works = [
     items: [
       { label: 'Portable 24-GHz 3D MIMO Radar', href: '/2017/09/27/portable-24-ghz-3d-mimo-radar/' },
       { label: 'K-Band 2D RF Beamforming FMCW Radar', href: '/2017/01/28/k-band-2d-rf-beamforming-fmcw-radar/' },
-      { label: 'K-Band Portable Multi-Mode Radar', href: '/2017/01/28/k-band-portable-multi-mode-radar/' },
-      { label: 'C-Band Portable Multi-Mode Radar', href: '/2017/01/28/c-band-portable-multi-mode-radar/' },
       { label: '24-GHz Radar-on-Chip', href: '/2017/01/28/24-ghz-radar-on-chip/' },
       { label: 'Adaptive Beamforming Array', href: '/2017/01/21/adaptive-beamforming-array/' },
-      { label: 'Ku-Band High-Gain Horn Antenna Array', href: '/2017/01/27/ku-band-high-gain-horn-antenna-array/' },
-      { label: 'Wideband RF Signal Synthesizer', href: '/2017/01/18/wideband-rf-signal-synthesizer/' },
     ],
   },
 ];
