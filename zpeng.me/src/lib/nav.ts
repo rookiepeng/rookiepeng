@@ -4,7 +4,6 @@ export const works = [
   {
     title: 'Robotics',
     items: [
-      { label: 'Hexapod Link', href: '/2025/10/22/hexapod-link/' },
       { label: 'Hexapod', href: '/2024/09/12/hexapod/' },
       { label: 'Arcade Remote', href: '/2023/03/18/remote-arcade/' },
       { label: 'Smarty', href: '/2023/01/18/smarty/' },
