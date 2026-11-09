@@ -257,9 +257,9 @@ const txLineCalculatorIconUrl = await optimized(txLineCalculatorIcon, 800);
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
 
-/* SIGNAL CANVAS BACKGROUND */
-#radar-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-#hero>*:not(#radar-bg):not(.scroll-hint){position:relative;z-index:1}
+/* LIGHTS RUNNING ALONG THE PANEL SEAMS */
+#hero-lights{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+#hero>*:not(#hero-lights):not(.scroll-hint){position:relative;z-index:1}
 
 @media(max-width:900px){
 #hero{min-height:100vh}
@@ -296,7 +296,7 @@ const txLineCalculatorIconUrl = await optimized(txLineCalculatorIcon, 800);
 <div class="zpeng-page">
 <!-- HERO -->
 <section id="hero">
-  <canvas id="radar-bg"></canvas>
+  <canvas id="hero-lights"></canvas>
   <div class="hero-inner">
   <div class="hero-left">
     <div class="hero-tag">Senior Radar Systems Engineer</div>
@@ -892,33 +892,196 @@ const txLineCalculatorIconUrl = await optimized(txLineCalculatorIcon, 800);
     })();
 
     (function(){
-      var canvas = document.getElementById('radar-bg');
+      var canvas = document.getElementById('hero-lights');
       var hero   = document.getElementById('hero');
       if (!canvas || !hero) return;
       var ctx = canvas.getContext('2d');
       var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
 
-      var ORIGIN_X = 0.72, ORIGIN_Y = 0.50;
-      var NUM_RINGS  = 6;
-      var RING_SPEED = 0.168;   // ring phase per second
-      var WAVE_SPEED = 1.2;     // chirp scroll, rad/s
-      var ECHO_DECAY = 1.2;     // seconds for an echo to fade
-      var WHITE = '236,232,220', BLUE = '91,143,245';
+      // Panel seams of the #hero::before background tile, in its 360x240 SVG units.
+      // Keep in sync with the background SVG (the vent slats are left out).
+      var TILE_W = 360, TILE_H = 240, TILE_PX = 480;   // the tile is drawn 480px wide
+      var SCALE = TILE_PX / TILE_W;
+      var SEAMS = [
+        [[2,2],[344,2],[358,16],[358,118],[16,118],[2,104],[2,2]],
+        [[0,122],[164,122],[178,136],[178,238],[0,238],[0,122]],
+        [[182,122],[360,122],[360,238],[196,238],[182,224],[182,122]],
+        [[2,70],[118,70],[148,40],[250,40],[250,2]],
+        [[286,28],[322,28],[334,40],[334,64],[298,64],[286,52],[286,28]],
+        [[60,122],[60,170],[80,190],[178,190]],
+        [[182,182],[258,182],[280,204],[280,238]]
+      ];
+      var COLORS = [
+        { c: '91,143,245',  w: 0.72 },   // Federation blue
+        { c: '255,210,63',  w: 0.18 },   // V-fin yellow
+        { c: '236,232,220', w: 0.10 }    // white
+      ];
 
-      var W = 0, H = 0, ox = 0, oy = 0, maxR = 1;
-      var targets = [];
+      // Split the tile's seams into straight segments, breaking them wherever
+      // another seam ends on them, so every branch point becomes a graph node.
+      var tileSegs = (function() {
+        var segs = [];
+        SEAMS.forEach(function(p) { for (var i = 1; i < p.length; i++) segs.push([p[i - 1], p[i]]); });
+        var ends = [];
+        segs.forEach(function(s) { ends.push(s[0], s[1]); });
+        var changed = true;
+        while (changed) {
+          changed = false;
+          for (var i = 0; i < segs.length && !changed; i++) {
+            var a = segs[i][0], b = segs[i][1];
+            for (var j = 0; j < ends.length; j++) {
+              var p = ends[j];
+              var cross = (b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]);
+              var dot = (p[0] - a[0]) * (b[0] - a[0]) + (p[1] - a[1]) * (b[1] - a[1]);
+              var len2 = (b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]);
+              if (cross === 0 && dot > 0 && dot < len2) {
+                segs.splice(i, 1, [a, p], [p, b]);
+                changed = true;
+                break;
+              }
+            }
+          }
+        }
+        return segs;
+      })();
 
-      // Targets live in the right part of the hero, away from the text,
-      // and light up when a ring wavefront passes over them.
-      function seed(tg) {
-        tg.x = W * (0.52 + Math.random() * 0.46);
-        tg.y = H * (0.08 + Math.random() * 0.76);
-        tg.d = Math.sqrt((tg.x - ox) * (tg.x - ox) + (tg.y - oy) * (tg.y - oy)) / maxR;
-        tg.r = 1 + Math.random() * 1.4;
-        tg.color = Math.random() < 0.6 ? WHITE : BLUE;
-        tg.glow = 0;
-        tg.echoes = 0;
-        tg.maxEchoes = 2 + Math.floor(Math.random() * 4);
+      var W = 0, H = 0;
+      var nodes = {}, segList = [], pulses = [], flashes = [];
+
+      function key(x, y) { return x + ',' + y; }
+      function node(x, y) {
+        var k = key(x, y);
+        return nodes[k] || (nodes[k] = { x: x * SCALE, y: y * SCALE, nb: [] });
+      }
+      function link(a, b) { if (a.nb.indexOf(b) < 0) { a.nb.push(b); b.nb.push(a); return true; } return false; }
+
+      // Repeat the tile across the hero and join it into one graph. Neighbouring
+      // tiles share some edges, which link() merges.
+      function build() {
+        nodes = {}; segList = [];
+        var cols = Math.min(Math.ceil(W / TILE_PX) + 1, 12), rows = Math.min(Math.ceil(H / (TILE_H * SCALE)) + 1, 12);
+        for (var r = 0; r < rows; r++) {
+          for (var c = 0; c < cols; c++) {
+            tileSegs.forEach(function(s) {
+              var a = node(s[0][0] + c * TILE_W, s[0][1] + r * TILE_H);
+              var b = node(s[1][0] + c * TILE_W, s[1][1] + r * TILE_H);
+              if (link(a, b)) segList.push([a, b]);
+            });
+          }
+        }
+      }
+
+      // The background fades towards the text on the left; the lights follow suit.
+      // On narrow screens the text covers the whole hero, so they stay dimmer.
+      function weight(x) {
+        var u = Math.min(Math.max((x / W - 0.1) / 0.55, 0), 1);
+        return (0.3 + 0.7 * u * u * (3 - 2 * u)) * (W < 900 ? 0.55 : 1);
+      }
+
+      function pickColor() {
+        var r = Math.random(), acc = 0;
+        for (var i = 0; i < COLORS.length; i++) { acc += COLORS[i].w; if (r < acc) return COLORS[i].c; }
+        return COLORS[0].c;
+      }
+
+      function spawn(p) {
+        var s, mx, my;
+        for (var tries = 0; tries < 40; tries++) {
+          s = segList[Math.floor(Math.random() * segList.length)];
+          mx = (s[0].x + s[1].x) / 2; my = (s[0].y + s[1].y) / 2;
+          if (mx > 0 && mx < W && my > 0 && my < H && Math.random() < weight(mx)) break;
+        }
+        var flip = Math.random() < 0.5;
+        p.from = flip ? s[1] : s[0];
+        p.to   = flip ? s[0] : s[1];
+        p.d = 0;
+        p.trail = [p.from];
+        p.speed = 70 + Math.random() * 60;     // px/s
+        p.tail = 90 + Math.random() * 90;      // px
+        p.age = 0;
+        p.life = 4 + Math.random() * 5;        // s
+        p.color = pickColor();
+        return p;
+      }
+
+      function segLen(a, b) { return Math.sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y)); }
+
+      function advance(p, dt) {
+        p.age += dt;
+        p.d += p.speed * dt;
+        var len = segLen(p.from, p.to);
+        while (p.d >= len) {
+          p.d -= len;
+          var at = p.to, opts = at.nb.filter(function(n) { return n !== p.from; });
+          if (opts.length > 1) flashes.push({ x: at.x, y: at.y, t: 0, color: p.color });
+          p.trail.push(at);
+          if (p.trail.length > 16) p.trail.shift();
+          p.from = at;
+          p.to = opts.length ? opts[Math.floor(Math.random() * opts.length)] : p.trail[p.trail.length - 2];
+          len = segLen(p.from, p.to);
+        }
+        if (p.age > p.life) spawn(p);
+      }
+
+      function envelope(p) {
+        return Math.min(p.age / 0.5, 1) * Math.min((p.life - p.age) / 1.0, 1);
+      }
+
+      function drawPulse(p) {
+        var env = envelope(p);
+        if (env <= 0) return;
+        var len = segLen(p.from, p.to), f = len ? p.d / len : 0;
+        var hx = p.from.x + (p.to.x - p.from.x) * f, hy = p.from.y + (p.to.y - p.from.y) * f;
+        var a0 = 0.8 * env * weight(hx);
+
+        // Tail: walk back from the head along the seams it has travelled
+        var px = hx, py = hy, dist = 0;
+        ctx.lineCap = 'round';
+        for (var i = p.trail.length - 1; i >= 0 && dist < p.tail; i--) {
+          var q = p.trail[i], l = segLen({ x: px, y: py }, q);
+          if (!l) continue;
+          var d1 = Math.min(dist + l, p.tail), k = (d1 - dist) / l;
+          var qx = px + (q.x - px) * k, qy = py + (q.y - py) * k;
+          var g = ctx.createLinearGradient(px, py, qx, qy);
+          g.addColorStop(0, 'rgba(' + p.color + ',' + a0 * (1 - dist / p.tail) + ')');
+          g.addColorStop(1, 'rgba(' + p.color + ',' + a0 * (1 - d1 / p.tail) + ')');
+          ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(qx, qy);
+          ctx.strokeStyle = g;
+          ctx.globalAlpha = 0.25; ctx.lineWidth = 6; ctx.stroke();   // soft glow
+          ctx.globalAlpha = 1;    ctx.lineWidth = 1.8; ctx.stroke();
+          px = qx; py = qy; dist = d1;
+        }
+
+        // Head: soft glow with a bright core
+        var halo = ctx.createRadialGradient(hx, hy, 0, hx, hy, 12);
+        halo.addColorStop(0, 'rgba(' + p.color + ',' + 0.45 * env * weight(hx) + ')');
+        halo.addColorStop(1, 'rgba(' + p.color + ',0)');
+        ctx.fillStyle = halo;
+        ctx.beginPath(); ctx.arc(hx, hy, 12, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = 'rgba(255,255,255,' + 0.85 * env * weight(hx) + ')';
+        ctx.beginPath(); ctx.arc(hx, hy, 1.4, 0, Math.PI * 2); ctx.fill();
+      }
+
+      // A brief spark where a light passes a seam junction
+      var FLASH_TIME = 0.6;
+      function drawFlash(fl) {
+        var k = fl.t / FLASH_TIME, a = (1 - k) * 0.4 * weight(fl.x);
+        ctx.beginPath(); ctx.arc(fl.x, fl.y, 2 + k * 7, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(' + fl.color + ',' + a + ')';
+        ctx.lineWidth = 1; ctx.stroke();
+      }
+
+      function step(dt) {
+        pulses.forEach(function(p) { advance(p, dt); });
+        flashes = flashes.filter(function(fl) { fl.t += dt; return fl.t < FLASH_TIME; });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        ctx.globalCompositeOperation = 'lighter';
+        flashes.forEach(drawFlash);
+        pulses.forEach(drawPulse);
+        ctx.globalCompositeOperation = 'source-over';
       }
 
       function resize() {
@@ -928,102 +1091,22 @@ const txLineCalculatorIconUrl = await optimized(txLineCalculatorIcon, 800);
         canvas.width  = Math.round(W * dpr);
         canvas.height = Math.round(H * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ox = W * ORIGIN_X;
-        oy = H * ORIGIN_Y;
-        maxR = Math.sqrt(ox * ox + Math.max(oy, H - oy) * Math.max(oy, H - oy)) * 1.05;
-        var n = W < 900 ? 8 : 18;
-        targets = [];
-        for (var i = 0; i < n; i++) { var tg = {}; seed(tg); targets.push(tg); }
-      }
-
-      // Advance echoes from time t0 to t1 (seconds)
-      function step(t0, t1) {
-        var dt = t1 - t0;
-        targets.forEach(function(tg) {
-          // Rings are evenly spaced 1/NUM_RINGS apart in phase; count wavefronts crossing tg.d
-          var hits = Math.floor((t1 * RING_SPEED - tg.d) * NUM_RINGS) - Math.floor((t0 * RING_SPEED - tg.d) * NUM_RINGS);
-          if (hits > 0) {
-            tg.glow = 1;
-            tg.echoes++;
-          } else {
-            tg.glow = Math.max(0, tg.glow - dt / ECHO_DECAY);
-            if (tg.glow === 0) { if (tg.echoes >= tg.maxEchoes) seed(tg); }
-          }
-        });
-      }
-
-      function drawChirp(t, amp, phaseOff, alpha, lineW) {
-        var y0 = W < 900 ? H - 22 : H - 48;   // below the scroll hint and social links
-        var grad = ctx.createLinearGradient(0, 0, W, 0);
-        grad.addColorStop(0,    'rgba(' + WHITE + ',0)');
-        grad.addColorStop(0.2,  'rgba(' + WHITE + ',' + alpha + ')');
-        grad.addColorStop(0.8,  'rgba(' + WHITE + ',' + alpha + ')');
-        grad.addColorStop(1,    'rgba(' + WHITE + ',0)');
-        ctx.beginPath();
-        for (var x = 0; x <= W; x += 2) {
-          var xn = x / W;
-          // linear FMCW chirp: instantaneous frequency rises left -> right
-          var ph = 2 * Math.PI * (4 * xn + 9 * xn * xn) - t * WAVE_SPEED + phaseOff;
-          var y  = y0 + Math.sin(ph) * amp;
-          if (x === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
+        build();
+        var n = Math.max(5, Math.min(16, Math.round(W * H / 85000)));
+        pulses = []; flashes = [];
+        for (var i = 0; i < n; i++) {
+          var p = spawn({});
+          p.age = Math.random() * p.life * 0.6;   // stagger so they don't all fade in together
+          pulses.push(p);
         }
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = lineW;
-        ctx.stroke();
       }
 
-      function draw(t) {
-        ctx.clearRect(0, 0, W, H);
-
-        // Expanding rings
-        for (var i = 0; i < NUM_RINGS; i++) {
-          var p = (i / NUM_RINGS + t * RING_SPEED) % 1;
-          var alpha = p < 0.08 ? (p / 0.08) * 0.13 : (1 - p) * 0.13;
-          ctx.beginPath();
-          ctx.arc(ox, oy, p * maxR, 0, Math.PI * 2);
-          ctx.strokeStyle = 'rgba(' + BLUE + ',' + alpha + ')';
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-
-        // Emitter at the ring origin, pulsing as each ring leaves
-        var pulse = 1 - ((t * RING_SPEED * NUM_RINGS) % 1);
-        var halo = ctx.createRadialGradient(ox, oy, 0, ox, oy, 22);
-        halo.addColorStop(0, 'rgba(' + BLUE + ',' + (0.10 + 0.18 * pulse) + ')');
-        halo.addColorStop(1, 'rgba(' + BLUE + ',0)');
-        ctx.fillStyle = halo;
-        ctx.beginPath(); ctx.arc(ox, oy, 22, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = 'rgba(' + BLUE + ',0.55)';
-        ctx.beginPath(); ctx.arc(ox, oy, 2.2, 0, Math.PI * 2); ctx.fill();
-
-        // Target echoes
-        targets.forEach(function(tg) {
-          var a = 0.06 + 0.5 * tg.glow;
-          ctx.beginPath();
-          ctx.arc(tg.x, tg.y, tg.r, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(' + tg.color + ',' + a + ')';
-          ctx.fill();
-          if (tg.glow > 0) {
-            ctx.beginPath();
-            ctx.arc(tg.x, tg.y, tg.r + 2 + (1 - tg.glow) * 8, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(' + tg.color + ',' + (0.25 * tg.glow) + ')';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        });
-
-        // Chirp band near the bottom, clear of the text
-        drawChirp(t, 9, 0,           0.22, 1.1);
-        drawChirp(t, 4, Math.PI / 2, 0.10, 0.8);
-      }
-
-      var t = 0, last = 0, rafId = 0, running = false, inView = true;
+      var last = 0, rafId = 0, running = false, inView = true;
       function loop(ts) {
         var dt = last ? Math.min((ts - last) / 1000, 0.1) : 0;
         last = ts;
-        step(t, t + dt);
-        t += dt;
-        draw(t);
+        step(dt);
+        draw();
         rafId = requestAnimationFrame(loop);
       }
       function start() { if (running || reduce) return; running = true; last = 0; rafId = requestAnimationFrame(loop); }
@@ -1033,11 +1116,11 @@ const txLineCalculatorIconUrl = await optimized(txLineCalculatorIcon, 800);
       function redraw() {
         resize();
         if (reduce) {
-          // One still frame: a few targets shown mid-echo
-          t = 2.5;
-          targets.forEach(function(tg, i) { tg.glow = i % 3 === 0 ? 0.7 : 0; });
+          // One still frame: lights paused partway along their seams
+          pulses.forEach(function(p) { p.age = 1; p.life = 4; for (var i = 0; i < 12; i++) advance(p, 0.1); });
+          flashes = [];
         }
-        if (!running) draw(t);
+        if (!running) draw();
       }
       redraw();
 
